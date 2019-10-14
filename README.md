@@ -88,6 +88,10 @@ Build and seed the database:
     php artisan migrate:refresh
     php artisan db:seed --class=UsersTableSeeder
 
+Create a new JWT secret in your `.env` file:
+
+    php artisan jwt:secret
+
 ### Contributions
 
 Would you help make this app better?
