@@ -83,6 +83,11 @@ Set up file permissions:
     chmod 775 -R storage
     chown -R standard:www-data storage
 
+Build and seed the database:
+
+    php artisan migrate:refresh
+    php artisan db:seed --class=UsersTableSeeder
+
 ### Contributions
 
 Would you help make this app better?
