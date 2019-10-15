@@ -1,0 +1,10 @@
+.Footer {
+  font-size: 0.875rem;
+  background-color: #e1f1ff
+}
+
+.Footer ul {
+  list-style-type: none;
+  margin-block-start: 0;
+  padding-inline-start: 0
+}
