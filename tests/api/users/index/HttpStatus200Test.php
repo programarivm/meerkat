@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\api\users\index;
+namespace Tests\Api\Users\Index;
 
 use Tests\api\JwtAuthenticatedTestCase;
 
