@@ -1,11 +1,11 @@
 {
     "httpBody": [
         {
-            "username": "foo",
+            "email": "foo",
             "password": "bar"
         },
         {
-            "username": "foobar",
+            "email": "foobar",
             "password": "foo"
         }
     ]

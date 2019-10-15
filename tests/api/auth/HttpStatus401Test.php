@@ -11,10 +11,10 @@ class HttpStatus401Test extends TestCase
      * @dataProvider data
      * @test
      */
-    public function http_status_401($username, $password)
+    public function http_status_401($email, $password)
     {
         $user = [
-            'username' => $username,
+            'email' => $email,
             'password' => $password
         ];
 
@@ -29,7 +29,7 @@ class HttpStatus401Test extends TestCase
         $users = json_decode(file_get_contents(__DIR__ . '/data/http_status_401.json'))->httpBody;
         foreach ($users as $user) {
             $data[] = [
-                $user->username,
+                $user->email,
                 $user->password
             ];
         }
