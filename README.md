@@ -92,6 +92,10 @@ Create a new JWT secret in your `.env` file:
 
     php artisan jwt:secret
 
+### 5. Run the Tests
+
+    docker exec -it --user 1000:1000 meerkat_php_fpm ./vendor/bin/phpunit
+
 ### Contributions
 
 Would you help make this app better?

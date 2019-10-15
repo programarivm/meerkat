@@ -1,0 +1,12 @@
+{
+    "httpBody": [
+        {
+            "username": "foo",
+            "password": "bar"
+        },
+        {
+            "username": "foobar",
+            "password": "foo"
+        }
+    ]
+}
