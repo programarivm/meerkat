@@ -9,7 +9,7 @@ class UserController extends Controller
 {
   public function index()
   {
-      return User::all();
+      return User::orderBy('created_at', 'desc')->get();
   }
 
   public function show(User $user)
