@@ -1,0 +1,8 @@
+{
+    "httpBody": [
+        {
+            "email": "bob@gmail.com",
+            "password": "password"
+        }
+    ]
+}
