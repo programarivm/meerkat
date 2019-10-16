@@ -20,7 +20,7 @@ class SignIn extends Component {
   }
 
   componentDidMount() {
-    GlobalStore.on("login_failed", () => {
+    GlobalStore.on("login_401", () => {
       let validation = {...this.state.validation};
       validation = 'The username and password that you entered did not match our records. Please try again.';
       this.setState({validation});

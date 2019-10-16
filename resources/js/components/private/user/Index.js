@@ -17,13 +17,13 @@ class UserIndex extends React.Component {
 
   componentDidMount() {
     UserActions.fetchAll();
-    UserStore.on("user_fetch_all_succeeded", (data) => {
+    UserStore.on("user_fetch_all_200", (data) => {
       this.setState({ users: data });
     });
-    UserStore.on("user_create_succeeded", () => {
+    UserStore.on("user_create_201", () => {
       UserActions.fetchAll();
     });
-    UserStore.on("user_delete_succeeded", () => {
+    UserStore.on("user_delete_204", () => {
       UserActions.fetchAll();
     });
   }

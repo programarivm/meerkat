@@ -27,13 +27,13 @@ class GlobalStore extends EventEmitter {
 			switch (res.status) {
 				case 204:
 					this.state.authenticated = true;
-					this.emit("login_succeeded");
+					this.emit("login_204");
 					break;
 				case 401:
-					this.emit("login_failed");
+					this.emit("login_401");
 					break;
 				default:
-					// do nothing
+					this.emit("login_error");
 					break;
 			}
 		});
@@ -50,13 +50,13 @@ class GlobalStore extends EventEmitter {
 			switch (res.status) {
 				case 204:
 					this.state.authenticated = false;
-					this.emit("logout");
+					this.emit("logout_204");
 					break;
 				case 401:
-					this.emit("logout_failed");
+					this.emit("logout_401");
 					break;
 				default:
-					// do nothing
+					this.emit("logout_error");
 					break;
 			}
 		});

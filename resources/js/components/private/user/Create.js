@@ -23,7 +23,7 @@ class UserCreate extends Component {
   }
 
   componentDidMount() {
-    UserStore.on("user_create_failed", () => {
+    UserStore.on("user_create_error", () => {
       this.setState({ validation: 'Whoops! The user could not be added, please try again.' });
     });
   }

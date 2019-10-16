@@ -10,10 +10,10 @@ class Meerkat extends Component {
   }
 
   componentDidMount() {
-    GlobalStore.on("login_succeeded", () => {
+    GlobalStore.on("login_204", () => {
       this.setState(GlobalStore.getState());
     });
-    GlobalStore.on("logout", () => {
+    GlobalStore.on("logout_204", () => {
       this.setState(GlobalStore.getState());
     });
   }

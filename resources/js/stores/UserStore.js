@@ -19,10 +19,10 @@ class UserStore extends EventEmitter {
 		.then((res) => {
 			switch (res.status) {
 				case 201:
-					this.emit("user_create_succeeded");
+					this.emit("user_create_201");
 					break;
 				default:
-					this.emit("user_create_failed");
+					this.emit("user_create_error");
 					break;
 			}
 		});
@@ -38,10 +38,10 @@ class UserStore extends EventEmitter {
 		.then((res) => {
 			switch (res.status) {
 				case 204:
-					this.emit("user_delete_succeeded");
+					this.emit("user_delete_204");
 					break;
 				default:
-					this.emit("user_delete_failed");
+					this.emit("user_delete_error");
 					break;
 			}
 		});
@@ -59,10 +59,10 @@ class UserStore extends EventEmitter {
 			else return res.json();
 		})
 		.then((data) => {
-			this.emit("user_fetch_all_succeeded", data);
+			this.emit("user_fetch_all_200", data);
 		})
 		.catch((error) => {
-			this.emit("user_fetch_all_failed");
+			this.emit("user_fetch_all_error");
 		});
 	}
 
