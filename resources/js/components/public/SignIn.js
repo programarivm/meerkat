@@ -10,20 +10,22 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
       this.state = {
-        'credentials': {
-          'email': '',
-          'password': ''
+        credentials: {
+          email: '',
+          password: ''
         },
-        'validation': null
+        validation: null
     }
     this.handleLogin = this.handleLogin.bind(this);
   }
 
   componentDidMount() {
     GlobalStore.on("login_401", () => {
-      let validation = {...this.state.validation};
-      validation = 'The username and password that you entered did not match our records. Please try again.';
-      this.setState({validation});
+      this.setState({validation: 'The username and password that you entered did not match our records. Please try again.'});
+    });
+
+    GlobalStore.on("login_error", () => {
+      this.setState({validation: 'Whoops! Something went wrong, please try again.'});
     });
   }
 
