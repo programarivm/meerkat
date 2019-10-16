@@ -12,7 +12,9 @@ class RestaurantCreate extends Component {
         restaurant: {
           name: '',
           description: '',
-          address: ''
+          address: '',
+          lat: '',
+          lon: ''
         },
         'validation': null
     }
@@ -43,7 +45,7 @@ class RestaurantCreate extends Component {
         <p className="text-danger">{this.state.validation}</p>
         <Form className="form" onSubmit={ (e) => this.handleCreate(e) }>
           <Row>
-            <Col md={3}>
+            <Col md={6}>
               <FormGroup>
                 <Input
                   type="text"
@@ -54,8 +56,6 @@ class RestaurantCreate extends Component {
                   required
                 />
               </FormGroup>
-            </Col>
-            <Col md={3}>
               <FormGroup>
                 <Input
                   type="text"
@@ -66,8 +66,6 @@ class RestaurantCreate extends Component {
                   required
                 />
               </FormGroup>
-            </Col>
-            <Col md={4}>
               <FormGroup>
                 <Input
                   type="text"
@@ -79,7 +77,29 @@ class RestaurantCreate extends Component {
                 />
               </FormGroup>
             </Col>
-            <Col md={2}>
+            <Col md={6}>
+              <FormGroup>
+                <Input
+                  type="number"
+                  step="0.00000001"
+                  name="lat"
+                  id="lat"
+                  placeholder="Latitude"
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Input
+                  type="number"
+                  step="0.00000001"
+                  name="lon"
+                  id="lon"
+                  placeholder="Longitude"
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+            </Col>
+            <Col md={12}>
               <FormGroup>
                 <Button color="secondary" block>Add restaurant</Button>
               </FormGroup>
