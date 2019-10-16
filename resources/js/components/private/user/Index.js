@@ -9,8 +9,7 @@ class UserIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [],
-      requestFailed: false
+      users: []
     };
     this.handleDelete = this.handleDelete.bind(this);
   }

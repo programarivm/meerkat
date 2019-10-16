@@ -9,22 +9,22 @@ class UserCreate extends Component {
   constructor(props) {
     super(props);
       this.state = {
-        'user': {
-          'firstname': '',
-          'surname': '',
-          'date_of_birth': '',
-          'phone_number': '',
-          'email': '',
-          'password': ''
+        user: {
+          firstname: '',
+          surname: '',
+          date_of_birth: '',
+          phone_number: '',
+          email: '',
+          password: ''
         },
-        'validation': null
+        validation: null
     }
     this.handleCreate = this.handleCreate.bind(this);
   }
 
   componentDidMount() {
     UserStore.on("user_create_error", () => {
-      this.setState({ validation: 'Whoops! The user could not be added, please try again.' });
+      this.setState({validation: 'Whoops! The user could not be added, please try again.'});
     });
   }
 
