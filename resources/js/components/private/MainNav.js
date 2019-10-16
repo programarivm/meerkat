@@ -5,6 +5,7 @@ import {
   NavLink } from 'reactstrap';
 import { Link, Route } from 'react-router-dom';
 import { Dashboard } from "./Dashboard.js";
+import { Users } from "./Users.js";
 import { SignOut } from "./SignOut.js";
 import logo from '../../../images/logo.png';
 import './MainNav.css';
@@ -52,6 +53,11 @@ class MainNav extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
+                <NavLink tag={Link} to="/users">
+                  Users
+                </NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink tag={Link} to="/logout">
                   Sign out
                 </NavLink>
@@ -62,6 +68,10 @@ class MainNav extends React.Component {
         <Route
           path="/dashboard"
           render={(props) => <Dashboard {...props} />}
+        />
+        <Route
+          path="/users"
+          render={(props) => <Users {...props} />}
         />
         <Route
           path="/logout"
