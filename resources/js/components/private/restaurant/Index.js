@@ -6,6 +6,8 @@ import RestaurantActions from '../../../actions/RestaurantActions.js';
 import RestaurantStore from '../../../stores/RestaurantStore.js';
 
 class RestaurantIndex extends React.Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -15,9 +17,12 @@ class RestaurantIndex extends React.Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     RestaurantActions.fetchAll();
     RestaurantStore.on("restaurant_fetch_all_200", (data) => {
-      this.setState({ restaurants: data });
+      if (this._isMounted) {
+        this.setState({ restaurants: data });
+      }
     });
     RestaurantStore.on("restaurant_create_201", () => {
       RestaurantActions.fetchAll();
@@ -25,6 +30,10 @@ class RestaurantIndex extends React.Component {
     RestaurantStore.on("restaurant_delete_204", () => {
       RestaurantActions.fetchAll();
     });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   handleDelete(e,id) {

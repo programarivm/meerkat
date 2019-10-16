@@ -6,6 +6,8 @@ import UserActions from '../../../actions/UserActions.js';
 import UserStore from '../../../stores/UserStore.js';
 
 class UserIndex extends React.Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -15,9 +17,12 @@ class UserIndex extends React.Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     UserActions.fetchAll();
     UserStore.on("user_fetch_all_200", (data) => {
-      this.setState({ users: data });
+      if (this._isMounted) {
+        this.setState({ users: data });
+      }
     });
     UserStore.on("user_create_201", () => {
       UserActions.fetchAll();
@@ -25,6 +30,10 @@ class UserIndex extends React.Component {
     UserStore.on("user_delete_204", () => {
       UserActions.fetchAll();
     });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   handleDelete(e,id) {
