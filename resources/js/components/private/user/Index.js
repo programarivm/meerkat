@@ -18,19 +18,15 @@ class UserIndex extends React.Component {
 
   componentDidMount() {
     this._isMounted = true;
-
     UserActions.fetchAll();
-
     UserStore.on("user_fetch_all_200", (data) => {
       if (this._isMounted) {
         this.setState({ users: data });
       }
     });
-
     UserStore.on("user_create_201", () => {
       UserActions.fetchAll();
     });
-
     UserStore.on("user_delete_204", () => {
       UserActions.fetchAll();
     });

@@ -1,6 +1,4 @@
 export default {
-	AJAX_START: 'AJAX_START',
-	AJAX_STOP: 'AJAX_STOP',
 	LOGIN: 'LOGIN',
 	LOGOUT: 'LOGOUT'
 }

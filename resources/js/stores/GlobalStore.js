@@ -6,26 +6,13 @@ class GlobalStore extends EventEmitter {
 	constructor() {
 		super();
 		this.state = {
-			authenticated: false,
-			ajax: {
-				pending: 0
-			}
+			'authenticated': false
 		};
 		GlobalDispatcher.register(this.handleActions.bind(this));
 	}
 
 	getState() {
 		return this.state;
-	}
-
-	ajaxStart() {
-		this.state.ajax.pending += 1;
-		this.emit("ajax_start");
-	}
-
-	ajaxStop() {
-		this.state.ajax.pending -= 1;
-		this.emit("ajax_stop", this.state.ajax.pending);
 	}
 
 	login(credentials) {
@@ -77,12 +64,6 @@ class GlobalStore extends EventEmitter {
 
 	handleActions(action) {
 		switch (action.type) {
-			case GlobalActionTypes.AJAX_START:
-				this.ajaxStart();
-				break;
-			case GlobalActionTypes.AJAX_STOP:
-				this.ajaxStop();
-				break;
 			case GlobalActionTypes.LOGIN:
 				this.login(action.credentials);
 				break;

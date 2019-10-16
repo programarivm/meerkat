@@ -2,13 +2,12 @@ import React from 'react';
 import {
   Collapse, Navbar, NavbarToggler,
   NavbarBrand, Nav, NavItem,
-  NavLink, Spinner } from 'reactstrap';
+  NavLink } from 'reactstrap';
 import { Link, Route } from 'react-router-dom';
 import { Dashboard } from "./Dashboard.js";
 import { Users } from "./Users.js";
 import { Restaurants } from "./Restaurants.js";
 import { SignOut } from "./SignOut.js";
-import GlobalStore from '../../stores/GlobalStore.js';
 import logo from '../../../images/logo.png';
 import './MainNav.css';
 
@@ -18,19 +17,13 @@ class MainNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false,
-      loading: false
+      isOpen: false
     };
     this.toggle = this.toggle.bind(this);
   }
 
   componentDidMount() {
     this._isMounted = true;
-    if (this._isMounted) {
-      GlobalStore.on("ajax_stop", (data) => {
-        data > 0 ? this.setState({loading: true}) : this.setState({loading: false});
-      });
-    }
   }
 
   componentWillUnmount() {
@@ -78,28 +71,22 @@ class MainNav extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
-        {
-          this.state.loading
-            ? <Spinner className="d-flex mx-auto m-5" color="dark" />
-            : <div>
-                <Route
-                  path="/dashboard"
-                  render={(props) => <Dashboard {...props} />}
-                />
-                <Route
-                  path="/users"
-                  render={(props) => <Users {...props} />}
-                />
-                <Route
-                  path="/restaurants"
-                  render={(props) => <Restaurants {...props} />}
-                />
-                <Route
-                  path="/logout"
-                  render={(props) => <SignOut {...props} />}
-                />
-              </div>
-        }
+        <Route
+          path="/dashboard"
+          render={(props) => <Dashboard {...props} />}
+        />
+        <Route
+          path="/users"
+          render={(props) => <Users {...props} />}
+        />
+        <Route
+          path="/restaurants"
+          render={(props) => <Restaurants {...props} />}
+        />
+        <Route
+          path="/logout"
+          render={(props) => <SignOut {...props} />}
+        />
       </div>
     );
   }

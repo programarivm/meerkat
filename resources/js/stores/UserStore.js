@@ -1,5 +1,3 @@
-import GlobalActions from '../actions/GlobalActions.js';
-import GlobalStore from '../stores/GlobalStore.js';
 import UserActionTypes from '../constants/UserActionTypes';
 import UserDispatcher from "../dispatcher/UserDispatcher.js";
 import { EventEmitter } from 'events';
@@ -11,7 +9,6 @@ class UserStore extends EventEmitter {
 	}
 
 	create(data) {
-		GlobalActions.ajaxStart();
 		fetch(process.env.MIX_APP_URL + '/api/users', {
 			method: 'POST',
 			headers: {
@@ -28,14 +25,10 @@ class UserStore extends EventEmitter {
 					this.emit("user_create_error");
 					break;
 			}
-		})
-		.finally(() => {
-			GlobalActions.ajaxStop();
 		});
 	}
 
 	delete(id) {
-		GlobalActions.ajaxStart();
 		fetch(process.env.MIX_APP_URL + `/api/users/${id}`, {
 			method: 'DELETE',
 			headers: {
@@ -51,14 +44,10 @@ class UserStore extends EventEmitter {
 					this.emit("user_delete_error");
 					break;
 			}
-		})
-		.finally(() => {
-			GlobalActions.ajaxStop();
 		});
 	}
 
 	fetchAll() {
-		GlobalActions.ajaxStart();
 		fetch(process.env.MIX_APP_URL + '/api/users', {
 			method: 'GET',
 			headers: {
@@ -74,9 +63,6 @@ class UserStore extends EventEmitter {
 		})
 		.catch((error) => {
 			this.emit("user_fetch_all_error");
-		})
-		.finally(() => {
-			GlobalActions.ajaxStop();
 		});
 	}
 
