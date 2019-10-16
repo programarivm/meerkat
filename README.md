@@ -1,6 +1,6 @@
 # Meerkat
 
-A Laravel API.
+A React GUI interacting with a Laravel API -- an SPA application.
 
 ### 1. Build the Docker Containers
 
