@@ -6,6 +6,7 @@ import {
 import { Link, Route } from 'react-router-dom';
 import { Dashboard } from "./Dashboard.js";
 import { Users } from "./Users.js";
+import { Restaurants } from "./Restaurants.js";
 import { SignOut } from "./SignOut.js";
 import logo from '../../../images/logo.png';
 import './MainNav.css';
@@ -58,6 +59,11 @@ class MainNav extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
+                <NavLink tag={Link} to="/restaurants">
+                  Restaurants
+                </NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink tag={Link} to="/logout">
                   Sign out
                 </NavLink>
@@ -72,6 +78,10 @@ class MainNav extends React.Component {
         <Route
           path="/users"
           render={(props) => <Users {...props} />}
+        />
+        <Route
+          path="/restaurants"
+          render={(props) => <Restaurants {...props} />}
         />
         <Route
           path="/logout"
