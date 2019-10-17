@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import Meerkat from './Meerkat.js';
 import { BrowserRouter } from "react-router-dom";
 
-// bootstrap css
+import 'pace-js';
+import 'pace-js/themes/blue/pace-theme-center-simple.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(

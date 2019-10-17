@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PrivateApp from './components/private/App.js';
 import PublicApp from './components/public/App.js';
 import GlobalStore from './stores/GlobalStore.js';
+import './Meerkat.css';
 
 class Meerkat extends Component {
   constructor(props) {
