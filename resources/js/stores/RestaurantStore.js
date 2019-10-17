@@ -66,6 +66,26 @@ class RestaurantStore extends EventEmitter {
 		});
 	}
 
+	update(data) {
+		fetch(process.env.MIX_APP_URL + '/api/restaurants', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		})
+		.then((res) => {
+			switch (res.status) {
+				case 200:
+					this.emit("restaurant_update_200");
+					break;
+				default:
+					this.emit("restaurant_update_error");
+					break;
+			}
+		});
+	}
+
 	handleActions(action) {
 		switch (action.type) {
 			case RestaurantActionTypes.CREATE:
@@ -76,6 +96,9 @@ class RestaurantStore extends EventEmitter {
 				break;
 			case RestaurantActionTypes.FETCH_ALL:
 				this.fetchAll();
+				break;
+			case RestaurantActionTypes.UPDATE:
+				this.update(action.restaurant);
 				break;
 			default:
         // do nothing

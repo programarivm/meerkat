@@ -30,6 +30,9 @@ class RestaurantIndex extends React.Component {
     RestaurantStore.on("restaurant_delete_204", () => {
       RestaurantActions.fetchAll();
     });
+    RestaurantStore.on("restaurant_update_200", () => {
+      RestaurantActions.fetchAll();
+    });
   }
 
   componentWillUnmount() {

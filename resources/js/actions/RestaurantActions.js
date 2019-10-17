@@ -9,6 +9,13 @@ class RestaurantActions {
 		});
 	}
 
+	update(data) {
+		RestaurantDispatcher.dispatch({
+			type: RestaurantActionTypes.UPDATE,
+			restaurant: data
+		});
+	}
+
 	delete(data) {
 		RestaurantDispatcher.dispatch({
 			type: RestaurantActionTypes.DELETE,
