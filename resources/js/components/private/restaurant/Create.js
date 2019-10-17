@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Button, Col, Container, Form, FormGroup, Input, Row
+  Button, Container, Form, FormGroup
 } from 'reactstrap';
 import { FormGroups } from './common/FormGroups.js';
 import RestaurantActions from '../../../actions/RestaurantActions.js';
