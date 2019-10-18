@@ -66,6 +66,45 @@ class UserStore extends EventEmitter {
 		});
 	}
 
+	show(id) {
+		fetch(process.env.MIX_APP_URL + `/api/users/${id}`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+		.then((res) => {
+			if (res.status !== 200) throw new Error(res.status);
+			else return res.json();
+		})
+		.then((data) => {
+			this.emit("user_show_200", data);
+		})
+		.catch((error) => {
+			this.emit("user_show_error");
+		});
+	}
+
+	update(id, data) {
+		fetch(process.env.MIX_APP_URL + `/api/users/${id}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		})
+		.then((res) => {
+			switch (res.status) {
+				case 200:
+					this.emit("user_update_200");
+					break;
+				default:
+					this.emit("user_update_error");
+					break;
+			}
+		});
+	}
+
 	handleActions(action) {
 		switch (action.type) {
 			case UserActionTypes.CREATE:
@@ -76,6 +115,12 @@ class UserStore extends EventEmitter {
 				break;
 			case UserActionTypes.FETCH_ALL:
 				this.fetchAll();
+				break;
+			case UserActionTypes.SHOW:
+				this.show(action.id);
+				break;
+			case UserActionTypes.UPDATE:
+				this.update(action.id, action.user);
 				break;
 			default:
         // do nothing
