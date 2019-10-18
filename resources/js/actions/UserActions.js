@@ -9,10 +9,10 @@ class UserActions {
 		});
 	}
 
-	delete(data) {
+	delete(id) {
 		UserDispatcher.dispatch({
 			type: UserActionTypes.DELETE,
-			id: data
+			id: id
 		});
 	}
 

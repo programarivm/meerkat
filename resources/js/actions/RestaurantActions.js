@@ -9,10 +9,10 @@ class RestaurantActions {
 		});
 	}
 
-	delete(data) {
+	delete(id) {
 		RestaurantDispatcher.dispatch({
 			type: RestaurantActionTypes.DELETE,
-			id: data
+			id: id
 		});
 	}
 
@@ -22,10 +22,10 @@ class RestaurantActions {
 		});
 	}
 
-	show(data) {
+	show(id) {
 		RestaurantDispatcher.dispatch({
 			type: RestaurantActionTypes.SHOW,
-			id: data
+			id: id
 		});
 	}
 
