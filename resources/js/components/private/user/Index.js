@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Button, ButtonGroup, Container, Table
 } from 'reactstrap';
+import { UserEdit } from './Edit.js';
 import UserActions from '../../../actions/UserActions.js';
 import UserStore from '../../../stores/UserStore.js';
 
@@ -30,6 +31,9 @@ class UserIndex extends React.Component {
     UserStore.on("user_delete_204", () => {
       UserActions.fetchAll();
     });
+    UserStore.on("user_update_200", () => {
+      UserActions.fetchAll();
+    });
   }
 
   componentWillUnmount() {
@@ -40,6 +44,11 @@ class UserIndex extends React.Component {
     if (confirm('Are you sure to delete this item?')) {
       UserActions.delete(id);
     }
+    e.preventDefault();
+  }
+
+  handleShow(e,id) {
+    UserActions.show(id);
     e.preventDefault();
   }
 
@@ -72,7 +81,7 @@ class UserIndex extends React.Component {
                 <td>{item.email}</td>
                 <td>
                   <ButtonGroup>
-                    <Button outline color="primary" size="sm">Edit</Button>
+                    <Button outline color="primary" size="sm" onClick={ (e) => this.handleShow(e,item.id) }>Edit</Button>
                     <Button outline color="primary" size="sm" onClick={ (e) => this.handleDelete(e,item.id) }>Delete</Button>
                   </ButtonGroup>
                 </td>
@@ -80,6 +89,7 @@ class UserIndex extends React.Component {
             }
           </tbody>
         </Table>
+        <UserEdit />
       </Container>
     );
   }

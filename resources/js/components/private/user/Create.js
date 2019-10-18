@@ -9,14 +9,6 @@ class UserCreate extends Component {
   constructor(props) {
     super(props);
       this.state = {
-        user: {
-          firstname: '',
-          surname: '',
-          date_of_birth: '',
-          phone_number: '',
-          email: '',
-          password: ''
-        },
         validation: null
     }
     this.handleCreate = this.handleCreate.bind(this);
@@ -28,14 +20,15 @@ class UserCreate extends Component {
     });
   }
 
-  handleChange = event => {
-    let user = {...this.state.user};
-    user[event.target.id] = event.target.value;
-    this.setState({user});
-  }
-
   handleCreate(e) {
-    UserActions.create(this.state.user);
+    UserActions.create({
+      firstname: e.target.elements.firstname.value,
+      surname: e.target.elements.surname.value,
+      date_of_birth: e.target.elements.date_of_birth.value,
+      phone_number: e.target.elements.phone_number.value,
+      email: e.target.elements.email.value,
+      password: e.target.elements.password.value
+    });
     e.preventDefault();
     e.target.reset();
   }
@@ -53,7 +46,8 @@ class UserCreate extends Component {
                   name="firstname"
                   id="firstname"
                   placeholder="First name"
-                  onChange={this.handleChange}
+                  value={this.props.firstname}
+                  onChange={this.props.handleChange}
                   required
                 />
               </FormGroup>
@@ -63,7 +57,8 @@ class UserCreate extends Component {
                   name="surname"
                   id="surname"
                   placeholder="Surname"
-                  onChange={this.handleChange}
+                  value={this.props.surname}
+                  onChange={this.props.handleChange}
                   required
                 />
               </FormGroup>
@@ -73,7 +68,8 @@ class UserCreate extends Component {
                   name="date_of_birth"
                   id="date_of_birth"
                   placeholder="Date of birth"
-                  onChange={this.handleChange}
+                  value={this.props.date_of_birth}
+                  onChange={this.props.handleChange}
                 />
               </FormGroup>
             </Col>
@@ -84,7 +80,8 @@ class UserCreate extends Component {
                   name="phone_number"
                   id="phone_number"
                   placeholder="Phone number"
-                  onChange={this.handleChange}
+                  value={this.props.phone_number}
+                  onChange={this.props.handleChange}
                 />
               </FormGroup>
               <FormGroup>
@@ -93,7 +90,8 @@ class UserCreate extends Component {
                   name="email"
                   id="email"
                   placeholder="Email"
-                  onChange={this.handleChange}
+                  value={this.props.email}
+                  onChange={this.props.handleChange}
                   required
                 />
               </FormGroup>
@@ -103,17 +101,16 @@ class UserCreate extends Component {
                   name="password"
                   id="password"
                   placeholder="Password"
-                  onChange={this.handleChange}
+                  value={this.props.password}
+                  onChange={this.props.handleChange}
                   required
                 />
               </FormGroup>
             </Col>
-            <Col md={12}>
-              <FormGroup>
-                <Button color="secondary" block>Add user</Button>
-              </FormGroup>
-            </Col>
           </Row>
+          <FormGroup>
+            <Button color="secondary" block>Add user</Button>
+          </FormGroup>
         </Form>
       </Container>
     );
