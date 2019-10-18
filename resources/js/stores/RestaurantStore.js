@@ -66,8 +66,27 @@ class RestaurantStore extends EventEmitter {
 		});
 	}
 
-	update(data) {
-		fetch(process.env.MIX_APP_URL + '/api/restaurants', {
+	show(id) {
+		fetch(process.env.MIX_APP_URL + `/api/restaurants/${id}`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+		.then((res) => {
+			if (res.status !== 200) throw new Error(res.status);
+			else return res.json();
+		})
+		.then((data) => {
+			this.emit("restaurant_show_200", data);
+		})
+		.catch((error) => {
+			this.emit("restaurant_show_error");
+		});
+	}
+
+	update(id, data) {
+		fetch(process.env.MIX_APP_URL + `/api/restaurants/${id}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
@@ -97,8 +116,11 @@ class RestaurantStore extends EventEmitter {
 			case RestaurantActionTypes.FETCH_ALL:
 				this.fetchAll();
 				break;
+			case RestaurantActionTypes.SHOW:
+				this.show(action.id);
+				break;
 			case RestaurantActionTypes.UPDATE:
-				this.update(action.restaurant);
+				this.update(action.id, action.restaurant);
 				break;
 			default:
         // do nothing

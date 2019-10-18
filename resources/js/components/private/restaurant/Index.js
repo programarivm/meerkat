@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Button, ButtonGroup, Container, Table
 } from 'reactstrap';
+import { RestaurantEdit } from './Edit.js';
 import RestaurantActions from '../../../actions/RestaurantActions.js';
 import RestaurantStore from '../../../stores/RestaurantStore.js';
 
@@ -14,6 +15,7 @@ class RestaurantIndex extends React.Component {
       restaurants: []
     };
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleShow = this.handleShow.bind(this);
   }
 
   componentDidMount() {
@@ -46,6 +48,11 @@ class RestaurantIndex extends React.Component {
     e.preventDefault();
   }
 
+  handleShow(e,id) {
+    RestaurantActions.show(id);
+    e.preventDefault();
+  }
+
   render() {
     return (
       <Container className="mt-3 mb-5">
@@ -73,7 +80,7 @@ class RestaurantIndex extends React.Component {
                 <td>{item.lat}, {item.lon}</td>
                 <td>
                   <ButtonGroup>
-                    <Button outline color="primary" size="sm">Edit</Button>
+                    <Button outline color="primary" size="sm" onClick={ (e) => this.handleShow(e,item.id) }>Edit</Button>
                     <Button outline color="primary" size="sm" onClick={ (e) => this.handleDelete(e,item.id) }>Delete</Button>
                   </ButtonGroup>
                 </td>
@@ -81,6 +88,7 @@ class RestaurantIndex extends React.Component {
             }
           </tbody>
         </Table>
+        <RestaurantEdit />
       </Container>
     );
   }

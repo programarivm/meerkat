@@ -9,13 +9,6 @@ class RestaurantActions {
 		});
 	}
 
-	update(data) {
-		RestaurantDispatcher.dispatch({
-			type: RestaurantActionTypes.UPDATE,
-			restaurant: data
-		});
-	}
-
 	delete(data) {
 		RestaurantDispatcher.dispatch({
 			type: RestaurantActionTypes.DELETE,
@@ -26,6 +19,21 @@ class RestaurantActions {
 	fetchAll() {
 		RestaurantDispatcher.dispatch({
 			type: RestaurantActionTypes.FETCH_ALL
+		});
+	}
+
+	show(data) {
+		RestaurantDispatcher.dispatch({
+			type: RestaurantActionTypes.SHOW,
+			id: data
+		});
+	}
+
+	update(id, data) {
+		RestaurantDispatcher.dispatch({
+			type: RestaurantActionTypes.UPDATE,
+			id: id,
+			restaurant: data
 		});
 	}
 }
