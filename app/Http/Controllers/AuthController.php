@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    const ACCESS_TOKEN = 'access_token';
+    const COOKIE_ACCESS_TOKEN = 'access_token';
+    const COOKIE_GUI = 'gui';
 
     public function login()
     {
@@ -16,12 +17,18 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return response(null, 204)->cookie(self::ACCESS_TOKEN, $token, 480);
+        $gui = [
+            'role' => auth()->user()->getAttributes()['role'],
+        ];
+
+        return response(null, 204)
+            ->cookie(self::COOKIE_ACCESS_TOKEN, $token, 480)
+            ->cookie(self::COOKIE_GUI, json_encode($gui), 480, null, null, null, false);
     }
 
     public function logout()
     {
-        $cookie = \Cookie::forget(self::ACCESS_TOKEN);
+        $cookie = \Cookie::forget(self::access_token);
 
         return response(null, 204)->withCookie($cookie);
     }
