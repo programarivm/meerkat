@@ -14,7 +14,7 @@ class Home extends React.Component {
         <Container className="Home mt-5 mb-5">
           <Row>
             <Col lg="8">
-              <h1 className="mt-5">Welcome to Meerkat!</h1>
+              <h1 className="mt-5">Welcome to Meerkat</h1>
               <h5>This is a Laravel REST API.</h5>
               <h5>So far it helps to manage a few objects only (users, restaurants and so on) but this is also a learning task which can be extended.</h5>
               <NavLink className="mt-2 btn btn-primary text-white" to="/login">Interact now!</NavLink>
