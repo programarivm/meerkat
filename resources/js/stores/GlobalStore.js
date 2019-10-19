@@ -1,12 +1,18 @@
 import GlobalActionTypes from '../constants/GlobalActionTypes';
 import GlobalDispatcher from "../dispatcher/GlobalDispatcher.js";
 import { EventEmitter } from 'events';
+import Cookies from 'js-cookie';
 
 class GlobalStore extends EventEmitter {
+	/**
+	 * A non-HttpOnly cookie named "gui" is sent by the server when the user is logged in.
+	 */
 	constructor() {
 		super();
 		this.state = {
-			'authenticated': false
+			gui: {
+				role: null
+			}
 		};
 		GlobalDispatcher.register(this.handleActions.bind(this));
 	}
@@ -26,7 +32,7 @@ class GlobalStore extends EventEmitter {
 		}).then((res) => {
 			switch (res.status) {
 				case 204:
-					this.state.authenticated = true;
+					this.state.gui = JSON.parse(Cookies.get("gui"));
 					this.emit("login_204");
 					break;
 				case 401:
@@ -49,7 +55,7 @@ class GlobalStore extends EventEmitter {
 		}).then((res) => {
 			switch (res.status) {
 				case 204:
-					this.state.authenticated = false;
+					this.state.gui.role = null;
 					this.emit("logout_204");
 					break;
 				case 401:
