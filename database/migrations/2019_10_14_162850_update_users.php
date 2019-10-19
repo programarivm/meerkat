@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +20,7 @@ class UpdateUsers extends Migration
             $table->string('surname');
             $table->date('date_of_birth')->nullable(true);
             $table->string('phone_number')->nullable(true);
+            $table->string('role')->default(User::CHOICE_ROLE_BASIC);
         });
     }
 

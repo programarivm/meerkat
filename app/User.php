@@ -11,6 +11,9 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
+    const CHOICE_ROLE_ADMIN = 'ROLE_ADMIN';
+    const CHOICE_ROLE_BASIC = 'ROLE_BASIC';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -43,6 +46,16 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getChoices()
+    {
+        return [
+            'roles' => [
+                self::CHOICE_ROLE_ADMIN,
+                self::CHOICE_ROLE_BASIC,
+            ],
+        ];
+    }
 
     public function getJWTIdentifier()
     {
