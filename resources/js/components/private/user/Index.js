@@ -3,6 +3,7 @@ import {
   Button, ButtonGroup, Container, Table
 } from 'reactstrap';
 import { UserEdit } from './Edit.js';
+import GlobalStore from '../../../stores/GlobalStore.js';
 import UserActions from '../../../actions/UserActions.js';
 import UserStore from '../../../stores/UserStore.js';
 
@@ -67,7 +68,7 @@ class UserIndex extends React.Component {
               <th>Date of birth</th>
               <th>Phone number</th>
               <th>Email</th>
-              <th>Actions</th>
+              { GlobalStore.getState().gui.role === 'ROLE_ADMIN' ? <th>Actions</th> : null }
             </tr>
           </thead>
           <tbody>
@@ -79,12 +80,14 @@ class UserIndex extends React.Component {
                 <td>{item.date_of_birth}</td>
                 <td>{item.phone_number}</td>
                 <td>{item.email}</td>
-                <td>
-                  <ButtonGroup>
-                    <Button outline color="primary" size="sm" onClick={ (e) => this.handleShow(e,item.id) }>Edit</Button>
-                    <Button outline color="primary" size="sm" onClick={ (e) => this.handleDelete(e,item.id) }>Delete</Button>
-                  </ButtonGroup>
-                </td>
+                { GlobalStore.getState().gui.role === 'ROLE_ADMIN'
+                  ? <td>
+                      <ButtonGroup>
+                        <Button outline color="primary" size="sm" onClick={ (e) => this.handleShow(e,item.id) }>Edit</Button>
+                        <Button outline color="primary" size="sm" onClick={ (e) => this.handleDelete(e,item.id) }>Delete</Button>
+                      </ButtonGroup>
+                    </td>
+                  : null }
               </tr> )
             }
           </tbody>
