@@ -28,8 +28,11 @@ class AuthController extends Controller
 
     public function logout()
     {
-        $cookie = \Cookie::forget(self::access_token);
+        $accessTokenCookie = \Cookie::forget(self::COOKIE_ACCESS_TOKEN);
+        $guiCookie = \Cookie::forget(self::COOKIE_GUI);
 
-        return response(null, 204)->withCookie($cookie);
+        return response(null, 204)
+                    ->withCookie($accessTokenCookie)
+                    ->withCookie($guiCookie);
     }
 }
