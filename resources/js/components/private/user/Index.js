@@ -104,6 +104,7 @@ class UserIndex extends React.Component {
         <ReactTable
           data={data}
           columns={GlobalStore.getState().gui.role === 'ROLE_ADMIN' ? roleAdminColumns : columns}
+          minRows={0}
         />
         <UserEdit />
       </Container>
