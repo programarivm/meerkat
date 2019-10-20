@@ -31,7 +31,7 @@ class UserEdit extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    UserStore.on("user_show_200", (data) => {
+    UserStore.on("show.200", (data) => {
       if (this._isMounted) {
         this.setState({
           id: data.id,
@@ -49,12 +49,12 @@ class UserEdit extends Component {
         });
       }
     });
-    UserStore.on("user_update_200", () => {
+    UserStore.on("update.200", () => {
       if (this._isMounted) {
         this.setState({ modal: { open: false } });
       }
     });
-    UserStore.on("user_update_error", () => {
+    UserStore.on("update.error", () => {
       if (this._isMounted) {
         this.setState({ validation: 'Whoops! The user could not be updated, please try again.' });
       }

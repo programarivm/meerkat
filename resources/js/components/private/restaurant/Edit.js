@@ -31,7 +31,7 @@ class RestaurantEdit extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    RestaurantStore.on("restaurant_show_200", (data) => {
+    RestaurantStore.on("show.200", (data) => {
       if (this._isMounted) {
         this.setState({
           id: data.id,
@@ -48,12 +48,12 @@ class RestaurantEdit extends Component {
         });
       }
     });
-    RestaurantStore.on("restaurant_update_200", () => {
+    RestaurantStore.on("update.200", () => {
       if (this._isMounted) {
         this.setState({ modal: { open: false } });
       }
     });
-    RestaurantStore.on("restaurant_update_error", () => {
+    RestaurantStore.on("update.error", () => {
       if (this._isMounted) {
         this.setState({ validation: 'Whoops! The restaurant could not be updated, please try again.' });
       }

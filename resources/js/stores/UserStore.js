@@ -19,10 +19,10 @@ class UserStore extends EventEmitter {
 		.then((res) => {
 			switch (res.status) {
 				case 201:
-					this.emit("user_create_201");
+					this.emit("create.201");
 					break;
 				default:
-					this.emit("user_create_error");
+					this.emit("create.error");
 					break;
 			}
 		});
@@ -38,10 +38,10 @@ class UserStore extends EventEmitter {
 		.then((res) => {
 			switch (res.status) {
 				case 204:
-					this.emit("user_delete_204");
+					this.emit("delete.204");
 					break;
 				default:
-					this.emit("user_delete_error");
+					this.emit("delete.error");
 					break;
 			}
 		});
@@ -59,10 +59,10 @@ class UserStore extends EventEmitter {
 			else return res.json();
 		})
 		.then((data) => {
-			this.emit("user_fetch_all_200", data);
+			this.emit("fetch_all.200", data);
 		})
 		.catch((error) => {
-			this.emit("user_fetch_all_error");
+			this.emit("fetch_all.error");
 		});
 	}
 
@@ -78,10 +78,10 @@ class UserStore extends EventEmitter {
 			else return res.json();
 		})
 		.then((data) => {
-			this.emit("user_show_200", data);
+			this.emit("show.200", data);
 		})
 		.catch((error) => {
-			this.emit("user_show_error");
+			this.emit("show.error");
 		});
 	}
 
@@ -96,10 +96,10 @@ class UserStore extends EventEmitter {
 		.then((res) => {
 			switch (res.status) {
 				case 200:
-					this.emit("user_update_200");
+					this.emit("update.200");
 					break;
 				default:
-					this.emit("user_update_error");
+					this.emit("update.error");
 					break;
 			}
 		});

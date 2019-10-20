@@ -16,7 +16,7 @@ class RestaurantCreate extends Component {
   }
 
   componentDidMount() {
-    RestaurantStore.on("restaurant_create_error", () => {
+    RestaurantStore.on("create.error", () => {
       this.setState({ validation: 'Whoops! The restaurant could not be added, please try again.' });
     });
   }

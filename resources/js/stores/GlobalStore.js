@@ -33,13 +33,13 @@ class GlobalStore extends EventEmitter {
 			switch (res.status) {
 				case 204:
 					this.state.gui = JSON.parse(Cookies.get("gui"));
-					this.emit("login_204");
+					this.emit("login.204");
 					break;
 				case 401:
-					this.emit("login_401");
+					this.emit("login.401");
 					break;
 				default:
-					this.emit("login_error");
+					this.emit("login.error");
 					break;
 			}
 		});
@@ -56,13 +56,13 @@ class GlobalStore extends EventEmitter {
 			switch (res.status) {
 				case 204:
 					this.state.gui.role = null;
-					this.emit("logout_204");
+					this.emit("logout.204");
 					break;
 				case 401:
-					this.emit("logout_401");
+					this.emit("logout.401");
 					break;
 				default:
-					this.emit("logout_error");
+					this.emit("logout.error");
 					break;
 			}
 		});

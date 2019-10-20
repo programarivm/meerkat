@@ -22,18 +22,18 @@ class RestaurantIndex extends React.Component {
   componentDidMount() {
     this._isMounted = true;
     RestaurantActions.fetchAll();
-    RestaurantStore.on("restaurant_fetch_all_200", (data) => {
+    RestaurantStore.on("fetch_all.200", (data) => {
       if (this._isMounted) {
         this.setState({ restaurants: data });
       }
     });
-    RestaurantStore.on("restaurant_create_201", () => {
+    RestaurantStore.on("create.201", () => {
       RestaurantActions.fetchAll();
     });
-    RestaurantStore.on("restaurant_delete_204", () => {
+    RestaurantStore.on("delete.204", () => {
       RestaurantActions.fetchAll();
     });
-    RestaurantStore.on("restaurant_update_200", () => {
+    RestaurantStore.on("update.200", () => {
       RestaurantActions.fetchAll();
     });
   }
