@@ -22,20 +22,21 @@ class RestaurantIndex extends React.Component {
   componentDidMount() {
     this._isMounted = true;
     RestaurantActions.fetchAll();
-    RestaurantStore.on("fetch_all.200", (data) => {
-      if (this._isMounted) {
-        this.setState({ restaurants: data });
-      }
-    });
-    RestaurantStore.on("create.201", () => {
-      RestaurantActions.fetchAll();
-    });
-    RestaurantStore.on("delete.204", () => {
-      RestaurantActions.fetchAll();
-    });
-    RestaurantStore.on("update.200", () => {
-      RestaurantActions.fetchAll();
-    });
+    RestaurantStore
+      .on("fetch_all.200", (data) => {
+        if (this._isMounted) {
+          this.setState({ restaurants: data });
+        }
+      })
+      .on("create.201", () => {
+        RestaurantActions.fetchAll();
+      })
+      .on("delete.204", () => {
+        RestaurantActions.fetchAll();
+      })
+      .on("update.200", () => {
+        RestaurantActions.fetchAll();
+      });
   }
 
   componentWillUnmount() {
@@ -78,7 +79,7 @@ class RestaurantIndex extends React.Component {
         Header: 'Coordinates',
         accessor: 'coordinates',
         Cell: ({ row }) => (
-          `${row._original.lat}, ${row._original.lon}` 
+          `${row._original.lat}, ${row._original.lon}`
         )
       },
       {

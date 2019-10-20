@@ -31,33 +31,34 @@ class RestaurantEdit extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    RestaurantStore.on("show.200", (data) => {
-      if (this._isMounted) {
-        this.setState({
-          id: data.id,
-          restaurant: {
-            name: data.name,
-            description: data.description,
-            address: data.address,
-            lat: data.lat,
-            lon: data.lon
-          },
-          modal: {
-            open: true
-          }
-        });
-      }
-    });
-    RestaurantStore.on("update.200", () => {
-      if (this._isMounted) {
-        this.setState({ modal: { open: false } });
-      }
-    });
-    RestaurantStore.on("update.error", () => {
-      if (this._isMounted) {
-        this.setState({ validation: 'Whoops! The restaurant could not be updated, please try again.' });
-      }
-    });
+    RestaurantStore
+      .on("show.200", (data) => {
+        if (this._isMounted) {
+          this.setState({
+            id: data.id,
+            restaurant: {
+              name: data.name,
+              description: data.description,
+              address: data.address,
+              lat: data.lat,
+              lon: data.lon
+            },
+            modal: {
+              open: true
+            }
+          });
+        }
+      })
+      .on("update.200", () => {
+        if (this._isMounted) {
+          this.setState({ modal: { open: false } });
+        }
+      })
+      .on("update.error", () => {
+        if (this._isMounted) {
+          this.setState({ validation: 'Whoops! The restaurant could not be updated, please try again.' });
+        }
+      });
   }
 
   componentWillUnmount() {

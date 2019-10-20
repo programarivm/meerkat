@@ -22,20 +22,21 @@ class UserIndex extends React.Component {
   componentDidMount() {
     this._isMounted = true;
     UserActions.fetchAll();
-    UserStore.on("fetch_all.200", (data) => {
-      if (this._isMounted) {
-        this.setState({ users: data });
-      }
-    });
-    UserStore.on("create.201", () => {
-      UserActions.fetchAll();
-    });
-    UserStore.on("delete.204", () => {
-      UserActions.fetchAll();
-    });
-    UserStore.on("update.200", () => {
-      UserActions.fetchAll();
-    });
+    UserStore
+      .on("fetch_all.200", (data) => {
+        if (this._isMounted) {
+          this.setState({ users: data });
+        }
+      })
+      .on("create.201", () => {
+        UserActions.fetchAll();
+      })
+      .on("delete.204", () => {
+        UserActions.fetchAll();
+      })
+      .on("update.200", () => {
+        UserActions.fetchAll();
+      });
   }
 
   componentWillUnmount() {

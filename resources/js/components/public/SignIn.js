@@ -20,11 +20,11 @@ class SignIn extends Component {
   }
 
   componentDidMount() {
-    GlobalStore.on("login.401", () => {
+    GlobalStore
+    .on("login.401", () => {
       this.setState({validation: 'The username and password that you entered did not match our records. Please try again.'});
-    });
-
-    GlobalStore.on("login.error", () => {
+    })
+    .on("login.error", () => {
       this.setState({validation: 'Whoops! Something went wrong, please try again.'});
     });
   }

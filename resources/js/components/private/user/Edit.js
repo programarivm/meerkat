@@ -31,34 +31,35 @@ class UserEdit extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    UserStore.on("show.200", (data) => {
-      if (this._isMounted) {
-        this.setState({
-          id: data.id,
-          user: {
-            firstname: data.firstname,
-            surname: data.surname,
-            date_of_birth: data.date_of_birth,
-            phone_number: data.phone_number,
-            email: data.email,
-            password: data.password
-          },
-          modal: {
-            open: true
-          }
-        });
-      }
-    });
-    UserStore.on("update.200", () => {
-      if (this._isMounted) {
-        this.setState({ modal: { open: false } });
-      }
-    });
-    UserStore.on("update.error", () => {
-      if (this._isMounted) {
-        this.setState({ validation: 'Whoops! The user could not be updated, please try again.' });
-      }
-    });
+    UserStore
+      .on("show.200", (data) => {
+        if (this._isMounted) {
+          this.setState({
+            id: data.id,
+            user: {
+              firstname: data.firstname,
+              surname: data.surname,
+              date_of_birth: data.date_of_birth,
+              phone_number: data.phone_number,
+              email: data.email,
+              password: data.password
+            },
+            modal: {
+              open: true
+            }
+          });
+        }
+      })
+      .on("update.200", () => {
+        if (this._isMounted) {
+          this.setState({ modal: { open: false } });
+        }
+      })
+      .on("update.error", () => {
+        if (this._isMounted) {
+          this.setState({ validation: 'Whoops! The user could not be updated, please try again.' });
+        }
+      });
   }
 
   componentWillUnmount() {
