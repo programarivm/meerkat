@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-  Button, ButtonGroup, Container, Table
+  Button, ButtonGroup, Container
 } from 'reactstrap';
+import ReactTable from 'react-table'
 import { UserEdit } from './Edit.js';
 import GlobalStore from '../../../stores/GlobalStore.js';
 import UserActions from '../../../actions/UserActions.js';
@@ -54,44 +55,56 @@ class UserIndex extends React.Component {
   }
 
   render() {
+    const data = this.state.users;
+
+    const columns = [
+      {
+        Header: 'Created at',
+        accessor: 'created_at'
+      },
+      {
+        Header: 'First name',
+        accessor: 'firstname'
+      },
+      {
+        Header: 'Surname',
+        accessor: 'surname'
+      },
+      {
+        Header: 'Date of birth',
+        accessor: 'date_of_birth'
+      },
+      {
+        Header: 'Phone number',
+        accessor: 'phone_number'
+      },
+      {
+        Header: 'Email',
+        accessor: 'email'
+      }
+    ];
+
+    const roleAdminColumns = [
+      ...columns,
+      {
+        Header: 'Actions',
+        accessor: 'actions',
+        Cell: ({ row }) => (
+          <ButtonGroup>
+            <Button outline color="primary" size="sm" onClick={ (e) => this.handleShow(e,row._original.id) }>Edit</Button>
+            <Button outline color="primary" size="sm" onClick={ (e) => this.handleDelete(e,row._original.id) }>Delete</Button>
+          </ButtonGroup>
+        )
+      }
+    ];
+
     return (
       <Container className="mt-3 mb-5">
-        <Table>
-          <thead>
-            <tr>
-              <th colSpan="7" className="text-center">There are {this.state.users.length} users in this list</th>
-            </tr>
-            <tr>
-              <th>Created at</th>
-              <th>First name</th>
-              <th>Surname</th>
-              <th>Date of birth</th>
-              <th>Phone number</th>
-              <th>Email</th>
-              { GlobalStore.getState().gui.role === 'ROLE_ADMIN' ? <th>Actions</th> : null }
-            </tr>
-          </thead>
-          <tbody>
-            {
-              this.state.users.map( (item, i) => <tr key={i} className="mt-5">
-                <td>{item.created_at}</td>
-                <td>{item.firstname}</td>
-                <td>{item.surname}</td>
-                <td>{item.date_of_birth}</td>
-                <td>{item.phone_number}</td>
-                <td>{item.email}</td>
-                { GlobalStore.getState().gui.role === 'ROLE_ADMIN'
-                  ? <td>
-                      <ButtonGroup>
-                        <Button outline color="primary" size="sm" onClick={ (e) => this.handleShow(e,item.id) }>Edit</Button>
-                        <Button outline color="primary" size="sm" onClick={ (e) => this.handleDelete(e,item.id) }>Delete</Button>
-                      </ButtonGroup>
-                    </td>
-                  : null }
-              </tr> )
-            }
-          </tbody>
-        </Table>
+        <p>There are {this.state.users.length} users</p>
+        <ReactTable
+          data={data}
+          columns={GlobalStore.getState().gui.role === 'ROLE_ADMIN' ? roleAdminColumns : columns}
+        />
         <UserEdit />
       </Container>
     );

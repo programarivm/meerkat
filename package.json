@@ -30,6 +30,7 @@
         "pace-js": "^1.0.2",
         "react-cookie-consent": "^2.5.0",
         "react-router-dom": "^5.1.2",
+        "react-table": "^6.10.3",
         "reactstrap": "^8.0.1"
     }
 }
