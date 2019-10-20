@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-  Button, ButtonGroup, Container, Table
+  Button, ButtonGroup, Container
 } from 'reactstrap';
+import ReactTable from 'react-table'
 import { RestaurantEdit } from './Edit.js';
 import RestaurantActions from '../../../actions/RestaurantActions.js';
 import RestaurantStore from '../../../stores/RestaurantStore.js';
@@ -54,40 +55,51 @@ class RestaurantIndex extends React.Component {
   }
 
   render() {
+    const data = this.state.restaurants;
+
+    const columns = [
+      {
+        Header: 'Created at',
+        accessor: 'created_at'
+      },
+      {
+        Header: 'Name',
+        accessor: 'name'
+      },
+      {
+        Header: 'Description',
+        accessor: 'description'
+      },
+      {
+        Header: 'Address',
+        accessor: 'address'
+      },
+      {
+        Header: 'Coordinates',
+        accessor: 'coordinates',
+        Cell: ({ row }) => (
+          `${row._original.lat}, ${row._original.lon}` 
+        )
+      },
+      {
+        Header: 'Actions',
+        Cell: ({ row }) => (
+          <ButtonGroup>
+            <Button outline color="primary" size="sm" onClick={ (e) => this.handleShow(e,row._original.id) }>Edit</Button>
+            <Button outline color="primary" size="sm" onClick={ (e) => this.handleDelete(e,row._original.id) }>Delete</Button>
+          </ButtonGroup>
+        )
+      }
+    ];
+
     return (
       <Container className="mt-3 mb-5">
-        <Table>
-          <thead>
-            <tr>
-              <th colSpan="6" className="text-center">There are {this.state.restaurants.length} awesome restaurants in this list</th>
-            </tr>
-            <tr>
-              <th>Created at</th>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Address</th>
-              <th>Coordinates</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              this.state.restaurants.map( (item, i) => <tr key={i} className="mt-5">
-                <td>{item.created_at}</td>
-                <td>{item.name}</td>
-                <td>{item.description}</td>
-                <td>{item.address}</td>
-                <td>{item.lat}, {item.lon}</td>
-                <td>
-                  <ButtonGroup>
-                    <Button outline color="primary" size="sm" onClick={ (e) => this.handleShow(e,item.id) }>Edit</Button>
-                    <Button outline color="primary" size="sm" onClick={ (e) => this.handleDelete(e,item.id) }>Delete</Button>
-                  </ButtonGroup>
-                </td>
-              </tr> )
-            }
-          </tbody>
-        </Table>
+        <p>There are {this.state.restaurants.length} restaurants</p>
+        <ReactTable
+          data={data}
+          columns={columns}
+          minRows={0}
+        />
         <RestaurantEdit />
       </Container>
     );
