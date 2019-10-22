@@ -13,6 +13,7 @@ class User extends Authenticatable implements JWTSubject
 
     const CHOICE_ROLE_ADMIN = 'ROLE_ADMIN';
     const CHOICE_ROLE_EDITOR = 'ROLE_EDITOR';
+    const CHOICE_ROLE_BASIC = 'ROLE_BASIC';
 
     /**
      * The attributes that are mass assignable.
@@ -53,6 +54,7 @@ class User extends Authenticatable implements JWTSubject
             'roles' => [
                 self::CHOICE_ROLE_ADMIN,
                 self::CHOICE_ROLE_EDITOR,
+                self::CHOICE_ROLE_BASIC,
             ],
         ];
     }

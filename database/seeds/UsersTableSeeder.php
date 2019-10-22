@@ -29,13 +29,24 @@ class UsersTableSeeder extends Seeder
         ]);
 
         User::create([
+            'email' => 'alice@gmail.com',
+            'firstname' => 'Alice',
+            'surname' => 'Smith',
+            'date_of_birth' => $faker->dateTimeBetween('1920-01-01', '2012-12-31'),
+            'phone_number' => $faker->mobileNumber,
+            'password' => bcrypt('password'),
+            'role' => User::CHOICE_ROLE_EDITOR,
+            'created_at' => $faker->dateTimeBetween('2018-01-01', '2019-10-10'),
+        ]);
+
+        User::create([
             'email' => 'john@gmail.com',
             'firstname' => 'John',
             'surname' => 'Doe',
             'date_of_birth' => $faker->dateTimeBetween('1920-01-01', '2012-12-31'),
             'phone_number' => $faker->mobileNumber,
             'password' => bcrypt('password'),
-            'role' => User::CHOICE_ROLE_EDITOR,
+            'role' => User::CHOICE_ROLE_BASIC,
             'created_at' => $faker->dateTimeBetween('2018-01-01', '2019-10-10'),
         ]);
 
