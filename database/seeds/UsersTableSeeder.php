@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
             'date_of_birth' => $faker->dateTimeBetween('1920-01-01', '2012-12-31'),
             'phone_number' => $faker->mobileNumber,
             'password' => bcrypt('password'),
-            'role' => User::CHOICE_ROLE_BASIC,
+            'role' => User::CHOICE_ROLE_EDITOR,
             'created_at' => $faker->dateTimeBetween('2018-01-01', '2019-10-10'),
         ]);
 
@@ -47,7 +47,7 @@ class UsersTableSeeder extends Seeder
                 'date_of_birth' => $faker->dateTimeBetween('1920-01-01', '2012-12-31'),
                 'phone_number' => $faker->mobileNumber,
                 'password' => bcrypt('password'),
-                'role' => User::CHOICE_ROLE_BASIC,
+                'role' => User::CHOICE_ROLE_EDITOR,
                 'created_at' => $faker->dateTimeBetween('2018-01-01', '2019-10-10'),
             ]);
         }
