@@ -1,3 +1,3 @@
 export default {
-	RESULTS: 'RESULTS'
+	FETCH_ALL: 'FETCH_ALL'
 }

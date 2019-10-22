@@ -17,9 +17,9 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     this._isMounted = true;
-    ReviewActions.results();
+    ReviewActions.fetchAll();
     ReviewStore
-      .on("results.200", (data) => {
+      .on("fetch_all.200", (data) => {
         if (this._isMounted) {
           this.setState(ReviewStore.getState());
         }

@@ -8,7 +8,7 @@ class ReviewStore extends EventEmitter {
 		ReviewDispatcher.register(this.handleActions.bind(this));
 	}
 
-	results() {
+	fetchAll() {
 		fetch(process.env.MIX_APP_URL + '/api/reviews', {
 			method: 'GET',
 			headers: {
@@ -29,8 +29,8 @@ class ReviewStore extends EventEmitter {
 
 	handleActions(action) {
 		switch (action.type) {
-			case ReviewActionTypes.RESULTS:
-				this.results();
+			case ReviewActionTypes.FETCH_ALL:
+				this.fetchAll();
 				break;
 			default:
         // do nothing

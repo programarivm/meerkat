@@ -2,9 +2,9 @@ import ReviewDispatcher from "../dispatcher/ReviewDispatcher.js";
 import ReviewActionTypes from '../constants/ReviewActionTypes';
 
 class ReviewActions {
-	results() {
+	fetchAll() {
 		ReviewDispatcher.dispatch({
-			type: ReviewActionTypes.RESULTS
+			type: ReviewActionTypes.FETCH_ALL
 		});
 	}
 }
