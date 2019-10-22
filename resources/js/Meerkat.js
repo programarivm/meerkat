@@ -23,7 +23,7 @@ class Meerkat extends Component {
   render() {
     return (
       <div className="Meerkat">
-        { this.state.gui.role !== null ? <PrivateApp path="/dashboard" /> : <PublicApp path="/" /> }
+        { this.state.gui.role !== null ? <PrivateApp path="/reviews" /> : <PublicApp path="/" /> }
       </div>
     );
   }

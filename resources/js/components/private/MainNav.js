@@ -4,10 +4,11 @@ import {
   NavbarBrand, Nav, NavItem,
   NavLink } from 'reactstrap';
 import { Link, Route } from 'react-router-dom';
-import { Dashboard } from "./Dashboard.js";
+import { Reviews } from "../common/Reviews.js";
 import { Users } from "./Users.js";
 import { Restaurants } from "./Restaurants.js";
 import { SignOut } from "./SignOut.js";
+import GlobalStore from '../../stores/GlobalStore.js';
 import logo from '../../../images/logo.png';
 import './MainNav.css';
 
@@ -42,27 +43,35 @@ class MainNav extends React.Component {
     return (
       <div>
         <Navbar light expand="md" className="MainNav">
-          <NavbarBrand tag={Link} to="/dashboard">
+          <NavbarBrand tag={Link} to="/reviews">
             <img src={logo} className="logo" alt="logo" />
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink tag={Link} to="/dashboard">
-                  Dashboard
+                <NavLink tag={Link} to="/reviews">
+                  Reviews
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink tag={Link} to="/users">
-                  Users
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} to="/restaurants">
-                  Restaurants
-                </NavLink>
-              </NavItem>
+              {
+                GlobalStore.getState().gui.role !== 'ROLE_BASIC'
+                  ? <NavItem>
+                      <NavLink tag={Link} to="/users">
+                        Users
+                      </NavLink>
+                    </NavItem>
+                  : null
+              }
+              {
+                GlobalStore.getState().gui.role !== 'ROLE_BASIC'
+                  ? <NavItem>
+                      <NavLink tag={Link} to="/restaurants">
+                        Restaurants
+                      </NavLink>
+                    </NavItem>
+                  : null
+              }
               <NavItem>
                 <NavLink tag={Link} to="/logout">
                   Sign out
@@ -72,8 +81,8 @@ class MainNav extends React.Component {
           </Collapse>
         </Navbar>
         <Route
-          path="/dashboard"
-          render={(props) => <Dashboard {...props} />}
+          path="/reviews"
+          render={(props) => <Reviews {...props} />}
         />
         <Route
           path="/users"

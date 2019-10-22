@@ -5,6 +5,7 @@ import {
   NavLink } from 'reactstrap';
 import { Link, Route, Redirect } from 'react-router-dom';
 import { Home } from "./Home.js";
+import { Reviews } from "../common/Reviews.js";
 import { SignIn } from "./SignIn.js";
 import logo from '../../../images/logo.png';
 import './MainNav.css';
@@ -52,6 +53,11 @@ class MainNav extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
+                <NavLink tag={Link} to="/reviews">
+                  Reviews
+                </NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink tag={Link} to="/login">
                   Sign In
                 </NavLink>
@@ -63,6 +69,10 @@ class MainNav extends React.Component {
         <Route
           path="/home"
           render={(props) => <Home {...props} />}
+        />
+        <Route
+          path="/reviews"
+          render={(props) => <Reviews {...props} />}
         />
         <Route
           path="/login"
