@@ -88,6 +88,7 @@ Build and seed the database:
     php artisan migrate:refresh
     php artisan db:seed --class=UsersTableSeeder
     php artisan db:seed --class=RestaurantsTableSeeder
+    php artisan db:seed --class=ReviewsTableSeeder
 
 Create a new JWT secret in your `.env` file:
 
