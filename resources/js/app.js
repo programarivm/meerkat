@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Meerkat from './Meerkat.js';
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import 'pace-js';
 
@@ -10,8 +10,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-table/react-table.css';
 
 ReactDOM.render(
-  <HashRouter>
+  <BrowserRouter>
     <Meerkat />
-  </HashRouter>,
+  </BrowserRouter>,
   document.getElementById('meerkat')
 );
