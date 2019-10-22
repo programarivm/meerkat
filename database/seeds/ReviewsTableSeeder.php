@@ -27,7 +27,8 @@ class ReviewsTableSeeder extends Seeder
                     'points' => rand(0,100),
                     'comment' => $faker->sentence(),
                     'user_id' => $user->id,
-                    'restaurant_id' => $restaurant->id
+                    'restaurant_id' => $restaurant->id,
+                    'created_at' => $faker->dateTimeBetween('2017-01-01', '2019-10-22'),
                 ]);
             }
         }
