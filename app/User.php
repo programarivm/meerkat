@@ -61,7 +61,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function reviews()
     {
-        return $this->belongsToMany('App\Restaurant', 'reviews');
+        return $this->hasMany(Review::class);
     }
 
     public function getJWTIdentifier()

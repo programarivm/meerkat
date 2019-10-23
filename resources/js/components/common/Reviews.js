@@ -48,6 +48,13 @@ class Reviews extends React.Component {
         }
       },
       {
+        Header: 'User',
+        accessor: 'user',
+        Cell: ({ row }) => (
+          `${row._original.user.firstname}`
+        )
+      },
+      {
         Header: 'Comment',
         accessor: 'comment'
       },

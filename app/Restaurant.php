@@ -10,6 +10,6 @@ class Restaurant extends Model
 
     public function reviews()
     {
-        return $this->belongsToMany('App\User', 'reviews');
+        return $this->hasMany(Review::class);
     }
 }

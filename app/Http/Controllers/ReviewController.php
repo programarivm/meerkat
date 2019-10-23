@@ -9,6 +9,6 @@ class ReviewController extends Controller
 {
   public function results()
   {
-      return Review::orderBy('created_at', 'desc')->get();
+      return Review::orderBy('created_at', 'desc')->with('user')->get();
   }
 }
