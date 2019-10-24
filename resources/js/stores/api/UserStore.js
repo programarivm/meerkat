@@ -1,11 +1,11 @@
-import UserActionTypes from '../constants/UserActionTypes';
-import UserDispatcher from "../dispatcher/UserDispatcher.js";
+import ApiUserActionTypes from '../../constants/api/UserActionTypes';
+import ApiUserDispatcher from "../../dispatcher/api/UserDispatcher.js";
 import { EventEmitter } from 'events';
 
 class UserStore extends EventEmitter {
 	constructor() {
 		super();
-		UserDispatcher.register(this.handleActions.bind(this));
+		ApiUserDispatcher.register(this.handleActions.bind(this));
 	}
 
 	create(data) {
@@ -107,19 +107,19 @@ class UserStore extends EventEmitter {
 
 	handleActions(action) {
 		switch (action.type) {
-			case UserActionTypes.CREATE:
+			case ApiUserActionTypes.CREATE:
 				this.create(action.user);
 				break;
-			case UserActionTypes.DELETE:
+			case ApiUserActionTypes.DELETE:
 				this.delete(action.id);
 				break;
-			case UserActionTypes.FETCH_ALL:
+			case ApiUserActionTypes.FETCH_ALL:
 				this.fetchAll();
 				break;
-			case UserActionTypes.SHOW:
+			case ApiUserActionTypes.SHOW:
 				this.show(action.id);
 				break;
-			case UserActionTypes.UPDATE:
+			case ApiUserActionTypes.UPDATE:
 				this.update(action.id, action.user);
 				break;
 			default:

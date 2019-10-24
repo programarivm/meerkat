@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {
   Button, Col, Container, Form, FormGroup, Input, Row
 } from 'reactstrap';
-import UserActions from '../../../actions/UserActions.js';
-import UserStore from '../../../stores/UserStore.js';
+import ApiUserActions from '../../../actions/api/UserActions.js';
+import ApiUserStore from '../../../stores/api/UserStore.js';
 
 class UserCreate extends Component {
   constructor(props) {
@@ -15,13 +15,13 @@ class UserCreate extends Component {
   }
 
   componentDidMount() {
-    UserStore.on("create.error", () => {
+    ApiUserStore.on("create.error", () => {
       this.setState({validation: 'Whoops! The user could not be added, please try again.'});
     });
   }
 
   handleCreate(e) {
-    UserActions.create({
+    ApiUserActions.create({
       firstname: e.target.elements.firstname.value,
       surname: e.target.elements.surname.value,
       date_of_birth: e.target.elements.date_of_birth.value,

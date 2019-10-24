@@ -1,5 +1,5 @@
-import UserDispatcher from "../dispatcher/UserDispatcher.js";
-import UserActionTypes from '../constants/UserActionTypes';
+import UserDispatcher from "../../dispatcher/api/UserDispatcher.js";
+import UserActionTypes from '../../constants/api/UserActionTypes';
 
 class UserActions {
 	create(data) {

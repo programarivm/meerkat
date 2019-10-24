@@ -5,8 +5,8 @@ import {
 import ReactTable from 'react-table'
 import { UserEdit } from './Edit.js';
 import GlobalStore from '../../../stores/GlobalStore.js';
-import UserActions from '../../../actions/UserActions.js';
-import UserStore from '../../../stores/UserStore.js';
+import ApiUserActions from '../../../actions/api/UserActions.js';
+import ApiUserStore from '../../../stores/api/UserStore.js';
 
 class UserIndex extends React.Component {
   _isMounted = false;
@@ -22,21 +22,21 @@ class UserIndex extends React.Component {
 
   componentDidMount() {
     this._isMounted = true;
-    UserActions.fetchAll();
-    UserStore
+    ApiUserActions.fetchAll();
+    ApiUserStore
       .on("fetch_all.200", (data) => {
         if (this._isMounted) {
           this.setState({ users: data });
         }
       })
       .on("create.201", () => {
-        UserActions.fetchAll();
+        ApiUserActions.fetchAll();
       })
       .on("delete.204", () => {
-        UserActions.fetchAll();
+        ApiUserActions.fetchAll();
       })
       .on("update.200", () => {
-        UserActions.fetchAll();
+        ApiUserActions.fetchAll();
       });
   }
 
@@ -46,13 +46,13 @@ class UserIndex extends React.Component {
 
   handleDelete(e,id) {
     if (confirm('Are you sure to delete this item?')) {
-      UserActions.delete(id);
+      ApiUserActions.delete(id);
     }
     e.preventDefault();
   }
 
   handleShow(e,id) {
-    UserActions.show(id);
+    ApiUserActions.show(id);
     e.preventDefault();
   }
 

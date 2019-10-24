@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {
   Button, Col, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, Row
 } from 'reactstrap';
-import UserActions from '../../../actions/UserActions.js';
-import UserStore from '../../../stores/UserStore.js';
+import ApiUserActions from '../../../actions/api/UserActions.js';
+import ApiUserStore from '../../../stores/api/UserStore.js';
 
 class UserEdit extends Component {
   _isMounted = false;
@@ -31,7 +31,7 @@ class UserEdit extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    UserStore
+    ApiUserStore
       .on("show.200", (data) => {
         if (this._isMounted) {
           this.setState({
@@ -78,7 +78,7 @@ class UserEdit extends Component {
   }
 
   handleUpdate(e) {
-    UserActions.update(this.state.id, this.state.user);
+    ApiUserActions.update(this.state.id, this.state.user);
     e.preventDefault();
   }
 
