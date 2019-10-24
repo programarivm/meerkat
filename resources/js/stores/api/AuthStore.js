@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 
 class AuthStore extends EventEmitter {
 	/**
-	 * A non-HttpOnly cookie named "gui" is sent by the server when the user is logged in.
+	 * A non-HttpOnly cookie named "session" is sent by the server when the user is logged in.
 	 */
 	constructor() {
 		super();
@@ -30,7 +30,7 @@ class AuthStore extends EventEmitter {
 		}).then((res) => {
 			switch (res.status) {
 				case 204:
-					this.state.role = JSON.parse(Cookies.get("gui")).role;
+					this.state.role = JSON.parse(Cookies.get("session")).role;
 					this.emit("login.204");
 					break;
 				case 401:
