@@ -1,17 +1,17 @@
-import ReviewDispatcher from "../../dispatcher/api/ReviewDispatcher.js";
-import ReviewActionTypes from '../../constants/api/ReviewActionTypes';
+import ApiReviewDispatcher from "../../dispatcher/api/ReviewDispatcher.js";
+import ApiReviewActionTypes from '../../constants/api/ReviewActionTypes';
 
 class ReviewActions {
 	doReview(data) {
-		ReviewDispatcher.dispatch({
-			type: ReviewActionTypes.DO_REVIEW,
+		ApiReviewDispatcher.dispatch({
+			type: ApiReviewActionTypes.DO_REVIEW,
 			review: data
 		});
 	}
 
 	fetchAll() {
-		ReviewDispatcher.dispatch({
-			type: ReviewActionTypes.FETCH_ALL
+		ApiReviewDispatcher.dispatch({
+			type: ApiReviewActionTypes.FETCH_ALL
 		});
 	}
 }

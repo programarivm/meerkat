@@ -1,37 +1,37 @@
-import UserDispatcher from "../../dispatcher/api/UserDispatcher.js";
-import UserActionTypes from '../../constants/api/UserActionTypes';
+import ApiUserDispatcher from "../../dispatcher/api/UserDispatcher.js";
+import ApiUserActionTypes from '../../constants/api/UserActionTypes';
 
 class UserActions {
 	create(data) {
-		UserDispatcher.dispatch({
-			type: UserActionTypes.CREATE,
+		ApiUserDispatcher.dispatch({
+			type: ApiUserActionTypes.CREATE,
 			user: data
 		});
 	}
 
 	delete(id) {
-		UserDispatcher.dispatch({
-			type: UserActionTypes.DELETE,
+		ApiUserDispatcher.dispatch({
+			type: ApiUserActionTypes.DELETE,
 			id: id
 		});
 	}
 
 	fetchAll() {
-		UserDispatcher.dispatch({
-			type: UserActionTypes.FETCH_ALL
+		ApiUserDispatcher.dispatch({
+			type: ApiUserActionTypes.FETCH_ALL
 		});
 	}
 
 	show(id) {
-		UserDispatcher.dispatch({
-			type: UserActionTypes.SHOW,
+		ApiUserDispatcher.dispatch({
+			type: ApiUserActionTypes.SHOW,
 			id: id
 		});
 	}
 
 	update(id, data) {
-		UserDispatcher.dispatch({
-			type: UserActionTypes.UPDATE,
+		ApiUserDispatcher.dispatch({
+			type: ApiUserActionTypes.UPDATE,
 			id: id,
 			user: data
 		});

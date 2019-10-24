@@ -1,37 +1,37 @@
-import RestaurantDispatcher from "../../dispatcher/api/RestaurantDispatcher.js";
-import RestaurantActionTypes from '../../constants/api/RestaurantActionTypes';
+import ApiRestaurantDispatcher from "../../dispatcher/api/RestaurantDispatcher.js";
+import ApiRestaurantActionTypes from '../../constants/api/RestaurantActionTypes';
 
 class RestaurantActions {
 	create(data) {
-		RestaurantDispatcher.dispatch({
-			type: RestaurantActionTypes.CREATE,
+		ApiRestaurantDispatcher.dispatch({
+			type: ApiRestaurantActionTypes.CREATE,
 			restaurant: data
 		});
 	}
 
 	delete(id) {
-		RestaurantDispatcher.dispatch({
-			type: RestaurantActionTypes.DELETE,
+		ApiRestaurantDispatcher.dispatch({
+			type: ApiRestaurantActionTypes.DELETE,
 			id: id
 		});
 	}
 
 	fetchAll() {
-		RestaurantDispatcher.dispatch({
-			type: RestaurantActionTypes.FETCH_ALL
+		ApiRestaurantDispatcher.dispatch({
+			type: ApiRestaurantActionTypes.FETCH_ALL
 		});
 	}
 
 	show(id) {
-		RestaurantDispatcher.dispatch({
-			type: RestaurantActionTypes.SHOW,
+		ApiRestaurantDispatcher.dispatch({
+			type: ApiRestaurantActionTypes.SHOW,
 			id: id
 		});
 	}
 
 	update(id, data) {
-		RestaurantDispatcher.dispatch({
-			type: RestaurantActionTypes.UPDATE,
+		ApiRestaurantDispatcher.dispatch({
+			type: ApiRestaurantActionTypes.UPDATE,
 			id: id,
 			restaurant: data
 		});
