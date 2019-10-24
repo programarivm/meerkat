@@ -1,5 +1,5 @@
-import ReviewActionTypes from '../constants/ReviewActionTypes';
-import ReviewDispatcher from "../dispatcher/ReviewDispatcher.js";
+import ReviewActionTypes from '../../constants/api/ReviewActionTypes';
+import ReviewDispatcher from "../../dispatcher/api/ReviewDispatcher.js";
 import { EventEmitter } from 'events';
 
 class ReviewStore extends EventEmitter {
@@ -58,9 +58,6 @@ class ReviewStore extends EventEmitter {
 				break;
 			case ReviewActionTypes.FETCH_ALL:
 				this.fetchAll();
-				break;
-			case ReviewActionTypes.CLICK_REVIEW_NOW:
-				this.clickReviewNow();
 				break;
 			default:
         // do nothing

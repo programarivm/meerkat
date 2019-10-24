@@ -5,9 +5,10 @@ import {
 import { Link, Route } from "react-router-dom";
 import ReactTable from 'react-table';
 import { ReviewCreate } from './Create.js';
+import ApiReviewActions from '../../../actions/api/ReviewActions.js';
+import ApiReviewStore from '../../../stores/api/ReviewStore.js';
+import GuiActions from '../../../actions/GuiActions.js';
 import GlobalStore from '../../../stores/GlobalStore.js';
-import ReviewActions from '../../../actions/ReviewActions.js';
-import ReviewStore from '../../../stores/ReviewStore.js';
 
 class ReviewIndex extends React.Component {
   _isMounted = false;
@@ -22,8 +23,8 @@ class ReviewIndex extends React.Component {
 
   componentDidMount() {
     this._isMounted = true;
-    ReviewActions.fetchAll();
-    ReviewStore
+    ApiReviewActions.fetchAll();
+    ApiReviewStore
       .on("fetch_all.200", (data) => {
         if (this._isMounted) {
           this.setState({reviews: data});
@@ -36,7 +37,7 @@ class ReviewIndex extends React.Component {
   }
 
   handleClickReviewNow(e) {
-    ReviewActions.clickReviewNow();
+    GuiActions.clickReviewNow();
     e.preventDefault();
   }
 

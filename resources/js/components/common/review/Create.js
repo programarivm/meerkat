@@ -2,8 +2,8 @@ import React from 'react';
 import {
   Button, Col, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, Row
 } from 'reactstrap';
-import ReviewActions from '../../../actions/ReviewActions.js';
-import ReviewStore from '../../../stores/ReviewStore.js';
+import ReviewActions from '../../../actions/api/ReviewActions.js';
+import GuiStore from '../../../stores/GuiStore.js';
 
 class ReviewCreate extends React.Component {
   _isMounted = false;
@@ -26,7 +26,7 @@ class ReviewCreate extends React.Component {
 
   componentDidMount() {
     this._isMounted = true;
-    ReviewStore
+    GuiStore
       .on("click.review_now", () => {
         if (this._isMounted) {
           this.setState({ modal: { open: true } });

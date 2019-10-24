@@ -1,5 +1,5 @@
-import ReviewDispatcher from "../dispatcher/ReviewDispatcher.js";
-import ReviewActionTypes from '../constants/ReviewActionTypes';
+import ReviewDispatcher from "../../dispatcher/api/ReviewDispatcher.js";
+import ReviewActionTypes from '../../constants/api/ReviewActionTypes';
 
 class ReviewActions {
 	doReview(data) {
@@ -12,12 +12,6 @@ class ReviewActions {
 	fetchAll() {
 		ReviewDispatcher.dispatch({
 			type: ReviewActionTypes.FETCH_ALL
-		});
-	}
-
-	clickReviewNow() {
-		ReviewDispatcher.dispatch({
-			type: ReviewActionTypes.CLICK_REVIEW_NOW
 		});
 	}
 }
