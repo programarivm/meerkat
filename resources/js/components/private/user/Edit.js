@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Button, Col, Form, FormGroup, Input, Modal, ModalBody, ModalHeader, ModalFooter, Row
+  Button, Col, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, Row
 } from 'reactstrap';
 import UserActions from '../../../actions/UserActions.js';
 import UserStore from '../../../stores/UserStore.js';
@@ -85,7 +85,6 @@ class UserEdit extends Component {
   render() {
     return (
       <Modal isOpen={this.state.modal.open}>
-        <ModalHeader>User</ModalHeader>
         <ModalBody>
           <p className="text-danger">{this.state.validation}</p>
           <Form className="form">

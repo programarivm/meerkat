@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Button, Col, Form, FormGroup, Input, Modal, ModalBody, ModalHeader, ModalFooter, Row
+  Button, Col, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, Row
 } from 'reactstrap';
 import ReviewActions from '../../../actions/ReviewActions.js';
 import ReviewStore from '../../../stores/ReviewStore.js';
@@ -57,7 +57,6 @@ class ReviewCreate extends React.Component {
   render() {
     return (
       <Modal isOpen={this.state.modal.open}>
-        <ModalHeader>Review now!</ModalHeader>
         <ModalBody>
           <p className="text-danger">{this.state.validation}</p>
           <Form className="form">

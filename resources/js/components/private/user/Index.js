@@ -17,6 +17,7 @@ class UserIndex extends React.Component {
       users: []
     };
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleShow = this.handleShow.bind(this);
   }
 
   componentDidMount() {
