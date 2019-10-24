@@ -5,7 +5,7 @@ import {
   NavLink } from 'reactstrap';
 import { Link, Route, Redirect } from 'react-router-dom';
 import { Home } from "./Home.js";
-import { Reviews } from "../common/Reviews.js";
+import { ReviewIndex } from "../common/review/Index.js";
 import { SignIn } from "./SignIn.js";
 import logo from '../../../images/logo.png';
 import './MainNav.css';
@@ -72,7 +72,7 @@ class MainNav extends React.Component {
         />
         <Route
           path="/reviews"
-          render={(props) => <Reviews {...props} />}
+          render={(props) => <ReviewIndex {...props} />}
         />
         <Route
           path="/login"

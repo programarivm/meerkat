@@ -1,14 +1,15 @@
 import React from 'react';
 import {
-  Col, Container, Row
+  ButtonGroup, Button, Col, Container, Row
 } from 'reactstrap';
-import { NavLink } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import ReactTable from 'react-table';
-import ReviewActions from '../../actions/ReviewActions.js';
-import ReviewStore from '../../stores/ReviewStore.js';
-import api from '../../../images/api.png';
+import { ReviewCreate } from './Create.js';
+import GlobalStore from '../../../stores/GlobalStore.js';
+import ReviewActions from '../../../actions/ReviewActions.js';
+import ReviewStore from '../../../stores/ReviewStore.js';
 
-class Reviews extends React.Component {
+class ReviewIndex extends React.Component {
   _isMounted = false;
 
   constructor(props) {
@@ -16,6 +17,7 @@ class Reviews extends React.Component {
     this.state = {
       reviews: []
     };
+    this.handleClickReviewNow = this.handleClickReviewNow.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +33,11 @@ class Reviews extends React.Component {
 
   componentWillUnmount() {
     this._isMounted = false;
+  }
+
+  handleClickReviewNow(e) {
+    ReviewActions.clickReviewNow();
+    e.preventDefault();
   }
 
   render() {
@@ -66,17 +73,25 @@ class Reviews extends React.Component {
 
     return (
       <div>
-        <Container className="Reviews mt-5 mb-5">
+        <Container className="ReviewIndex mt-5 mb-5">
+          {
+            GlobalStore.getState().gui.role !== null
+              ? <ButtonGroup>
+                  <Button className="mb-4" color="primary" size="sm" onClick={ (e) => this.handleClickReviewNow(e) }>Review now!</Button>
+                </ButtonGroup>
+              : null
+          }
           <ReactTable
             data={data}
             TheadComponent={TheadComponent}
             columns={columns}
             minRows={0}
           />
+          <ReviewCreate />
         </Container>
       </div>
     );
   }
 }
 
-export { Reviews };
+export { ReviewIndex };

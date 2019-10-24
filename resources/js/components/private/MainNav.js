@@ -4,7 +4,7 @@ import {
   NavbarBrand, Nav, NavItem,
   NavLink } from 'reactstrap';
 import { Link, Route } from 'react-router-dom';
-import { Reviews } from "../common/Reviews.js";
+import { ReviewIndex } from "../common/review/Index.js";
 import { Users } from "./Users.js";
 import { Restaurants } from "./Restaurants.js";
 import { SignOut } from "./SignOut.js";
@@ -82,7 +82,7 @@ class MainNav extends React.Component {
         </Navbar>
         <Route
           path="/reviews"
-          render={(props) => <Reviews {...props} />}
+          render={(props) => <ReviewIndex {...props} />}
         />
         <Route
           path="/users"

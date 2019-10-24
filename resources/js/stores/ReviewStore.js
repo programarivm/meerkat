@@ -8,6 +8,26 @@ class ReviewStore extends EventEmitter {
 		ReviewDispatcher.register(this.handleActions.bind(this));
 	}
 
+	doReview(data) {
+		fetch(process.env.MIX_APP_URL + '/api/do-review', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		})
+		.then((res) => {
+			switch (res.status) {
+				case 201:
+					this.emit("do_review.201");
+					break;
+				default:
+					this.emit("do_review.error");
+					break;
+			}
+		});
+	}
+
 	fetchAll() {
 		fetch(process.env.MIX_APP_URL + '/api/reviews', {
 			method: 'GET',
@@ -27,10 +47,20 @@ class ReviewStore extends EventEmitter {
 		});
 	}
 
+	clickReviewNow() {
+		this.emit("click.review_now");
+	}
+
 	handleActions(action) {
 		switch (action.type) {
+			case ReviewActionTypes.DO_REVIEW:
+				this.doReview();
+				break;
 			case ReviewActionTypes.FETCH_ALL:
 				this.fetchAll();
+				break;
+			case ReviewActionTypes.CLICK_REVIEW_NOW:
+				this.clickReviewNow();
 				break;
 			default:
         // do nothing
