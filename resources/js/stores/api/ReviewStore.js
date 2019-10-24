@@ -1,11 +1,11 @@
-import ReviewActionTypes from '../../constants/api/ReviewActionTypes';
-import ReviewDispatcher from "../../dispatcher/api/ReviewDispatcher.js";
+import ApiReviewActionTypes from '../../constants/api/ReviewActionTypes';
+import ApiReviewDispatcher from "../../dispatcher/api/ReviewDispatcher.js";
 import { EventEmitter } from 'events';
 
 class ReviewStore extends EventEmitter {
 	constructor() {
 		super();
-		ReviewDispatcher.register(this.handleActions.bind(this));
+		ApiReviewDispatcher.register(this.handleActions.bind(this));
 	}
 
 	doReview(data) {
@@ -47,16 +47,12 @@ class ReviewStore extends EventEmitter {
 		});
 	}
 
-	clickReviewNow() {
-		this.emit("click.review_now");
-	}
-
 	handleActions(action) {
 		switch (action.type) {
-			case ReviewActionTypes.DO_REVIEW:
+			case ApiReviewActionTypes.DO_REVIEW:
 				this.doReview();
 				break;
-			case ReviewActionTypes.FETCH_ALL:
+			case ApiReviewActionTypes.FETCH_ALL:
 				this.fetchAll();
 				break;
 			default:
