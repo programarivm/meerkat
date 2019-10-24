@@ -15,8 +15,8 @@ class RestaurantIndex extends React.Component {
     this.state = {
       restaurants: []
     };
-    this.handleDelete = this.handleDelete.bind(this);
-    this.handleShow = this.handleShow.bind(this);
+    this.handleClickDelete = this.handleClickDelete.bind(this);
+    this.handleClickEdit = this.handleClickEdit.bind(this);
   }
 
   componentDidMount() {
@@ -43,14 +43,14 @@ class RestaurantIndex extends React.Component {
     this._isMounted = false;
   }
 
-  handleDelete(e,id) {
+  handleClickDelete(e,id) {
     if (confirm('Are you sure to delete this item?')) {
       ApiRestaurantActions.delete(id);
     }
     e.preventDefault();
   }
 
-  handleShow(e,id) {
+  handleClickEdit(e,id) {
     ApiRestaurantActions.show(id);
     e.preventDefault();
   }
@@ -86,8 +86,8 @@ class RestaurantIndex extends React.Component {
         Header: 'Actions',
         Cell: ({ row }) => (
           <ButtonGroup>
-            <Button outline color="primary" size="sm" onClick={ (e) => this.handleShow(e,row._original.id) }>Edit</Button>
-            <Button outline color="primary" size="sm" onClick={ (e) => this.handleDelete(e,row._original.id) }>Delete</Button>
+            <Button outline color="primary" size="sm" onClick={ (e) => this.handleClickEdit(e,row._original.id) }>Edit</Button>
+            <Button outline color="primary" size="sm" onClick={ (e) => this.handleClickDelete(e,row._original.id) }>Delete</Button>
           </ButtonGroup>
         )
       }

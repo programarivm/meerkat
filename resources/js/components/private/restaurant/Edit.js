@@ -24,9 +24,9 @@ class RestaurantEdit extends Component {
         },
         validation: null
     }
-    this.handleCancel = this.handleCancel.bind(this);
     this.handleChange = this.handleChange.bind(this)
-    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleClickCancel = this.handleClickCancel.bind(this);
+    this.handleClickUpdate = this.handleClickUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -65,18 +65,18 @@ class RestaurantEdit extends Component {
     this._isMounted = false;
   }
 
-  handleCancel(e) {
-    this.setState({ modal: { open: false } });
-    e.preventDefault();
-  }
-
   handleChange = event => {
     let restaurant = {...this.state.restaurant};
     restaurant[event.target.id] = event.target.value;
     this.setState({restaurant});
   }
 
-  handleUpdate(e) {
+  handleClickCancel(e) {
+    this.setState({ modal: { open: false } });
+    e.preventDefault();
+  }
+
+  handleClickUpdate(e) {
     ApiRestaurantActions.update(this.state.id, this.state.restaurant);
     e.preventDefault();
   }
@@ -92,8 +92,8 @@ class RestaurantEdit extends Component {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={ (e) => this.handleUpdate(e) }>Update</Button>
-          <Button color="secondary" onClick={ (e) => this.handleCancel(e) }>Cancel</Button>
+          <Button color="primary" onClick={ (e) => this.handleClickUpdate(e) }>Update</Button>
+          <Button color="secondary" onClick={ (e) => this.handleClickCancel(e) }>Cancel</Button>
         </ModalFooter>
       </Modal>
     );

@@ -19,9 +19,9 @@ class ReviewCreate extends React.Component {
         },
         validation: null
     }
-    this.handleCancel = this.handleCancel.bind(this);
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClickCancel = this.handleClickCancel.bind(this);
+    this.handleClickSubmit = this.handleClickSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -38,18 +38,18 @@ class ReviewCreate extends React.Component {
     this._isMounted = false;
   }
 
-  handleCancel(e) {
-    this.setState({ modal: { open: false } });
-    e.preventDefault();
-  }
-
   handleChange = event => {
     let review = {...this.state.review};
     review[event.target.id] = event.target.value;
     this.setState({review});
   }
 
-  handleSubmit(e) {
+  handleClickCancel(e) {
+    this.setState({ modal: { open: false } });
+    e.preventDefault();
+  }
+
+  handleClickSubmit(e) {
     ReviewActions.doReview(this.state.review);
     e.preventDefault();
   }
@@ -78,8 +78,8 @@ class ReviewCreate extends React.Component {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={ (e) => this.handleSubmit(e) }>Submit</Button>
-          <Button color="secondary" onClick={ (e) => this.handleCancel(e) }>Cancel</Button>
+          <Button color="primary" onClick={ (e) => this.handleClickSubmit(e) }>Submit</Button>
+          <Button color="secondary" onClick={ (e) => this.handleClickCancel(e) }>Cancel</Button>
         </ModalFooter>
       </Modal>
     );

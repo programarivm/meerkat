@@ -16,8 +16,8 @@ class UserIndex extends React.Component {
     this.state = {
       users: []
     };
-    this.handleDelete = this.handleDelete.bind(this);
-    this.handleShow = this.handleShow.bind(this);
+    this.handleClickDelete = this.handleClickDelete.bind(this);
+    this.handleClickEdit = this.handleClickEdit.bind(this);
   }
 
   componentDidMount() {
@@ -44,14 +44,14 @@ class UserIndex extends React.Component {
     this._isMounted = false;
   }
 
-  handleDelete(e,id) {
+  handleClickDelete(e,id) {
     if (confirm('Are you sure to delete this item?')) {
       ApiUserActions.delete(id);
     }
     e.preventDefault();
   }
 
-  handleShow(e,id) {
+  handleClickEdit(e,id) {
     ApiUserActions.show(id);
     e.preventDefault();
   }
@@ -93,8 +93,8 @@ class UserIndex extends React.Component {
         accessor: 'actions',
         Cell: ({ row }) => (
           <ButtonGroup>
-            <Button outline color="primary" size="sm" onClick={ (e) => this.handleShow(e,row._original.id) }>Edit</Button>
-            <Button outline color="primary" size="sm" onClick={ (e) => this.handleDelete(e,row._original.id) }>Delete</Button>
+            <Button outline color="primary" size="sm" onClick={ (e) => this.handleClickEdit(e,row._original.id) }>Edit</Button>
+            <Button outline color="primary" size="sm" onClick={ (e) => this.handleClickDelete(e,row._original.id) }>Delete</Button>
           </ButtonGroup>
         )
       }

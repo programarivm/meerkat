@@ -12,7 +12,7 @@ class RestaurantCreate extends Component {
       this.state = {
         validation: null
     }
-    this.handleCreate = this.handleCreate.bind(this);
+    this.handleSubmitForm = this.handleSubmitForm.bind(this);
   }
 
   componentDidMount() {
@@ -21,7 +21,7 @@ class RestaurantCreate extends Component {
     });
   }
 
-  handleCreate(e) {
+  handleSubmitForm(e) {
     ApiRestaurantActions.create({
       name: e.target.elements.name.value,
       description: e.target.elements.description.value,
@@ -37,7 +37,7 @@ class RestaurantCreate extends Component {
     return (
       <Container className="mt-4">
         <p className="text-danger">{this.state.validation}</p>
-        <Form className="form" onSubmit={ (e) => this.handleCreate(e) }>
+        <Form className="form" onSubmit={ (e) => this.handleSubmitForm(e) }>
           <FormGroups />
           <FormGroup>
             <Button color="secondary" block>Add restaurant</Button>

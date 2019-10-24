@@ -11,7 +11,7 @@ class UserCreate extends Component {
       this.state = {
         validation: null
     }
-    this.handleCreate = this.handleCreate.bind(this);
+    this.handleClickCreate = this.handleClickCreate.bind(this);
   }
 
   componentDidMount() {
@@ -20,7 +20,7 @@ class UserCreate extends Component {
     });
   }
 
-  handleCreate(e) {
+  handleClickCreate(e) {
     ApiUserActions.create({
       firstname: e.target.elements.firstname.value,
       surname: e.target.elements.surname.value,
@@ -37,7 +37,7 @@ class UserCreate extends Component {
     return (
       <Container className="mt-4">
         <p className="text-danger">{this.state.validation}</p>
-        <Form className="form" onSubmit={ (e) => this.handleCreate(e) }>
+        <Form className="form" onSubmit={ (e) => this.handleClickCreate(e) }>
           <Row>
             <Col md={6}>
               <FormGroup>

@@ -24,9 +24,9 @@ class UserEdit extends Component {
         },
         validation: null
     }
-    this.handleCancel = this.handleCancel.bind(this);
     this.handleChange = this.handleChange.bind(this)
-    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleClickCancel = this.handleClickCancel.bind(this);
+    this.handleClickUpdate = this.handleClickUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -66,18 +66,18 @@ class UserEdit extends Component {
     this._isMounted = false;
   }
 
-  handleCancel(e) {
-    this.setState({ modal: { open: false } });
-    e.preventDefault();
-  }
-
   handleChange = event => {
     let user = {...this.state.user};
     user[event.target.id] = event.target.value;
     this.setState({user});
   }
 
-  handleUpdate(e) {
+  handleClickCancel(e) {
+    this.setState({ modal: { open: false } });
+    e.preventDefault();
+  }
+
+  handleClickUpdate(e) {
     ApiUserActions.update(this.state.id, this.state.user);
     e.preventDefault();
   }
@@ -150,8 +150,8 @@ class UserEdit extends Component {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={ (e) => this.handleUpdate(e) }>Update</Button>
-          <Button color="secondary" onClick={ (e) => this.handleCancel(e) }>Cancel</Button>
+          <Button color="primary" onClick={ (e) => this.handleClickUpdate(e) }>Update</Button>
+          <Button color="secondary" onClick={ (e) => this.handleClickCancel(e) }>Cancel</Button>
         </ModalFooter>
       </Modal>
     );
