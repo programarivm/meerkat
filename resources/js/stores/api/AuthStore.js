@@ -1,20 +1,18 @@
-import GlobalActionTypes from '../constants/GlobalActionTypes';
-import GlobalDispatcher from "../dispatcher/GlobalDispatcher.js";
+import ApiAuthActionTypes from '../../constants/api/AuthActionTypes';
+import ApiAuthDispatcher from "../../dispatcher/api/AuthDispatcher.js";
 import { EventEmitter } from 'events';
 import Cookies from 'js-cookie';
 
-class GlobalStore extends EventEmitter {
+class AuthStore extends EventEmitter {
 	/**
 	 * A non-HttpOnly cookie named "gui" is sent by the server when the user is logged in.
 	 */
 	constructor() {
 		super();
 		this.state = {
-			gui: {
-				role: null
-			}
+			role: null
 		};
-		GlobalDispatcher.register(this.handleActions.bind(this));
+		ApiAuthDispatcher.register(this.handleActions.bind(this));
 	}
 
 	getState() {
@@ -32,7 +30,7 @@ class GlobalStore extends EventEmitter {
 		}).then((res) => {
 			switch (res.status) {
 				case 204:
-					this.state.gui = JSON.parse(Cookies.get("gui"));
+					this.state.role = JSON.parse(Cookies.get("gui")).role;
 					this.emit("login.204");
 					break;
 				case 401:
@@ -55,7 +53,7 @@ class GlobalStore extends EventEmitter {
 		}).then((res) => {
 			switch (res.status) {
 				case 204:
-					this.state.gui.role = null;
+					this.state.role = null;
 					this.emit("logout.204");
 					break;
 				case 401:
@@ -70,10 +68,10 @@ class GlobalStore extends EventEmitter {
 
 	handleActions(action) {
 		switch (action.type) {
-			case GlobalActionTypes.LOGIN:
+			case ApiAuthActionTypes.LOGIN:
 				this.login(action.credentials);
 				break;
-			case GlobalActionTypes.LOGOUT:
+			case ApiAuthActionTypes.LOGOUT:
 				this.logout();
 				break;
 			default:
@@ -82,4 +80,4 @@ class GlobalStore extends EventEmitter {
 	}
 }
 
-export default new GlobalStore();
+export default new AuthStore();

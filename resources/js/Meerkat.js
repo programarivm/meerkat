@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
 import PrivateApp from './components/private/App.js';
 import PublicApp from './components/public/App.js';
-import GlobalStore from './stores/GlobalStore.js';
+import ApiAuthStore from './stores/api/AuthStore.js';
 import './Meerkat.css';
 
 class Meerkat extends Component {
   constructor(props) {
     super(props);
-    this.state = GlobalStore.getState();
+    this.state = ApiAuthStore.getState();
   }
 
   componentDidMount() {
-    GlobalStore
+    ApiAuthStore
     .on("login.204", () => {
-      this.setState(GlobalStore.getState());
+      this.setState(ApiAuthStore.getState());
     })
     .on("logout.204", () => {
-      this.setState(GlobalStore.getState());
+      this.setState(ApiAuthStore.getState());
     });
   }
 
   render() {
     return (
       <div className="Meerkat">
-        { this.state.gui.role !== null ? <PrivateApp path="/reviews" /> : <PublicApp path="/" /> }
+        { this.state.role !== null ? <PrivateApp path="/reviews" /> : <PublicApp path="/" /> }
       </div>
     );
   }

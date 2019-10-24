@@ -8,7 +8,7 @@ import { ReviewIndex } from "../common/review/Index.js";
 import { Users } from "./Users.js";
 import { Restaurants } from "./Restaurants.js";
 import { SignOut } from "./SignOut.js";
-import GlobalStore from '../../stores/GlobalStore.js';
+import AuthStore from '../../stores/api/AuthStore.js';
 import logo from '../../../images/logo.png';
 import './MainNav.css';
 
@@ -55,7 +55,7 @@ class MainNav extends React.Component {
                 </NavLink>
               </NavItem>
               {
-                GlobalStore.getState().gui.role !== 'ROLE_BASIC'
+                AuthStore.getState().role !== 'ROLE_BASIC'
                   ? <NavItem>
                       <NavLink tag={Link} to="/users">
                         Users
@@ -64,7 +64,7 @@ class MainNav extends React.Component {
                   : null
               }
               {
-                GlobalStore.getState().gui.role !== 'ROLE_BASIC'
+                AuthStore.getState().role !== 'ROLE_BASIC'
                   ? <NavItem>
                       <NavLink tag={Link} to="/restaurants">
                         Restaurants

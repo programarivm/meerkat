@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {
   Button, Card, CardBody, Col, Container, Form, FormGroup, Input, Row
 } from 'reactstrap';
-import GlobalActions from '../../actions/GlobalActions.js';
-import GlobalStore from '../../stores/GlobalStore.js';
+import AuthActions from '../../actions/api/AuthActions.js';
+import AuthStore from '../../stores/api/AuthStore.js';
 import './SignIn.css';
 
 class SignIn extends Component {
@@ -20,7 +20,7 @@ class SignIn extends Component {
   }
 
   componentDidMount() {
-    GlobalStore
+    AuthStore
     .on("login.401", () => {
       this.setState({validation: 'The username and password that you entered did not match our records. Please try again.'});
     })
@@ -36,7 +36,7 @@ class SignIn extends Component {
   }
 
   handleLogin(e) {
-    GlobalActions.login(this.state.credentials);
+    AuthActions.login(this.state.credentials);
     e.preventDefault();
   }
 

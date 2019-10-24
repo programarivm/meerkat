@@ -8,7 +8,7 @@ import { ReviewCreate } from './Create.js';
 import ApiReviewActions from '../../../actions/api/ReviewActions.js';
 import ApiReviewStore from '../../../stores/api/ReviewStore.js';
 import GuiActions from '../../../actions/GuiActions.js';
-import GlobalStore from '../../../stores/GlobalStore.js';
+import AuthStore from '../../../stores/api/AuthStore.js';
 
 class ReviewIndex extends React.Component {
   _isMounted = false;
@@ -76,7 +76,7 @@ class ReviewIndex extends React.Component {
       <div>
         <Container className="ReviewIndex mt-5 mb-5">
           {
-            GlobalStore.getState().gui.role !== null
+            AuthStore.getState().role !== null
               ? <ButtonGroup>
                   <Button className="mb-4" color="primary" size="sm" onClick={ (e) => this.handleClickReviewNow(e) }>Review now!</Button>
                 </ButtonGroup>

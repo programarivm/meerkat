@@ -4,7 +4,7 @@ import {
 } from 'reactstrap';
 import ReactTable from 'react-table'
 import { UserEdit } from './Edit.js';
-import GlobalStore from '../../../stores/GlobalStore.js';
+import AuthStore from '../../../stores/api/AuthStore.js';
 import ApiUserActions from '../../../actions/api/UserActions.js';
 import ApiUserStore from '../../../stores/api/UserStore.js';
 
@@ -105,7 +105,7 @@ class UserIndex extends React.Component {
         <p>There are {this.state.users.length} users</p>
         <ReactTable
           data={data}
-          columns={GlobalStore.getState().gui.role === 'ROLE_ADMIN' ? roleAdminColumns : columns}
+          columns={AuthStore.getState().role === 'ROLE_ADMIN' ? roleAdminColumns : columns}
           minRows={0}
         />
         <UserEdit />

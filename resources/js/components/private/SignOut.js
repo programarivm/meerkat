@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import {
   Container
 } from 'reactstrap';
-import GlobalActions from '../../actions/GlobalActions.js';
+import ApiAuthActions from '../../actions/api/AuthActions.js';
 
 class SignOut extends Component {
   componentDidMount() {
-    GlobalActions.logout();
+    ApiAuthActions.logout();
   }
 
   render() {
