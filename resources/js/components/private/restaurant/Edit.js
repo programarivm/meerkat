@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
+import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
 import {
   Button, Form, FormGroup, Modal, ModalBody, ModalHeader, ModalFooter
 } from 'reactstrap';
 import { FormGroups } from './common/FormGroups.js';
-import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
-import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
+import React from 'react';
 
-class RestaurantEdit extends Component {
+class RestaurantEdit extends React.Component {
   _isMounted = false;
 
   constructor(props) {

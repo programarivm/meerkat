@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
 import {
   Col, FormGroup, Input, Row
 } from 'reactstrap';
+import React from 'react';
 
-class FormGroups extends Component {
+class FormGroups extends React.Component {
   render() {
     return (
       <Row>

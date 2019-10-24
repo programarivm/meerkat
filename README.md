@@ -1,6 +1,11 @@
 # Meerkat
 
-A React GUI interacting with a Laravel API -- an SPA application.
+This is a React GUI interacting with a Laravel API, a real-world example SPA with the following features:
+
+- ACL
+- Authentication
+- CRUD
+- Flux: actions, dispatchers and stores
 
 ### 1. Build the Docker Containers
 

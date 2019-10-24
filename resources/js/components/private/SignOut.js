@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import {
-  Container
-} from 'reactstrap';
 import ApiAuthActions from '../../actions/api/AuthActions.js';
+import { Container } from 'reactstrap';
+import React from 'react';
 
-class SignOut extends Component {
+class SignOut extends React.Component {
   componentDidMount() {
     ApiAuthActions.logout();
   }

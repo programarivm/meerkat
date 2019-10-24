@@ -1,5 +1,5 @@
-import ApiReviewDispatcher from "../../dispatcher/api/ReviewDispatcher.js";
 import ApiReviewActionTypes from '../../constants/api/ReviewActionTypes';
+import ApiReviewDispatcher from "../../dispatcher/api/ReviewDispatcher.js";
 
 class ReviewActions {
 	doReview(data) {

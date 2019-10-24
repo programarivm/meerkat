@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { MainNav } from "./MainNav.js";
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.props.history.push(this.props.path);

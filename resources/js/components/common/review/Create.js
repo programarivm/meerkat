@@ -1,7 +1,7 @@
-import React from 'react';
 import {
   Button, Col, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, Row
 } from 'reactstrap';
+import React from 'react';
 import ReviewActions from '../../../actions/api/ReviewActions.js';
 import ReviewStore from '../../../stores/ReviewStore.js';
 

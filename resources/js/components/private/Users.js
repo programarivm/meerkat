@@ -1,8 +1,8 @@
-import React from 'react';
+import AuthStore from '../../stores/api/AuthStore.js';
 import { Container } from 'reactstrap';
 import { UserCreate } from "./user/Create.js";
 import { UserIndex } from "./user/Index.js";
-import AuthStore from '../../stores/api/AuthStore.js';
+import React from 'react';
 
 class Users extends React.Component {
   render() {

@@ -1,14 +1,13 @@
-import React from 'react';
-import {
-  Collapse, Navbar, NavbarToggler,
-  NavbarBrand, Nav, NavItem,
-  NavLink } from 'reactstrap';
-import { Link, Route } from 'react-router-dom';
-import { ReviewIndex } from "../common/review/Index.js";
-import { Users } from "./Users.js";
-import { Restaurants } from "./Restaurants.js";
-import { SignOut } from "./SignOut.js";
 import AuthStore from '../../stores/api/AuthStore.js';
+import {
+  Collapse, Nav, Navbar, NavbarToggler,
+  NavbarBrand, NavItem, NavLink } from 'reactstrap';
+import { Link, Route } from 'react-router-dom';
+import React from 'react';
+import { Restaurants } from "./Restaurants.js";
+import { ReviewIndex } from "../common/review/Index.js";
+import { SignOut } from "./SignOut.js";
+import { Users } from "./Users.js";
 import logo from '../../../images/logo.png';
 import './MainNav.css';
 

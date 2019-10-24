@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import ApiUserActions from '../../../actions/api/UserActions.js';
+import ApiUserStore from '../../../stores/api/UserStore.js';
 import {
   Button, Col, Container, Form, FormGroup, Input, Row
 } from 'reactstrap';
-import ApiUserActions from '../../../actions/api/UserActions.js';
-import ApiUserStore from '../../../stores/api/UserStore.js';
+import React from 'react';
 
-class UserCreate extends Component {
+class UserCreate extends React.Component {
   constructor(props) {
     super(props);
       this.state = {

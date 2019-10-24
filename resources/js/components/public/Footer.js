@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import { Col, Row
-} from 'reactstrap';
+import { Col, Row } from 'reactstrap';
+import React from 'react';
 import './Footer.css';
 
-class Footer extends Component {
+class Footer extends React.Component {
   render() {
     return (
       <footer className="Footer p-5">

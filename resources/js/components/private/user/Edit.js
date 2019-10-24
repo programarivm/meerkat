@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import ApiUserActions from '../../../actions/api/UserActions.js';
+import ApiUserStore from '../../../stores/api/UserStore.js';
 import {
   Button, Col, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, Row
 } from 'reactstrap';
-import ApiUserActions from '../../../actions/api/UserActions.js';
-import ApiUserStore from '../../../stores/api/UserStore.js';
+import React from 'react';
 
-class UserEdit extends Component {
+class UserEdit extends React.Component {
   _isMounted = false;
 
   constructor(props) {

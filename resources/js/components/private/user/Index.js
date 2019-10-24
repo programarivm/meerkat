@@ -1,12 +1,12 @@
-import React from 'react';
+import ApiUserActions from '../../../actions/api/UserActions.js';
+import ApiUserStore from '../../../stores/api/UserStore.js';
+import AuthStore from '../../../stores/api/AuthStore.js';
 import {
   Button, ButtonGroup, Container
 } from 'reactstrap';
+import React from 'react';
 import ReactTable from 'react-table'
 import { UserEdit } from './Edit.js';
-import AuthStore from '../../../stores/api/AuthStore.js';
-import ApiUserActions from '../../../actions/api/UserActions.js';
-import ApiUserStore from '../../../stores/api/UserStore.js';
 
 class UserIndex extends React.Component {
   _isMounted = false;

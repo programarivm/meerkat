@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
+import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
 import {
   Button, Container, Form, FormGroup
 } from 'reactstrap';
 import { FormGroups } from './common/FormGroups.js';
-import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
-import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
+import React from 'react';
 
-class RestaurantCreate extends Component {
+class RestaurantCreate extends React.Component {
   constructor(props) {
     super(props);
       this.state = {

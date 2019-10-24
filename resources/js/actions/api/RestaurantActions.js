@@ -1,5 +1,5 @@
-import ApiRestaurantDispatcher from "../../dispatcher/api/RestaurantDispatcher.js";
 import ApiRestaurantActionTypes from '../../constants/api/RestaurantActionTypes';
+import ApiRestaurantDispatcher from "../../dispatcher/api/RestaurantDispatcher.js";
 
 class RestaurantActions {
 	create(data) {

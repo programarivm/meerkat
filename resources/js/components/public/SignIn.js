@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import AuthActions from '../../actions/api/AuthActions.js';
+import AuthStore from '../../stores/api/AuthStore.js';
 import {
   Button, Card, CardBody, Col, Container, Form, FormGroup, Input, Row
 } from 'reactstrap';
-import AuthActions from '../../actions/api/AuthActions.js';
-import AuthStore from '../../stores/api/AuthStore.js';
+import React from 'react';
 import './SignIn.css';
 
-class SignIn extends Component {
+class SignIn extends React.Component {
   constructor(props) {
     super(props);
       this.state = {
