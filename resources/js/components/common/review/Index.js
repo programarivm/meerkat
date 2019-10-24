@@ -7,7 +7,7 @@ import ReactTable from 'react-table';
 import { ReviewCreate } from './Create.js';
 import ApiReviewActions from '../../../actions/api/ReviewActions.js';
 import ApiReviewStore from '../../../stores/api/ReviewStore.js';
-import GuiActions from '../../../actions/GuiActions.js';
+import ReviewActions from '../../../actions/ReviewActions.js';
 import AuthStore from '../../../stores/api/AuthStore.js';
 
 class ReviewIndex extends React.Component {
@@ -37,7 +37,7 @@ class ReviewIndex extends React.Component {
   }
 
   handleClickReviewNow(e) {
-    GuiActions.clickReviewNow();
+    ReviewActions.clickReviewNow();
     e.preventDefault();
   }
 
