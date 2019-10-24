@@ -4,8 +4,8 @@ import {
 } from 'reactstrap';
 import ReactTable from 'react-table'
 import { RestaurantEdit } from './Edit.js';
-import RestaurantActions from '../../../actions/RestaurantActions.js';
-import RestaurantStore from '../../../stores/RestaurantStore.js';
+import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
+import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
 
 class RestaurantIndex extends React.Component {
   _isMounted = false;
@@ -21,21 +21,21 @@ class RestaurantIndex extends React.Component {
 
   componentDidMount() {
     this._isMounted = true;
-    RestaurantActions.fetchAll();
-    RestaurantStore
+    ApiRestaurantActions.fetchAll();
+    ApiRestaurantStore
       .on("fetch_all.200", (data) => {
         if (this._isMounted) {
           this.setState({ restaurants: data });
         }
       })
       .on("create.201", () => {
-        RestaurantActions.fetchAll();
+        ApiRestaurantActions.fetchAll();
       })
       .on("delete.204", () => {
-        RestaurantActions.fetchAll();
+        ApiRestaurantActions.fetchAll();
       })
       .on("update.200", () => {
-        RestaurantActions.fetchAll();
+        ApiRestaurantActions.fetchAll();
       });
   }
 
@@ -45,13 +45,13 @@ class RestaurantIndex extends React.Component {
 
   handleDelete(e,id) {
     if (confirm('Are you sure to delete this item?')) {
-      RestaurantActions.delete(id);
+      ApiRestaurantActions.delete(id);
     }
     e.preventDefault();
   }
 
   handleShow(e,id) {
-    RestaurantActions.show(id);
+    ApiRestaurantActions.show(id);
     e.preventDefault();
   }
 

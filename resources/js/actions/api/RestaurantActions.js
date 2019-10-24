@@ -1,5 +1,5 @@
-import RestaurantDispatcher from "../dispatcher/RestaurantDispatcher.js";
-import RestaurantActionTypes from '../constants/RestaurantActionTypes';
+import RestaurantDispatcher from "../../dispatcher/api/RestaurantDispatcher.js";
+import RestaurantActionTypes from '../../constants/api/RestaurantActionTypes';
 
 class RestaurantActions {
 	create(data) {

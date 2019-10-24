@@ -3,8 +3,8 @@ import {
   Button, Container, Form, FormGroup
 } from 'reactstrap';
 import { FormGroups } from './common/FormGroups.js';
-import RestaurantActions from '../../../actions/RestaurantActions.js';
-import RestaurantStore from '../../../stores/RestaurantStore.js';
+import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
+import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
 
 class RestaurantCreate extends Component {
   constructor(props) {
@@ -16,13 +16,13 @@ class RestaurantCreate extends Component {
   }
 
   componentDidMount() {
-    RestaurantStore.on("create.error", () => {
+    ApiRestaurantStore.on("create.error", () => {
       this.setState({ validation: 'Whoops! The restaurant could not be added, please try again.' });
     });
   }
 
   handleCreate(e) {
-    RestaurantActions.create({
+    ApiRestaurantActions.create({
       name: e.target.elements.name.value,
       description: e.target.elements.description.value,
       address: e.target.elements.address.value,

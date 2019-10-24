@@ -3,8 +3,8 @@ import {
   Button, Form, FormGroup, Modal, ModalBody, ModalHeader, ModalFooter
 } from 'reactstrap';
 import { FormGroups } from './common/FormGroups.js';
-import RestaurantActions from '../../../actions/RestaurantActions.js';
-import RestaurantStore from '../../../stores/RestaurantStore.js';
+import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
+import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
 
 class RestaurantEdit extends Component {
   _isMounted = false;
@@ -31,7 +31,7 @@ class RestaurantEdit extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    RestaurantStore
+    ApiRestaurantStore
       .on("show.200", (data) => {
         if (this._isMounted) {
           this.setState({
@@ -77,7 +77,7 @@ class RestaurantEdit extends Component {
   }
 
   handleUpdate(e) {
-    RestaurantActions.update(this.state.id, this.state.restaurant);
+    ApiRestaurantActions.update(this.state.id, this.state.restaurant);
     e.preventDefault();
   }
 

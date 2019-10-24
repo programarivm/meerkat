@@ -1,11 +1,11 @@
-import RestaurantActionTypes from '../constants/RestaurantActionTypes';
-import RestaurantDispatcher from "../dispatcher/RestaurantDispatcher.js";
+import ApiRestaurantActionTypes from '../../constants/api/RestaurantActionTypes';
+import ApiRestaurantDispatcher from "../../dispatcher/api/RestaurantDispatcher.js";
 import { EventEmitter } from 'events';
 
 class RestaurantStore extends EventEmitter {
 	constructor() {
 		super();
-		RestaurantDispatcher.register(this.handleActions.bind(this));
+		ApiRestaurantDispatcher.register(this.handleActions.bind(this));
 	}
 
 	create(data) {
@@ -107,19 +107,19 @@ class RestaurantStore extends EventEmitter {
 
 	handleActions(action) {
 		switch (action.type) {
-			case RestaurantActionTypes.CREATE:
+			case ApiRestaurantActionTypes.CREATE:
 				this.create(action.restaurant);
 				break;
-			case RestaurantActionTypes.DELETE:
+			case ApiRestaurantActionTypes.DELETE:
 				this.delete(action.id);
 				break;
-			case RestaurantActionTypes.FETCH_ALL:
+			case ApiRestaurantActionTypes.FETCH_ALL:
 				this.fetchAll();
 				break;
-			case RestaurantActionTypes.SHOW:
+			case ApiRestaurantActionTypes.SHOW:
 				this.show(action.id);
 				break;
-			case RestaurantActionTypes.UPDATE:
+			case ApiRestaurantActionTypes.UPDATE:
 				this.update(action.id, action.restaurant);
 				break;
 			default:
