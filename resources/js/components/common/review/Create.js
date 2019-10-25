@@ -1,11 +1,11 @@
 import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
 import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
+import ApiReviewActions from '../../../actions/api/ReviewActions.js';
 import ApiReviewStore from '../../../stores/api/ReviewStore.js';
 import {
   Button, Col, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, Row
 } from 'reactstrap';
 import React from 'react';
-import ReviewActions from '../../../actions/api/ReviewActions.js';
 import ReviewStore from '../../../stores/ReviewStore.js';
 
 class ReviewCreate extends React.Component {
@@ -39,20 +39,32 @@ class ReviewCreate extends React.Component {
       .on("click.review_now", () => {
         if (this._isMounted) {
           ApiRestaurantActions.fetchAll();
-          this.setState({ modal: { open: true } });
         }
       });
 
     ApiRestaurantStore
       .on("fetch_all.200", (data) => {
         if (this._isMounted) {
-          this.setState({ restaurants: data });
+          this.setState({
+            restaurants: data,
+            review: {
+              restaurant: {
+                id: data[0].id
+              },
+              comment: ''
+            },
+            modal: {
+              open: true
+            },
+            validation: null
+          });
         }
       });
 
     ApiReviewStore
       .on("create.201", () => {
         if (this._isMounted) {
+          ApiReviewActions.fetchAll();
           this.setState({ modal: { open: false } });
         }
       })
@@ -85,7 +97,7 @@ class ReviewCreate extends React.Component {
   }
 
   handleClickSubmit(e) {
-    ReviewActions.create(this.state.review);
+    ApiReviewActions.create(this.state.review);
     this.setState({ modal: { open: false } });
     e.preventDefault();
   }
