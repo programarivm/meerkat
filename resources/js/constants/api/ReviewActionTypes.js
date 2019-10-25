@@ -1,4 +1,4 @@
 export default {
-	DO_REVIEW: 'DO_REVIEW',
+	CREATE: 'CREATE',
 	FETCH_ALL: 'FETCH_ALL'
 }

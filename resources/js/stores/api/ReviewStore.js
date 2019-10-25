@@ -8,8 +8,8 @@ class ReviewStore extends EventEmitter {
 		ApiReviewDispatcher.register(this.handleActions.bind(this));
 	}
 
-	doReview(data) {
-		fetch(process.env.MIX_APP_URL + '/api/do-review', {
+	create(data) {
+		fetch(process.env.MIX_APP_URL + '/api/reviews', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -19,10 +19,10 @@ class ReviewStore extends EventEmitter {
 		.then((res) => {
 			switch (res.status) {
 				case 201:
-					this.emit("do_review.201");
+					this.emit("create.201");
 					break;
 				default:
-					this.emit("do_review.error");
+					this.emit("create.error");
 					break;
 			}
 		});
@@ -49,8 +49,8 @@ class ReviewStore extends EventEmitter {
 
 	handleActions(action) {
 		switch (action.type) {
-			case ApiReviewActionTypes.DO_REVIEW:
-				this.doReview();
+			case ApiReviewActionTypes.CREATE:
+				this.create(action.review);
 				break;
 			case ApiReviewActionTypes.FETCH_ALL:
 				this.fetchAll();

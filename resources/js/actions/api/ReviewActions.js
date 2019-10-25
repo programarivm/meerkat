@@ -2,9 +2,9 @@ import ApiReviewActionTypes from '../../constants/api/ReviewActionTypes';
 import ApiReviewDispatcher from "../../dispatcher/api/ReviewDispatcher.js";
 
 class ReviewActions {
-	doReview(data) {
+	create(data) {
 		ApiReviewDispatcher.dispatch({
-			type: ApiReviewActionTypes.DO_REVIEW,
+			type: ApiReviewActionTypes.CREATE,
 			review: data
 		});
 	}
