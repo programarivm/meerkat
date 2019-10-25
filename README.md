@@ -3,7 +3,7 @@
 This is a React GUI interacting with a Laravel API, a real-world example SPA with the following features:
 
 - ACL
-- Authentication
+- JWT authentication
 - CRUD
 - Flux: actions, dispatchers and stores
 
