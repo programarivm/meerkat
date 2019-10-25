@@ -104,7 +104,7 @@ class ReviewIndex extends React.Component {
       <div>
         <Container className="ReviewIndex mt-5 mb-5">
           {
-            AuthStore.getState().role !== null
+            AuthStore.getState().role === 'ROLE_BASIC'
               ? <ButtonGroup>
                   <Button className="mb-4" color="primary" size="sm" onClick={ (e) => this.handleClickReviewNow(e) }>Review now!</Button>
                 </ButtonGroup>
