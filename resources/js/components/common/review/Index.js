@@ -62,6 +62,13 @@ class ReviewIndex extends React.Component {
         )
       },
       {
+        Header: 'Restaurant',
+        accessor: 'restaurant',
+        Cell: ({ row }) => (
+          `${row._original.restaurant.name}`
+        )
+      },
+      {
         Header: 'Comment',
         accessor: 'comment'
       },
