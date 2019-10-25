@@ -27,6 +27,10 @@ class CreateReviewsTable extends Migration
                   ->onDelete('cascade');
             $table->integer('restaurant_id')
                   ->unsigned();
+            $table->foreign('restaurant_id')
+                  ->references('id')
+                  ->on('restaurants')
+                  ->onDelete('cascade');
         });
      }
 
