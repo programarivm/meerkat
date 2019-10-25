@@ -1,5 +1,6 @@
 import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
 import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
+import ApiReviewStore from '../../../stores/api/ReviewStore.js';
 import {
   Button, Col, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, Row
 } from 'reactstrap';
@@ -46,6 +47,18 @@ class ReviewCreate extends React.Component {
       .on("fetch_all.200", (data) => {
         if (this._isMounted) {
           this.setState({ restaurants: data });
+        }
+      });
+
+    ApiReviewStore
+      .on("create.201", () => {
+        if (this._isMounted) {
+          this.setState({ modal: { open: false } });
+        }
+      })
+      .on("create.error", () => {
+        if (this._isMounted) {
+          this.setState({ validation: 'Whoops! The review could not be added, please try again.' });
         }
       });
   }

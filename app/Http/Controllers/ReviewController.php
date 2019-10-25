@@ -17,10 +17,15 @@ class ReviewController extends Controller
 
   public function store(Request $request)
   {
-      // TODO...
-      
-      print_r($request->all());
+      $all = $request->all();
 
-      exit;
+      $review = Review::create([
+          'comment' => $all['comment'],
+          'points' => rand(0,100), // TODO
+          'user_id' => auth()->user()->getAttributes()['id'],
+          'restaurant_id' => $all['restaurant']['id'],
+      ]);
+
+      return response()->json($review, 201);
   }
 }
