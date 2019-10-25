@@ -19,8 +19,6 @@ class ReviewsTableSeeder extends Seeder
         $restaurants = App\Restaurant::all();
         $users = App\User::all();
 
-        Review::truncate();
-
         foreach ($restaurants as $restaurant) {
             foreach ($users as $user) {
                 Review::create([

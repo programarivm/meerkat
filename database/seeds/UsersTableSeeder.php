@@ -15,8 +15,6 @@ class UsersTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
         $faker->addProvider(new Faker\Provider\en_GB\PhoneNumber($faker));
 
-        User::truncate();
-
         User::create([
             'email' => 'bob@gmail.com',
             'firstname' => 'Bob',

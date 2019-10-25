@@ -11,17 +11,24 @@ class CreateReviewsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+     public function up()
+     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->timestamps();
-            $table->smallInteger('points')->unsigned();
+            $table->smallInteger('points')
+                  ->unsigned();
             $table->string('comment');
-            $table->integer('user_id')->unsigned();
-            $table->integer('restaurant_id')->unsigned();
+            $table->integer('user_id')
+                  ->unsigned();
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
+            $table->integer('restaurant_id')
+                  ->unsigned();
         });
-    }
+     }
 
     /**
      * Reverse the migrations.

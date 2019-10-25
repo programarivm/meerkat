@@ -12,8 +12,6 @@ class RestaurantsTableSeeder extends Seeder
      */
     public function run()
     {
-        Restaurant::truncate();
-
         Restaurant::create([
             'name' => 'Amrutha Lounge',
             'description' => 'Vegan takes on classic comfort & soul food in a modern setting with buffet-style lunch & dinner.',
