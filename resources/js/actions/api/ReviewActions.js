@@ -9,6 +9,13 @@ class ReviewActions {
 		});
 	}
 
+	delete(id) {
+		ApiReviewDispatcher.dispatch({
+			type: ApiReviewActionTypes.DELETE,
+			id: id
+		});
+	}
+
 	fetchAll() {
 		ApiReviewDispatcher.dispatch({
 			type: ApiReviewActionTypes.FETCH_ALL

@@ -28,6 +28,25 @@ class ReviewStore extends EventEmitter {
 		});
 	}
 
+	delete(id) {
+		fetch(process.env.MIX_APP_URL + `/api/reviews/${id}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+		.then((res) => {
+			switch (res.status) {
+				case 204:
+					this.emit("delete.204");
+					break;
+				default:
+					this.emit("delete.error");
+					break;
+			}
+		});
+	}
+
 	fetchAll() {
 		fetch(process.env.MIX_APP_URL + '/api/reviews', {
 			method: 'GET',
@@ -51,6 +70,9 @@ class ReviewStore extends EventEmitter {
 		switch (action.type) {
 			case ApiReviewActionTypes.CREATE:
 				this.create(action.review);
+				break;
+			case ApiReviewActionTypes.DELETE:
+				this.delete(action.id);
 				break;
 			case ApiReviewActionTypes.FETCH_ALL:
 				this.fetchAll();

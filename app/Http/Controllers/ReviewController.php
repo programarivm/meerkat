@@ -28,4 +28,11 @@ class ReviewController extends Controller
 
       return response()->json($review, 201);
   }
+
+  public function delete(Review $review)
+  {
+      $review->delete();
+
+      return response()->json(null, 204);
+  }
 }

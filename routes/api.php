@@ -16,6 +16,7 @@ Route::delete('restaurants/{restaurant}', 'RestaurantController@delete')->middle
 
 Route::get('reviews', 'ReviewController@index');
 Route::post('reviews', 'ReviewController@store')->middleware('jwt.authorizer');
+Route::delete('reviews/{review}', 'ReviewController@delete')->middleware('jwt.authorizer');
 
 Route::post('/auth/login', 'AuthController@login');
 Route::post('/auth/logout', 'AuthController@logout')->middleware('jwt.authorizer');

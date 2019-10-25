@@ -17,6 +17,7 @@ class ReviewIndex extends React.Component {
     this.state = {
       reviews: []
     };
+    this.handleClickDelete = this.handleClickDelete.bind(this);
     this.handleClickReviewNow = this.handleClickReviewNow.bind(this);
   }
 
@@ -28,11 +29,21 @@ class ReviewIndex extends React.Component {
         if (this._isMounted) {
           this.setState({reviews: data});
         }
+      })
+      .on("delete.204", () => {
+        ApiReviewActions.fetchAll();
       });
   }
 
   componentWillUnmount() {
     this._isMounted = false;
+  }
+
+  handleClickDelete(e,id) {
+    if (confirm('Are you sure to delete this item?')) {
+      ApiReviewActions.delete(id);
+    }
+    e.preventDefault();
   }
 
   handleClickReviewNow(e) {
@@ -41,8 +52,6 @@ class ReviewIndex extends React.Component {
   }
 
   render() {
-    const TheadComponent = props => null;
-
     const data = this.state.reviews;
 
     const columns = [
@@ -78,6 +87,19 @@ class ReviewIndex extends React.Component {
       }
     ];
 
+    const roleEditorColumns = [
+      ...columns,
+      {
+        Header: 'Actions',
+        accessor: 'actions',
+        Cell: ({ row }) => (
+          <ButtonGroup>
+            <Button outline color="primary" size="sm" onClick={ (e) => this.handleClickDelete(e,row._original.id) }>Delete</Button>
+          </ButtonGroup>
+        )
+      }
+    ];
+
     return (
       <div>
         <Container className="ReviewIndex mt-5 mb-5">
@@ -90,8 +112,7 @@ class ReviewIndex extends React.Component {
           }
           <ReactTable
             data={data}
-            TheadComponent={TheadComponent}
-            columns={columns}
+            columns={AuthStore.getState().role === 'ROLE_ADMIN' || AuthStore.getState().role === 'ROLE_EDITOR' ? roleEditorColumns : columns}
             minRows={0}
           />
           <ReviewCreate />
