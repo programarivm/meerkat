@@ -3,8 +3,9 @@ import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
 import ApiReviewActions from '../../../actions/api/ReviewActions.js';
 import ApiReviewStore from '../../../stores/api/ReviewStore.js';
 import {
-  Button, Col, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, Row
+  Button, ButtonGroup, Col, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, Row
 } from 'reactstrap';
+import { Range } from 'react-range';
 import React from 'react';
 import ReviewStore from '../../../stores/ReviewStore.js';
 
@@ -13,18 +14,19 @@ class ReviewCreate extends React.Component {
 
   constructor(props) {
     super(props);
-      this.state = {
-        restaurants: [],
-        review: {
-          restaurant: {
-            id: ''
-          },
-          comment: ''
+    this.state = {
+      restaurants: [],
+      review: {
+        restaurant: {
+          id: ''
         },
-        modal: {
-          open: false
-        },
-        validation: null
+        comment: '',
+        points: [5]
+      },
+      modal: {
+        open: false
+      },
+      validation: null
     }
     this.handleChangeComment = this.handleChangeComment.bind(this);
     this.handleChangeRestaurant = this.handleChangeRestaurant.bind(this);
@@ -45,19 +47,11 @@ class ReviewCreate extends React.Component {
     ApiRestaurantStore
       .on("fetch_all.200", (data) => {
         if (this._isMounted) {
-          this.setState({
-            restaurants: data,
-            review: {
-              restaurant: {
-                id: data[0].id
-              },
-              comment: ''
-            },
-            modal: {
-              open: true
-            },
-            validation: null
-          });
+          let newState = Object.assign({}, this.state);
+          newState.restaurants = data;
+          newState.review.restaurant.id = data[0].id;
+          newState.modal.open = true;
+          this.setState(newState);
         }
       });
 
@@ -92,14 +86,18 @@ class ReviewCreate extends React.Component {
   }
 
   handleClickCancel(e) {
-    this.setState({ modal: { open: false } });
+    let newState = Object.assign({}, this.state);
+    newState.review.comment = '';
+    newState.review.points = [5];
+    newState.modal.open = false;
+    newState.validation = null;
+    this.setState(newState);
     e.preventDefault();
   }
 
   handleClickSubmit(e) {
     ApiReviewActions.create(this.state.review);
-    this.setState({ modal: { open: false } });
-    e.preventDefault();
+    this.handleClickCancel(e);
   }
 
   render() {
@@ -107,10 +105,11 @@ class ReviewCreate extends React.Component {
       <Modal isOpen={this.state.modal.open}>
         <ModalBody>
           <p className="text-danger">{this.state.validation}</p>
-          <Form className="form">
+          <Form className="form" onSubmit={ (e) => this.handleClickSubmit(e) }>
             <Row>
               <Col md={12}>
                 <FormGroup>
+                  <Label for="restaurant">Select a restaurant:</Label>
                   <Input
                     type="select"
                     name="restaurant"
@@ -122,24 +121,65 @@ class ReviewCreate extends React.Component {
                   </Input>
                 </FormGroup>
                 <FormGroup>
+                  <Label>Slide the square sincerely:</Label>
+                  <Range
+                    step={1}
+                    min={0}
+                    max={10}
+                    values={this.state.review.points}
+                    onChange={values => {
+                      let newState = Object.assign({}, this.state);
+                      newState.review.points = values;
+                      this.setState(newState);
+                    }}
+                    renderTrack={({ props, children }) => (
+                      <div
+                        {...props}
+                        style={{
+                          ...props.style,
+                          height: '6px',
+                          width: '100%',
+                          backgroundColor: '#ccc'
+                        }}
+                      >
+                        {children}
+                      </div>
+                    )}
+                    renderThumb={({ props }) => (
+                      <div
+                        {...props}
+                        style={{
+                          ...props.style,
+                          height: '25px',
+                          width: '25px',
+                          backgroundColor: '#999'
+                        }}
+                      />
+                    )}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label>Tell us about your opinion:</Label>
                   <Input
                     type="textarea"
                     name="comment"
                     id="comment"
-                    placeholder="Your comment..."
+                    placeholder="In my opinion..."
                     value={this.state.review.comment}
                     onChange={this.handleChangeComment}
                     required
                   />
                 </FormGroup>
+                <FormGroup>
+                  <ButtonGroup>
+                    <Button color="primary">Submit</Button>
+                    <Button color="secondary" onClick={ (e) => this.handleClickCancel(e) }>Cancel</Button>
+                  </ButtonGroup>
+                </FormGroup>
               </Col>
             </Row>
           </Form>
         </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={ (e) => this.handleClickSubmit(e) }>Submit</Button>
-          <Button color="secondary" onClick={ (e) => this.handleClickCancel(e) }>Cancel</Button>
-        </ModalFooter>
       </Modal>
     );
   }
