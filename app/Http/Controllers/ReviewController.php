@@ -21,7 +21,7 @@ class ReviewController extends Controller
 
       $review = Review::create([
           'comment' => $all['comment'],
-          'points' => rand(0,100), // TODO
+          'points' => current($all['points']),
           'user_id' => auth()->user()->getAttributes()['id'],
           'restaurant_id' => $all['restaurant']['id'],
       ]);
