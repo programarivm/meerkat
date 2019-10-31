@@ -34,7 +34,7 @@ And update the `DB_HOST` and `MEERKAT_NGINX_HOST` values in your `.env` file acc
 
 > **Note**: In this example the IP turns out to be `172.21.0.1`
 
-### 4. Local Set up
+### 2. Local Set up
 
 Add the following entry to your `/etc/hosts` file:
 
@@ -42,7 +42,7 @@ Add the following entry to your `/etc/hosts` file:
 
 Now the app can be accessed by typing https://meerkat.local into your favourite browser's address bar.
 
-### 5. Run the Tests
+### 3. Run the Tests
 
     docker exec -it --user 1000:1000 meerkat_php_fpm ./vendor/bin/phpunit
 
