@@ -40,6 +40,8 @@ Add the following entry to your `/etc/hosts` file:
 
     172.21.0.1      meerkat.local
 
+Now the app can be accessed by typing https://meerkat.local into your favourite browser's address bar.
+
 ### 5. Run the Tests
 
     docker exec -it --user 1000:1000 meerkat_php_fpm ./vendor/bin/phpunit
