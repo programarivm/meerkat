@@ -13,4 +13,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 
-/docker/nginx/ssl
+/docker/nginx/ssl/*.pem
+/docker/nginx/ssl/*.csr
+/docker/nginx/ssl/*.crt
+/docker/nginx/ssl/*.key

@@ -6,6 +6,7 @@ This is a React GUI interacting with a Laravel API, a real-world example SPA wit
 - JWT authentication
 - CRUD
 - Flux: actions, dispatchers and stores
+- Data-driven tests
 
 ---
 
@@ -15,46 +16,29 @@ Create an `.env` file:
 
     cp .env.example .env
 
-Find the IP of the mysql and nginx containers and update the `.env` file accordingly:
+Bootstrap the development environment:
+
+    chmod +x bash/dev/start.sh
+    bash/dev/start.sh
+
+This is an interactive script that will install the software dependencies required, generate a self-signed SSL certificate, and compile the React code, amongst other things.
+
+> **Note**: [Click here](https://github.com/programarivm/meerkat/blob/master/bash/dev/start.sh) for further details on the `start.sh` script.
+
+Now find the Gateway IP of the mysql and nginx containers:
 
     docker inspect meerkat_mysql
     docker inspect meerkat_nginx
 
+And update the `DB_HOST` and `MEERKAT_NGINX_HOST` values in your `.env` file accordingly.
+
 > **Note**: In this example the IP turns out to be `172.21.0.1`
-
-### 2. Build the Docker Containers
-
-    docker-compose up --build
-
-### 3. Generate a Development SSL Certificate
-
-    cd docker/nginx/ssl
-    openssl genrsa -des3 -out meerkat.local.pem 2048
-    openssl req -new -key meerkat.local.pem -out meerkat.local.csr
-    openssl x509 -req -days 365 -in meerkat.local.csr -signkey meerkat.local.pem -out meerkat.local.crt
-    openssl rsa -in meerkat.local.pem -out meerkat.local.key
 
 ### 4. Local Set up
 
 Add the following entry to your `/etc/hosts` file:
 
     172.21.0.1      meerkat.local
-
-Set up file permissions:
-
-    chmod 775 -R storage
-    chown -R standard:www-data storage
-
-Build and seed the database:
-
-    php artisan migrate:fresh
-    php artisan db:seed --class=UsersTableSeeder
-    php artisan db:seed --class=RestaurantsTableSeeder
-    php artisan db:seed --class=ReviewsTableSeeder
-
-Create a new JWT secret in your `.env` file:
-
-    php artisan jwt:secret
 
 ### 5. Run the Tests
 
