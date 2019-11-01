@@ -18,12 +18,9 @@ Create an `.env` file:
 
 Bootstrap the development environment:
 
-    chmod +x bash/dev/start.sh
     bash/dev/start.sh
 
-This is an interactive script that will install the software dependencies required, generate a self-signed SSL certificate, and compile the React code, amongst other things.
-
-> **Note**: [Click here](https://github.com/programarivm/meerkat/blob/master/bash/dev/start.sh) for further details on the `start.sh` script.
+This is an interactive script that will install the software dependencies required, generate a self-signed SSL certificate, and compile the React code, amongst other things. [Click here](https://github.com/programarivm/meerkat/blob/master/bash/dev/start.sh) for further details on the `start.sh` script.
 
 Now find the Gateway IP of the mysql and nginx containers:
 
