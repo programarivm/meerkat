@@ -1,0 +1,19 @@
+.MainNav {
+  background-color: #7aa0bd;
+}
+
+.MainNav li {
+  padding: 0 0.8rem;
+}
+
+.MainNav a {
+  color: #fff !important;
+}
+
+.MainNav li > a:hover {
+  text-decoration: none;
+}
+
+.MainNav li > .active {
+  font-weight: bold;
+}

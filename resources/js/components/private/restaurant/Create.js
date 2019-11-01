@@ -1,8 +1,6 @@
 import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
 import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
-import {
-  Button, Container, Form, FormGroup
-} from 'reactstrap';
+import { Button, Form, FormGroup, Jumbotron } from 'reactstrap';
 import { FormGroups } from './common/FormGroups.js';
 import React from 'react';
 
@@ -35,15 +33,15 @@ class RestaurantCreate extends React.Component {
 
   render() {
     return (
-      <Container className="mt-4">
+      <Jumbotron className="mt-3">
         <p className="text-danger">{this.state.validation}</p>
         <Form className="form" onSubmit={ (e) => this.handleSubmitForm(e) }>
           <FormGroups />
           <FormGroup>
-            <Button color="secondary" block>Add restaurant</Button>
+            <Button color="primary" block>Add restaurant</Button>
           </FormGroup>
         </Form>
-      </Container>
+      </Jumbotron>
     );
   }
 }

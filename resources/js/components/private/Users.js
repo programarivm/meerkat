@@ -1,5 +1,6 @@
 import ApiAuthStore from '../../stores/api/AuthStore.js';
-import { Container } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
+import { LoremIpsum } from "../common/LoremIpsum.js";
 import { UserCreate } from "./user/Create.js";
 import { UserIndex } from "./user/Index.js";
 import React from 'react';
@@ -7,11 +8,14 @@ import React from 'react';
 class Users extends React.Component {
   render() {
     return (
-      <Container className="Users mt-4 mb-5">
-        <h2 className="text-center">Users</h2>
-        { ApiAuthStore.getState().role === 'ROLE_ADMIN' ? <UserCreate /> : null }
-        <UserIndex />
-      </Container>
+      <Row className="m-3">
+        <Col md={9}>
+          <UserIndex />
+        </Col>
+        <Col md={3}>
+          { ApiAuthStore.getState().role === 'ROLE_ADMIN' ? <UserCreate /> : <LoremIpsum /> }
+        </Col>
+      </Row>
     );
   }
 }

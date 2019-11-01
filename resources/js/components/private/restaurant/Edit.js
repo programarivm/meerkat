@@ -84,7 +84,6 @@ class RestaurantEdit extends React.Component {
   render() {
     return (
       <Modal isOpen={this.state.modal.open}>
-        <ModalHeader>Restaurant</ModalHeader>
         <ModalBody>
           <p className="text-danger">{this.state.validation}</p>
           <Form className="form">

@@ -1,12 +1,10 @@
 import ApiReviewActions from '../../../actions/api/ReviewActions.js';
 import ApiReviewStore from '../../../stores/api/ReviewStore.js';
 import ApiAuthStore from '../../../stores/api/AuthStore.js';
-import {
-  Button, ButtonGroup, Col, Container, Row
-} from 'reactstrap';
+import { Button, ButtonGroup, Container } from 'reactstrap';
+import { LoremIpsum } from "../LoremIpsum.js";
 import React from 'react';
 import ReactTable from 'react-table';
-import ReviewActions from '../../../actions/ReviewActions.js';
 import { ReviewCreate } from './Create.js';
 
 class ReviewIndex extends React.Component {
@@ -18,7 +16,6 @@ class ReviewIndex extends React.Component {
       reviews: []
     };
     this.handleClickDelete = this.handleClickDelete.bind(this);
-    this.handleClickReviewNow = this.handleClickReviewNow.bind(this);
   }
 
   componentDidMount() {
@@ -43,11 +40,6 @@ class ReviewIndex extends React.Component {
     if (confirm('Are you sure to delete this item?')) {
       ApiReviewActions.delete(id);
     }
-    e.preventDefault();
-  }
-
-  handleClickReviewNow(e) {
-    ReviewActions.clickReviewNow();
     e.preventDefault();
   }
 
@@ -101,23 +93,13 @@ class ReviewIndex extends React.Component {
     ];
 
     return (
-      <div>
-        <Container className="ReviewIndex mt-5 mb-5">
-          {
-            ApiAuthStore.getState().role === 'ROLE_BASIC'
-              ? <ButtonGroup>
-                  <Button className="mb-4" color="primary" size="sm" onClick={ (e) => this.handleClickReviewNow(e) }>Review now!</Button>
-                </ButtonGroup>
-              : null
-          }
-          <ReactTable
-            data={data}
-            columns={ApiAuthStore.getState().role === 'ROLE_ADMIN' || ApiAuthStore.getState().role === 'ROLE_EDITOR' ? roleEditorColumns : columns}
-            minRows={0}
-          />
-          <ReviewCreate />
-        </Container>
-      </div>
+      <Container className="m-3">
+        <ReactTable
+          data={data}
+          columns={ApiAuthStore.getState().role === 'ROLE_ADMIN' || ApiAuthStore.getState().role === 'ROLE_EDITOR' ? roleEditorColumns : columns}
+          minRows={0}
+        />
+      </Container>
     );
   }
 }

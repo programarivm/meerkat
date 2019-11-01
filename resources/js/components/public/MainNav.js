@@ -1,13 +1,13 @@
 import {
-  Collapse, Nav, Navbar, NavbarBrand,
-  NavbarToggler, NavItem, NavLink } from 'reactstrap';
+  Collapse, Nav, Navbar, NavbarToggler,
+  NavbarBrand, NavItem } from 'reactstrap';
 import { Home } from "./Home.js";
-import { Link, Route, Redirect } from 'react-router-dom';
+import { Link, NavLink, Route, Redirect } from 'react-router-dom';
 import React from 'react';
-import { ReviewIndex } from "../common/review/Index.js";
+import { Reviews } from "../common/Reviews.js";
 import { SignIn } from "./SignIn.js";
 import logo from '../../../images/logo.png';
-import './MainNav.css';
+import '../common/MainNav.css';
 
 class MainNav extends React.Component {
   _isMounted = false;
@@ -47,19 +47,13 @@ class MainNav extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink tag={Link} to="/home">
-                  Home
-                </NavLink>
+                <NavLink tag={Link} to="/home">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} to="/reviews">
-                  Reviews
-                </NavLink>
+                <NavLink tag={Link} to="/reviews">Reviews</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} to="/login">
-                  Sign In
-                </NavLink>
+                <NavLink tag={Link} to="/login">Sign In</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -71,7 +65,7 @@ class MainNav extends React.Component {
         />
         <Route
           path="/reviews"
-          render={(props) => <ReviewIndex {...props} />}
+          render={(props) => <Reviews {...props} />}
         />
         <Route
           path="/login"

@@ -1,8 +1,6 @@
 import ApiUserActions from '../../../actions/api/UserActions.js';
 import ApiUserStore from '../../../stores/api/UserStore.js';
-import {
-  Button, Col, Container, Form, FormGroup, Input, Row
-} from 'reactstrap';
+import { Button, Form, FormGroup, Input, Jumbotron } from 'reactstrap';
 import React from 'react';
 
 class UserCreate extends React.Component {
@@ -35,84 +33,78 @@ class UserCreate extends React.Component {
 
   render() {
     return (
-      <Container className="mt-4">
+      <Jumbotron className="mt-3">
         <p className="text-danger">{this.state.validation}</p>
         <Form className="form" onSubmit={ (e) => this.handleClickCreate(e) }>
-          <Row>
-            <Col md={6}>
-              <FormGroup>
-                <Input
-                  type="text"
-                  name="firstname"
-                  id="firstname"
-                  placeholder="First name"
-                  value={this.props.firstname}
-                  onChange={this.props.handleChange}
-                  required
-                />
-              </FormGroup>
-              <FormGroup>
-                <Input
-                  type="text"
-                  name="surname"
-                  id="surname"
-                  placeholder="Surname"
-                  value={this.props.surname}
-                  onChange={this.props.handleChange}
-                  required
-                />
-              </FormGroup>
-              <FormGroup>
-                <Input
-                  type="date"
-                  name="date_of_birth"
-                  id="date_of_birth"
-                  placeholder="Date of birth"
-                  value={this.props.date_of_birth}
-                  onChange={this.props.handleChange}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Input
-                  type="text"
-                  name="phone_number"
-                  id="phone_number"
-                  placeholder="Phone number"
-                  value={this.props.phone_number}
-                  onChange={this.props.handleChange}
-                />
-              </FormGroup>
-              <FormGroup>
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                  value={this.props.email}
-                  onChange={this.props.handleChange}
-                  required
-                />
-              </FormGroup>
-              <FormGroup>
-                <Input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Password"
-                  value={this.props.password}
-                  onChange={this.props.handleChange}
-                  required
-                />
-              </FormGroup>
-            </Col>
-          </Row>
           <FormGroup>
-            <Button color="secondary" block>Add user</Button>
+            <Input
+              type="text"
+              name="firstname"
+              id="firstname"
+              placeholder="First name"
+              value={this.props.firstname}
+              onChange={this.props.handleChange}
+              required
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              type="text"
+              name="surname"
+              id="surname"
+              placeholder="Surname"
+              value={this.props.surname}
+              onChange={this.props.handleChange}
+              required
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              type="date"
+              name="date_of_birth"
+              id="date_of_birth"
+              placeholder="Date of birth"
+              value={this.props.date_of_birth}
+              onChange={this.props.handleChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              type="text"
+              name="phone_number"
+              id="phone_number"
+              placeholder="Phone number"
+              value={this.props.phone_number}
+              onChange={this.props.handleChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+              value={this.props.email}
+              onChange={this.props.handleChange}
+              required
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              value={this.props.password}
+              onChange={this.props.handleChange}
+              required
+            />
+          </FormGroup>
+          <FormGroup>
+            <Button color="primary" block>Add user</Button>
           </FormGroup>
         </Form>
-      </Container>
+      </Jumbotron>
     );
   }
 }

@@ -1,7 +1,7 @@
 import ApiUserActions from '../../../actions/api/UserActions.js';
 import ApiUserStore from '../../../stores/api/UserStore.js';
 import {
-  Button, Col, Form, FormGroup, Input, Modal, ModalBody, ModalFooter, Row
+  Button, Form, FormGroup, Input, Modal, ModalBody, ModalFooter
 } from 'reactstrap';
 import React from 'react';
 
@@ -88,65 +88,59 @@ class UserEdit extends React.Component {
         <ModalBody>
           <p className="text-danger">{this.state.validation}</p>
           <Form className="form">
-            <Row>
-              <Col md={6}>
-                <FormGroup>
-                  <Input
-                    type="text"
-                    name="firstname"
-                    id="firstname"
-                    placeholder="First name"
-                    value={this.state.user.firstname}
-                    onChange={this.handleChange}
-                    required
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Input
-                    type="text"
-                    name="surname"
-                    id="surname"
-                    placeholder="Surname"
-                    value={this.state.user.surname}
-                    onChange={this.handleChange}
-                    required
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Input
-                    type="date"
-                    name="date_of_birth"
-                    id="date_of_birth"
-                    placeholder="Date of birth"
-                    value={this.state.user.date_of_birth ? this.state.user.date_of_birth : ''}
-                    onChange={this.handleChange}
-                  />
-                </FormGroup>
-              </Col>
-              <Col md={6}>
-                <FormGroup>
-                  <Input
-                    type="text"
-                    name="phone_number"
-                    id="phone_number"
-                    placeholder="Phone number"
-                    value={this.state.user.phone_number ? this.state.user.phone_number : ''}
-                    onChange={this.handleChange}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Email"
-                    value={this.state.user.email}
-                    onChange={this.handleChange}
-                    required
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
+            <FormGroup>
+              <Input
+                type="text"
+                name="firstname"
+                id="firstname"
+                placeholder="First name"
+                value={this.state.user.firstname}
+                onChange={this.handleChange}
+                required
+              />
+            </FormGroup>
+            <FormGroup>
+              <Input
+                type="text"
+                name="surname"
+                id="surname"
+                placeholder="Surname"
+                value={this.state.user.surname}
+                onChange={this.handleChange}
+                required
+              />
+            </FormGroup>
+            <FormGroup>
+              <Input
+                type="date"
+                name="date_of_birth"
+                id="date_of_birth"
+                placeholder="Date of birth"
+                value={this.state.user.date_of_birth ? this.state.user.date_of_birth : ''}
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Input
+                type="text"
+                name="phone_number"
+                id="phone_number"
+                placeholder="Phone number"
+                value={this.state.user.phone_number ? this.state.user.phone_number : ''}
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                value={this.state.user.email}
+                onChange={this.handleChange}
+                required
+              />
+            </FormGroup>
           </Form>
         </ModalBody>
         <ModalFooter>

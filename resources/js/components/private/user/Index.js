@@ -1,9 +1,7 @@
 import ApiUserActions from '../../../actions/api/UserActions.js';
 import ApiUserStore from '../../../stores/api/UserStore.js';
 import ApiAuthStore from '../../../stores/api/AuthStore.js';
-import {
-  Button, ButtonGroup, Container
-} from 'reactstrap';
+import { Button, ButtonGroup, Container } from 'reactstrap';
 import React from 'react';
 import ReactTable from 'react-table'
 import { UserEdit } from './Edit.js';
@@ -101,8 +99,7 @@ class UserIndex extends React.Component {
     ];
 
     return (
-      <Container className="mt-3 mb-5">
-        <p>There are {this.state.users.length} users</p>
+      <Container className="m-3">
         <ReactTable
           data={data}
           columns={ApiAuthStore.getState().role === 'ROLE_ADMIN' ? roleAdminColumns : columns}
