@@ -1,4 +1,4 @@
-import AuthStore from '../../stores/api/AuthStore.js';
+import ApiAuthStore from '../../stores/api/AuthStore.js';
 import {
   Collapse, Nav, Navbar, NavbarToggler,
   NavbarBrand, NavItem, NavLink } from 'reactstrap';
@@ -54,7 +54,7 @@ class MainNav extends React.Component {
                 </NavLink>
               </NavItem>
               {
-                AuthStore.getState().role !== 'ROLE_BASIC'
+                ApiAuthStore.getState().role !== 'ROLE_BASIC'
                   ? <NavItem>
                       <NavLink tag={Link} to="/users">
                         Users
@@ -63,7 +63,7 @@ class MainNav extends React.Component {
                   : null
               }
               {
-                AuthStore.getState().role !== 'ROLE_BASIC'
+                ApiAuthStore.getState().role !== 'ROLE_BASIC'
                   ? <NavItem>
                       <NavLink tag={Link} to="/restaurants">
                         Restaurants

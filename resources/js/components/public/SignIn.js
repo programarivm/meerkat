@@ -1,5 +1,5 @@
-import AuthActions from '../../actions/api/AuthActions.js';
-import AuthStore from '../../stores/api/AuthStore.js';
+import ApiAuthActions from '../../actions/api/AuthActions.js';
+import ApiAuthStore from '../../stores/api/AuthStore.js';
 import {
   Button, Card, CardBody, Col, Container, Form, FormGroup, Input, Row
 } from 'reactstrap';
@@ -20,7 +20,7 @@ class SignIn extends React.Component {
   }
 
   componentDidMount() {
-    AuthStore
+    ApiAuthStore
     .on("login.401", () => {
       this.setState({validation: 'The username and password that you entered did not match our records. Please try again.'});
     })
@@ -36,7 +36,7 @@ class SignIn extends React.Component {
   }
 
   handleLogin(e) {
-    AuthActions.login(this.state.credentials);
+    ApiAuthActions.login(this.state.credentials);
     e.preventDefault();
   }
 

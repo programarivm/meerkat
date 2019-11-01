@@ -1,6 +1,6 @@
 import ApiReviewActions from '../../../actions/api/ReviewActions.js';
 import ApiReviewStore from '../../../stores/api/ReviewStore.js';
-import AuthStore from '../../../stores/api/AuthStore.js';
+import ApiAuthStore from '../../../stores/api/AuthStore.js';
 import {
   Button, ButtonGroup, Col, Container, Row
 } from 'reactstrap';
@@ -104,7 +104,7 @@ class ReviewIndex extends React.Component {
       <div>
         <Container className="ReviewIndex mt-5 mb-5">
           {
-            AuthStore.getState().role === 'ROLE_BASIC'
+            ApiAuthStore.getState().role === 'ROLE_BASIC'
               ? <ButtonGroup>
                   <Button className="mb-4" color="primary" size="sm" onClick={ (e) => this.handleClickReviewNow(e) }>Review now!</Button>
                 </ButtonGroup>
@@ -112,7 +112,7 @@ class ReviewIndex extends React.Component {
           }
           <ReactTable
             data={data}
-            columns={AuthStore.getState().role === 'ROLE_ADMIN' || AuthStore.getState().role === 'ROLE_EDITOR' ? roleEditorColumns : columns}
+            columns={ApiAuthStore.getState().role === 'ROLE_ADMIN' || ApiAuthStore.getState().role === 'ROLE_EDITOR' ? roleEditorColumns : columns}
             minRows={0}
           />
           <ReviewCreate />

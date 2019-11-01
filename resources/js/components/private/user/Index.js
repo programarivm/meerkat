@@ -1,6 +1,6 @@
 import ApiUserActions from '../../../actions/api/UserActions.js';
 import ApiUserStore from '../../../stores/api/UserStore.js';
-import AuthStore from '../../../stores/api/AuthStore.js';
+import ApiAuthStore from '../../../stores/api/AuthStore.js';
 import {
   Button, ButtonGroup, Container
 } from 'reactstrap';
@@ -105,7 +105,7 @@ class UserIndex extends React.Component {
         <p>There are {this.state.users.length} users</p>
         <ReactTable
           data={data}
-          columns={AuthStore.getState().role === 'ROLE_ADMIN' ? roleAdminColumns : columns}
+          columns={ApiAuthStore.getState().role === 'ROLE_ADMIN' ? roleAdminColumns : columns}
           minRows={0}
         />
         <UserEdit />
