@@ -12,10 +12,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 APP_PATH="$(dirname $(dirname $DIR))"
 cd $APP_PATH
 
-# install dependencies
-composer install
-npm install
-
 # generate a development SSL certificate
 cd docker/nginx/ssl
 openssl genrsa -des3 -out meerkat.local.pem 2048
@@ -27,18 +23,27 @@ openssl rsa -in meerkat.local.pem -out meerkat.local.key
 cd $APP_PATH
 docker-compose up -d
 
+# update the .env file with the containers' ips
+GATEWAY="$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.Gateway}}{{end}}' meerkat_mysql)"
+sed -i "s/DB_HOST=.*/DB_HOST=${GATEWAY}/g" .env
+sed -i "s/MEERKAT_NGINX_HOST=.*/MEERKAT_NGINX_HOST=${GATEWAY}/g" .env
+
+# install dependencies
+docker exec -itu 1000:1000 meerkat_php_fpm composer install
+docker exec -it meerkat_php_fpm npm install
+
 # set up file permissions
-sudo chmod 775 -R storage
-sudo chown -R standard:www-data storage
+docker exec -it meerkat_php_fpm chmod 775 -R storage
+docker exec -it meerkat_php_fpm chown -R 1000:www-data storage
 
 # build and seed the database
-php artisan migrate:fresh
-php artisan db:seed --class=UsersTableSeeder
-php artisan db:seed --class=RestaurantsTableSeeder
-php artisan db:seed --class=ReviewsTableSeeder
+docker exec -it meerkat_php_fpm php artisan migrate:fresh
+docker exec -it meerkat_php_fpm php artisan db:seed --class=UsersTableSeeder
+docker exec -it meerkat_php_fpm php artisan db:seed --class=RestaurantsTableSeeder
+docker exec -it meerkat_php_fpm php artisan db:seed --class=ReviewsTableSeeder
 
 # create a new JWT secret
-php artisan jwt:secret
+docker exec -it meerkat_php_fpm php artisan jwt:secret
 
-# compile React app
-npm run dev
+# compile the React app
+docker exec -it meerkat_php_fpm npm run dev

@@ -20,20 +20,13 @@ Bootstrap the development environment:
 
     bash/dev/start.sh
 
-This is an interactive script that will install the software dependencies required, generate a self-signed SSL certificate, and compile the React code, amongst other things. [Click here](https://github.com/programarivm/meerkat/blob/master/bash/dev/start.sh) for further details on the `start.sh` script.
+This is an interactive script that will install the software dependencies required, generate a self-signed SSL certificate, and compile the React code, amongst other things.
 
-Now find the Gateway IP of the mysql and nginx containers:
-
-    docker inspect meerkat_mysql
-    docker inspect meerkat_nginx
-
-And update the `DB_HOST` and `MEERKAT_NGINX_HOST` values in your `.env` file accordingly.
-
-> **Note**: In this example the IP turns out to be `172.21.0.1`
+[Click here](https://github.com/programarivm/meerkat/blob/master/bash/dev/start.sh) for further details on the `start.sh` script.
 
 ### 2. Local Set up
 
-Add the following entry to your `/etc/hosts` file:
+Finally, don't forget to add the following entry to your `/etc/hosts` file:
 
     172.21.0.1      meerkat.local
 
