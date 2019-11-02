@@ -1,8 +1,8 @@
 import ApiAuthStore from '../../stores/api/AuthStore.js';
 import {
-  Collapse, Nav, Navbar, NavbarToggler,
-  NavbarBrand, NavItem } from 'reactstrap';
-import { Link, NavLink, Route } from 'react-router-dom';
+  Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar,
+  NavbarToggler, NavbarBrand, NavItem, NavLink, UncontrolledDropdown } from 'reactstrap';
+import { Link, NavLink as RouterNavLink, Route } from 'react-router-dom';
 import React from 'react';
 import { Restaurants } from "./Restaurants.js";
 import { Reviews } from "../common/Reviews.js";
@@ -49,25 +49,32 @@ class MainNav extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink tag={Link} to="/reviews" activeClassName="active">Reviews</NavLink>
+                <NavLink tag={RouterNavLink} to="/reviews" activeClassName="active">Reviews</NavLink>
               </NavItem>
               {
                 ApiAuthStore.getState().role !== 'ROLE_BASIC'
                   ? <NavItem>
-                      <NavLink tag={Link} to="/users" activeClassName="active">Users</NavLink>
+                      <NavLink tag={RouterNavLink} to="/users" activeClassName="active">Users</NavLink>
                     </NavItem>
                   : null
               }
               {
                 ApiAuthStore.getState().role !== 'ROLE_BASIC'
                   ? <NavItem>
-                      <NavLink tag={Link} to="/restaurants" activeClassName="active">Restaurants</NavLink>
+                      <NavLink tag={RouterNavLink} to="/restaurants" activeClassName="active">Restaurants</NavLink>
                     </NavItem>
                   : null
               }
-              <NavItem>
-                <NavLink tag={Link} to="/logout" activeClassName="active">Sign out</NavLink>
-              </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  My account
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>
+                    <NavLink tag={RouterNavLink} to="/logout">Sign out</NavLink>
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
             </Nav>
           </Collapse>
         </Navbar>

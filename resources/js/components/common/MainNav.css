@@ -3,7 +3,7 @@
 }
 
 .MainNav li {
-  padding: 0 0.8rem;
+  padding: 0 0.7rem;
 }
 
 .MainNav a {
@@ -16,4 +16,12 @@
 
 .MainNav li > .active {
   font-weight: bold;
+}
+
+.MainNav .dropdown-menu a.nav-link {
+  color: #7aa0bd !important;
+}
+
+.MainNav .dropdown-item:active {
+  background-color: transparent !important;
 }
