@@ -17,8 +17,8 @@ class UpdateRestaurantsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('address');
-            $table->decimal('lat', 10, 8);
-            $table->decimal('lon', 10, 8);
+            $table->decimal('lat', 10, 7);
+            $table->decimal('lon', 10, 7);
         });
     }
 
