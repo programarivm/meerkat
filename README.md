@@ -2,7 +2,7 @@
 
 This is a React GUI interacting with a Laravel API, a real-world example SPA with the following features:
 
-- CL (access control list)
+- ACL (access control list)
 - JWT authentication
 - CRUD implementation
 - REST API
