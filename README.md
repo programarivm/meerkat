@@ -10,11 +10,19 @@ This is a React GUI interacting with a Laravel API, a real-world example SPA wit
 - Data-driven tests
 
 <p align="center">
-    <img src="https://github.com/programarivm/meerkat/blob/master/resources/Figure 1 - Login.png" />
+    <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure%201%20-%20Login.png" />
 </p>
 
-<p align="justify">
+<p align="center">
     Figure 1. Login page
+</p>
+
+<p align="center">
+    <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure%202%20-%20John%20reviewing%20a%20restaurant.png" />
+</p>
+
+<p align="center">
+    Figure 2. John reviewing a restaurant
 </p>
 
 ---
