@@ -1,7 +1,7 @@
 import ApiAuthActions from '../../actions/api/AuthActions.js';
 import ApiAuthStore from '../../stores/api/AuthStore.js';
 import {
-  Button, Card, CardBody, Col, Container, Form, FormGroup, Input, Row
+  Button, Card, CardBody, CardFooter, CardHeader, Col, Container, Form, FormGroup, Input, Row
 } from 'reactstrap';
 import React from 'react';
 import './SignIn.css';
@@ -47,10 +47,12 @@ class SignIn extends React.Component {
           <Col lg="3"></Col>
           <Col lg="6">
             <Card>
-              <CardBody>
-                <p className="text-center"><b>Log in to your account</b></p>
-                <p className="text-danger">{this.state.validation}</p>
+              <CardHeader className="bg-white">
+                <h5 className="text-center">Log in to your account</h5>
+              </CardHeader>
+              <CardBody className="d-flex justify-content-center">
                 <Form className="form" onSubmit={ (e) => this.handleLogin(e) }>
+                  { this.state.validation !== null ? <p className="text-danger">{this.state.validation}</p> : null }
                   <FormGroup>
                     <Input
                       type="email"
@@ -74,6 +76,15 @@ class SignIn extends React.Component {
                   <Button color="primary" block>Log in</Button>
                 </Form>
               </CardBody>
+              <CardFooter className="text-muted">
+                <p>How to use the demo:</p>
+                <ul>
+                  <li>john@gmail.com as a basic user</li>
+                  <li>alice@gmail.com as an editor user</li>
+                  <li>bob@gmail.com as an admin user</li>
+                </ul>
+                <p>The password for all roles is password</p>
+              </CardFooter>
             </Card>
           </Col>
           <Col lg="3"></Col>
