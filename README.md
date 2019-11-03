@@ -2,11 +2,20 @@
 
 This is a React GUI interacting with a Laravel API, a real-world example SPA with the following features:
 
-- ACL
+- CL (access control list)
 - JWT authentication
-- CRUD
+- CRUD implementation
+- REST API
 - Flux: actions, dispatchers and stores
 - Data-driven tests
+
+<p align="center">
+    <img src="https://github.com/programarivm/meerkat/blob/master/resources/Figure 1 - Login.png" />
+</p>
+
+<p align="justify">
+    Figure 1. Login page
+</p>
 
 ---
 

@@ -13,14 +13,16 @@ class Home extends React.Component {
           <Row>
             <Col lg="8">
               <h1 className="mt-5">Welcome to Meerkat</h1>
-              <h5>This is a React GUI interacting with a Laravel API, a real-world example SPA.</h5>
+              <h5>This is a real-world example SPA: a React GUI interacting with a Laravel API.</h5>
               <hr/>
               <p>Features:</p>
               <ul>
-                <li>ACL</li>
-                <li>Authentication</li>
-                <li>CRUD</li>
+                <li>ACL (access control list)</li>
+                <li>JWT authentication</li>
+                <li>CRUD implementation</li>
+                <li>REST API</li>
                 <li>Flux: actions, dispatchers and stores</li>
+                <li>Data-driven tests</li>
               </ul>
               <Link className="mt-2 btn btn-primary text-white" to="/login">Interact now!</Link>
             </Col>
