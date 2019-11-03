@@ -25,6 +25,30 @@ This is a React GUI interacting with a Laravel API, a real-world example SPA wit
     Figure 2. John reviewing a restaurant
 </p>
 
+<p align="center">
+    <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure%203%20-%20Alice%20deleting%20reviews.png" />
+</p>
+
+<p align="center">
+    Figure 3. Alice deleting reviews
+</p>
+
+<p align="center">
+    <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure%204%20-%20Alice%20editing%20restaurants.png" />
+</p>
+
+<p align="center">
+    Figure 4. Alice editing restaurants
+</p>
+
+<p align="center">
+    <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure%205%20-%20Bob%20adding%20users.png" />
+</p>
+
+<p align="center">
+    Figure 5. Bob adding users
+</p>
+
 ---
 
 ### 1. Set up the Environment
