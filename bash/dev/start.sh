@@ -43,7 +43,7 @@ docker exec -it meerkat_php_fpm php artisan db:seed --class=RestaurantsTableSeed
 docker exec -it meerkat_php_fpm php artisan db:seed --class=ReviewsTableSeeder
 
 # acl setup
-php artisan acl:setup
+docker exec -it meerkat_php_fpm php artisan acl:setup
 
 # create a new JWT secret
 docker exec -it meerkat_php_fpm php artisan jwt:secret
