@@ -19,7 +19,7 @@ class JwtAuthorizer
         try {
             auth()->setToken($token)->getPayload();
         } catch (\Exception $e) {
-            return response()->json(['message'=>'Unauthorized'], 401);
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
 
         return $next($request);
