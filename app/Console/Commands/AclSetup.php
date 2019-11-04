@@ -24,49 +24,29 @@ class AclSetup extends Command
 
     protected $permissions = [
         User::CHOICE_ROLE_BASIC => [
-            'reviews' => [
-                'post',
-            ],
+            'ReviewController@store',
         ],
         User::CHOICE_ROLE_EDITOR => [
-            'restaurants' => [
-                'get',
-                'post',
-            ],
-            'restaurants/{restaurant}' => [
-                'get',
-                'put',
-                'delete',
-            ],
-            'reviews/{review}' => [
-                'delete',
-            ],
-            'users' => [
-                'get',
-            ],
+            'RestaurantController@index',
+            'RestaurantController@show',
+            'RestaurantController@update',
+            'RestaurantController@delete',
+            'ReviewController@delete',
+            'UserController@index',
         ],
         User::CHOICE_ROLE_ADMIN => [
-            'restaurants' => [
-                'get',
-                'post',
-            ],
-            'restaurants/{restaurant}' => [
-                'get',
-                'put',
-                'delete',
-            ],
-            'reviews/{review}' => [
-                'delete',
-            ],
-            'users' => [
-                'get',
-                'post',
-            ],
-            'users/{user}' => [
-                'get',
-                'put',
-                'delete',
-            ],
+            'RestaurantController@index',
+            'RestaurantController@show',
+            'RestaurantController@store',
+            'RestaurantController@update',
+            'RestaurantController@delete',
+            'ReviewController@delete',
+            'UserController@index',
+            'UserController@show',
+            'UserController@store',
+            'UserController@update',
+            'UserController@delete',
+            'UserController@delete',
         ],
     ];
 
@@ -87,15 +67,12 @@ class AclSetup extends Command
      */
     public function handle()
     {
-        foreach ($this->permissions as $role => $item) {
-            foreach ($item as $path => $methods) {
-                foreach ($methods as $method) {
-                    $restaurant = Acl::create([
-                        'resource' => $path,
-                        'method' => $method,
-                        'role' => $role,
-                    ]);
-                }
+        foreach ($this->permissions as $role => $resources) {
+            foreach ($resources as $resource) {
+                $restaurant = Acl::create([
+                    'resource' => $resource,
+                    'role' => $role,
+                ]);
             }
         }
     }
