@@ -14,10 +14,10 @@ cd $APP_PATH
 
 # generate a development SSL certificate
 cd docker/nginx/ssl
-openssl genrsa -des3 -out meerkat.local.pem 2048
-openssl req -new -key meerkat.local.pem -out meerkat.local.csr
-openssl x509 -req -days 365 -in meerkat.local.csr -signkey meerkat.local.pem -out meerkat.local.crt
-openssl rsa -in meerkat.local.pem -out meerkat.local.key
+openssl genrsa -des3 -passout pass:foobar -out meerkat.local.pem 2048
+openssl req -passin pass:foobar -new -sha256 -key meerkat.local.pem -subj "/C=US/ST=CA/O=Meerkat, Inc./CN=meerkat.local" -reqexts SAN -config <(cat /etc/ssl/openssl.cnf <(printf "[SAN]\nsubjectAltName=DNS:meerkat.local,DNS:www.meerkat.local")) -out meerkat.local.csr
+openssl x509 -passin pass:foobar -req -days 365 -in meerkat.local.csr -signkey meerkat.local.pem -out meerkat.local.crt
+openssl rsa -passin pass:foobar -in meerkat.local.pem -out meerkat.local.key
 
 # build the docker containers
 cd $APP_PATH
