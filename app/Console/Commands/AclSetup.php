@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Acl;
-use App\User;
 use Illuminate\Console\Command;
 
 class AclSetup extends Command
@@ -22,34 +21,6 @@ class AclSetup extends Command
      */
     protected $description = 'ACL setup.';
 
-    protected $permissions = [
-        User::CHOICE_ROLE_BASIC => [
-            'ReviewController@store',
-        ],
-        User::CHOICE_ROLE_EDITOR => [
-            'RestaurantController@index',
-            'RestaurantController@show',
-            'RestaurantController@update',
-            'RestaurantController@delete',
-            'ReviewController@delete',
-            'UserController@index',
-        ],
-        User::CHOICE_ROLE_ADMIN => [
-            'RestaurantController@index',
-            'RestaurantController@show',
-            'RestaurantController@store',
-            'RestaurantController@update',
-            'RestaurantController@delete',
-            'ReviewController@delete',
-            'UserController@index',
-            'UserController@show',
-            'UserController@store',
-            'UserController@update',
-            'UserController@delete',
-            'UserController@delete',
-        ],
-    ];
-
     /**
      * Create a new command instance.
      *
@@ -67,7 +38,7 @@ class AclSetup extends Command
      */
     public function handle()
     {
-        foreach ($this->permissions as $role => $resources) {
+        foreach (Acl::CHOICE_PERMISSIONS as $role => $resources) {
             foreach ($resources as $resource) {
                 $restaurant = Acl::create([
                     'resource' => $resource,

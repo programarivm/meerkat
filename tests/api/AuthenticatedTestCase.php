@@ -9,13 +9,11 @@ abstract class AuthenticatedTestCase extends TestCase
     use AccessTokenTrait;
     use CookieEncryptionTrait;
 
-    protected $accessToken;
-
     public function setUp(): void
     {
         parent::setUp();
-
+        
         $this->disableCookiesEncryption('access_token');
-        $this->accessToken = $this->getAccessToken();
+        $this->cookies = $this->login();
     }
 }

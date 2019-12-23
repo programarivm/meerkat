@@ -2,6 +2,8 @@
 
 namespace Tests\Api\Users\Index;
 
+use App\Acl;
+use App\User;
 use Tests\api\AuthenticatedTestCase;
 
 class HttpStatus200Test extends AuthenticatedTestCase
@@ -11,10 +13,18 @@ class HttpStatus200Test extends AuthenticatedTestCase
      */
     public function http_status_200()
     {
-        $cookie = ['access_token' => $this->accessToken->getValue()];
+        $response = $this->call('GET', '/api/users', [], ['access_token' => $this->cookies->access_token]);
 
-        $response = $this->call('GET', '/api/users', [], $cookie);
-
-        $response->assertStatus(200);
+        switch ($this->cookies->session->role) {
+            case User::CHOICE_ROLE_BASIC:
+                $response->assertStatus(403);
+                break;
+            case User::CHOICE_ROLE_EDITOR:
+                $response->assertStatus(200);
+                break;
+            case User::CHOICE_ROLE_ADMIN:
+                $response->assertStatus(200);
+            break;
+        }
     }
 }

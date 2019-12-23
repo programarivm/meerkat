@@ -4,15 +4,18 @@ namespace Tests\Api;
 
 trait AccessTokenTrait
 {
-    private $user = [
-        'email' => 'bob@gmail.com',
-        'password' => 'password',
-    ];
-
-    public function getAccessToken()
+    public function login()
     {
-        $response = $this->json('POST', '/api/auth/login', $this->user);
+        $response = $this->json('POST', '/api/auth/login', [
+            'email' => env('USER_EMAIL'),
+            'password' => env('USER_PASSWORD'),
+        ]);
 
-        return $response->baseResponse->headers->getCookies()[0];
+        $this->cookies = (object) [
+            'access_token' => $response->baseResponse->headers->getCookies()[0]->getValue(),
+            'session' => json_decode($response->baseResponse->headers->getCookies()[1]->getValue()),
+        ];
+
+        return $this->cookies;
     }
 }
