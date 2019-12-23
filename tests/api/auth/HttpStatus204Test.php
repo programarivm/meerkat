@@ -21,6 +21,7 @@ class HttpStatus200Test extends TestCase
         $response = $this->json('POST', '/api/auth/login', $user);
 
         $response->assertStatus(204);
+        $response->assertCookie('access_token');
     }
 
     public function data()

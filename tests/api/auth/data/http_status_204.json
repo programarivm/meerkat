@@ -1,6 +1,14 @@
 {
     "httpBody": [
         {
+            "email": "john@gmail.com",
+            "password": "password"
+        },
+        {
+            "email": "alice@gmail.com",
+            "password": "password"
+        },
+        {
             "email": "bob@gmail.com",
             "password": "password"
         }
