@@ -5,7 +5,7 @@ namespace Tests\Api\Users;
 use App\User;
 use Tests\api\AuthenticatedTestCase;
 
-class HttpStatus200Test extends AuthenticatedTestCase
+class IndexTest extends AuthenticatedTestCase
 {
     /**
      * @test
