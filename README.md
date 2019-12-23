@@ -1,5 +1,7 @@
 # Meerkat
 
+[![Build Status](https://travis-ci.org/programarivm/meerkat.svg?branch=master)](https://travis-ci.org/programarivm/meerkat)
+
 This is a React GUI interacting with a Laravel API, a real-world example SPA with the following features:
 
 - ACL (access control list)
@@ -8,6 +10,8 @@ This is a React GUI interacting with a Laravel API, a real-world example SPA wit
 - REST API
 - Flux: actions, dispatchers and stores
 - Data-driven tests
+
+---
 
 <p align="center">
     <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure%201%20-%20Login.png" />
