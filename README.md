@@ -1,7 +1,5 @@
 # Meerkat
 
-[![Build Status](https://travis-ci.org/programarivm/meerkat.svg?branch=master)](https://travis-ci.org/programarivm/meerkat)
-
 This is a React GUI interacting with a Laravel API, a real-world example SPA with the following features:
 
 - ACL (access control list)
