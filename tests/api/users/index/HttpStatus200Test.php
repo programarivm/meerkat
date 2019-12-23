@@ -11,9 +11,9 @@ class HttpStatus200Test extends AuthenticatedTestCase
      */
     public function http_status_200()
     {
-        $accessToken = $this->getAccessToken();
+        $cookie = ['access_token' => $this->accessToken->getValue()];
 
-        $response = $this->get('/api/users', [ 'Cookie' => "access_token=$accessToken" ]);
+        $response = $this->call('GET', '/api/users', [], $cookie);
 
         $response->assertStatus(200);
     }

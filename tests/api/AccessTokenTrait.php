@@ -13,8 +13,6 @@ trait AccessTokenTrait
     {
         $response = $this->json('POST', '/api/auth/login', $this->user);
 
-        $accessToken = substr($response->headers->get('set-cookie'), 13);
-
-        return $accessToken;
+        return $response->baseResponse->headers->getCookies()[0];
     }
 }
