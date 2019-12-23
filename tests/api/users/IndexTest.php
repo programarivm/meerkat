@@ -1,8 +1,7 @@
 <?php
 
-namespace Tests\Api\Users\Index;
+namespace Tests\Api\Users;
 
-use App\Acl;
 use App\User;
 use Tests\api\AuthenticatedTestCase;
 
@@ -24,7 +23,10 @@ class HttpStatus200Test extends AuthenticatedTestCase
                 break;
             case User::CHOICE_ROLE_ADMIN:
                 $response->assertStatus(200);
-            break;
+                break;
+            default:
+                $this->assertTrue(false);
+                break;
         }
     }
 }

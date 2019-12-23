@@ -8,6 +8,7 @@ This is a React GUI interacting with a Laravel API, a real-world example SPA wit
 - REST API
 - Flux: actions, dispatchers and stores
 - Data-driven tests
+- Docker setup
 
 ---
 
