@@ -11,7 +11,7 @@ class DeleteTest extends AuthenticatedTestCase
      * @dataProvider data
      * @test
      */
-    public function delete($review)
+    public function delete_reviews($review)
     {
         $response = $this->call('DELETE', "/api/reviews/$review", [], ['access_token' => $this->cookies->access_token]);
 
@@ -20,10 +20,10 @@ class DeleteTest extends AuthenticatedTestCase
                 $response->assertStatus(403);
                 break;
             case User::CHOICE_ROLE_EDITOR:
-                $response->assertStatus(200);
+                $response->assertStatus(204);
                 break;
             case User::CHOICE_ROLE_ADMIN:
-                $response->assertStatus(200);
+                $response->assertStatus(204);
                 break;
             default:
                 $this->assertTrue(false);

@@ -8,10 +8,6 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false">
-   <php>
-       <env name="USER_EMAIL" value="john@gmail.com"/>
-       <env name="USER_PASSWORD" value="password"/>
-   </php>
    <testsuites>
        <testsuite name="api">
            <directory suffix="Test.php">./tests/api</directory>
@@ -29,5 +25,7 @@
         <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
+        <server name="USER_EMAIL" value="alice@gmail.com"/>
+        <server name="USER_PASSWORD" value="password"/>
     </php>
 </phpunit>
