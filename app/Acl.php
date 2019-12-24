@@ -11,6 +11,7 @@ class Acl extends Model
 
     const CHOICE_PERMISSIONS = [
         User::CHOICE_ROLE_BASIC => [
+            'RestaurantController@index',
             'ReviewController@store',
         ],
         User::CHOICE_ROLE_EDITOR => [
