@@ -3,15 +3,15 @@
 namespace Tests\Api\Reviews;
 
 use App\User;
-use Tests\api\AuthenticatedTestCase;
+use Tests\Api\AuthenticatedTestCase;
 
 class DeleteTest extends AuthenticatedTestCase
 {
     /**
-     * @dataProvider data
+     * @dataProvider data_delete_200
      * @test
      */
-    public function delete_reviews($review)
+    public function delete_200($review)
     {
         $response = $this->call('DELETE', "/api/reviews/$review", [], ['access_token' => $this->cookies->access_token]);
 
@@ -31,13 +31,13 @@ class DeleteTest extends AuthenticatedTestCase
         }
     }
 
-    public function data()
+    public function data_delete_200()
     {
         $data = [];
-        $queryStrings = json_decode(file_get_contents(__DIR__ . '/data/delete_http_status_200.json'))->queryString;
+        $queryStrings = json_decode(file_get_contents(__DIR__ . '/data/delete_200.json'))->queryString;
         foreach ($queryStrings as $queryString) {
             $data[] = [
-                $queryString->review
+                $queryString->review,
             ];
         }
 
