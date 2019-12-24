@@ -41,17 +41,16 @@ class StoreTest extends AuthenticatedTestCase
 
     public function data_store_200()
     {
-        $data = [];
         $reviews = json_decode(file_get_contents(__DIR__.'/data/store_200.json'))->httpBody;
 
         foreach ($reviews as $review) {
-            $data[] = [
+            $this->data[] = [
                 $review->comment,
                 $review->points,
                 $review->restaurant,
             ];
         }
 
-        return $data;
+        return $this->data;
     }
 }

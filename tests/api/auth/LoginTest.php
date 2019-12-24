@@ -38,29 +38,27 @@ class LoginTest extends TestCase
 
     public function data_login_204()
     {
-        $data = [];
         $users = json_decode(file_get_contents(__DIR__ . '/data/login_204.json'))->httpBody;
         foreach ($users as $user) {
-            $data[] = [
+            $this->data[] = [
                 $user->email,
                 $user->password,
             ];
         }
 
-        return $data;
+        return $this->data;
     }
 
     public function data_login_401()
     {
-        $data = [];
         $users = json_decode(file_get_contents(__DIR__ . '/data/login_401.json'))->httpBody;
         foreach ($users as $user) {
-            $data[] = [
+            $this->data[] = [
                 $user->email,
                 $user->password,
             ];
         }
-        
-        return $data;
+
+        return $this->data;
     }
 }

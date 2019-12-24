@@ -57,27 +57,25 @@ class DeleteTest extends AuthenticatedTestCase
 
     public function data_delete_200()
     {
-        $data = [];
         $queryStrings = json_decode(file_get_contents(__DIR__ . '/data/delete_200.json'))->queryString;
         foreach ($queryStrings as $queryString) {
-            $data[] = [
+            $this->data[] = [
                 $queryString->review,
             ];
         }
 
-        return $data;
+        return $this->data;
     }
 
     public function data_delete_404()
     {
-        $data = [];
         $queryStrings = json_decode(file_get_contents(__DIR__ . '/data/delete_404.json'))->queryString;
         foreach ($queryStrings as $queryString) {
-            $data[] = [
+            $this->data[] = [
                 $queryString->review,
             ];
         }
 
-        return $data;
+        return $this->data;
     }
 }
