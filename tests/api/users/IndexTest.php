@@ -3,14 +3,14 @@
 namespace Tests\Api\Users;
 
 use App\User;
-use Tests\api\AuthenticatedTestCase;
+use Tests\Api\AuthenticatedTestCase;
 
 class IndexTest extends AuthenticatedTestCase
 {
     /**
      * @test
      */
-    public function get_users()
+    public function index_200()
     {
         $response = $this->call('GET', '/api/users', [], ['access_token' => $this->cookies->access_token]);
 
