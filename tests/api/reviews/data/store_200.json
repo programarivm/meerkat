@@ -1,0 +1,25 @@
+{
+    "httpBody": [
+        {
+            "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "points": [8],
+            "restaurant": {
+                "id": 1
+            }
+        },
+        {
+            "comment": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            "points": [7],
+            "restaurant": {
+                "id": 1
+            }
+        },
+        {
+            "comment": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+            "points": [3],
+            "restaurant": {
+                "id": 1
+            }
+        }
+    ]
+}
