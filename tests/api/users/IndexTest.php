@@ -10,7 +10,7 @@ class IndexTest extends AuthenticatedTestCase
     /**
      * @test
      */
-    public function http_status_200()
+    public function index()
     {
         $response = $this->call('GET', '/api/users', [], ['access_token' => $this->cookies->access_token]);
 
