@@ -36,11 +36,8 @@ docker exec -it meerkat_php_fpm npm install
 docker exec -it meerkat_php_fpm chmod 775 -R storage
 docker exec -it meerkat_php_fpm chown -R 1000:www-data storage
 
-# build and seed the database
-docker exec -it meerkat_php_fpm php artisan migrate:fresh
-docker exec -it meerkat_php_fpm php artisan db:seed --class=UsersTableSeeder
-docker exec -it meerkat_php_fpm php artisan db:seed --class=RestaurantsTableSeeder
-docker exec -it meerkat_php_fpm php artisan db:seed --class=ReviewsTableSeeder
+# reset the database
+docker exec -it meerkat_php_fpm php artisan db:reset
 
 # acl setup
 docker exec -it meerkat_php_fpm php artisan acl:setup
