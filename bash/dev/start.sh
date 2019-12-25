@@ -26,7 +26,6 @@ docker-compose up -d
 # update the .env file with the containers' ips
 GATEWAY="$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.Gateway}}{{end}}' meerkat_mysql)"
 sed -i "s/DB_HOST=.*/DB_HOST=${GATEWAY}/g" .env
-sed -i "s/MEERKAT_NGINX_HOST=.*/MEERKAT_NGINX_HOST=${GATEWAY}/g" .env
 
 # install dependencies
 docker exec -itu 1000:1000 meerkat_php_fpm composer install

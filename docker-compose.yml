@@ -11,8 +11,6 @@ services:
       volumes:
           - ./:/usr/share/nginx/meerkat
           - ./docker/php/php.ini:/usr/local/etc/php/php.ini
-      extra_hosts:
-          - "meerkat.local:${MEERKAT_NGINX_HOST}"
 
   nginx:
       image: nginx:1.15
