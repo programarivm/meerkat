@@ -48,7 +48,7 @@ To find out the IP of the `meerkat_nginx` container:
 </p>
 
 <p align="center">
-    **Figure 1**. Login page
+    <b>Figure 1</b>. Login page
 </p>
 
 <p align="center">
@@ -56,7 +56,7 @@ To find out the IP of the `meerkat_nginx` container:
 </p>
 
 <p align="center">
-    **Figure 2**. John reviewing a restaurant
+    <b>Figure 2</b>. John reviewing a restaurant
 </p>
 
 <p align="center">
@@ -64,7 +64,7 @@ To find out the IP of the `meerkat_nginx` container:
 </p>
 
 <p align="center">
-    **Figure 3**. Alice deleting reviews
+    <b>Figure 3</b>. Alice deleting reviews
 </p>
 
 <p align="center">
@@ -72,7 +72,7 @@ To find out the IP of the `meerkat_nginx` container:
 </p>
 
 <p align="center">
-    **Figure 4**. Alice editing restaurants
+    <b>Figure 4</b>. Alice editing restaurants
 </p>
 
 <p align="center">
@@ -80,7 +80,7 @@ To find out the IP of the `meerkat_nginx` container:
 </p>
 
 <p align="center">
-    **Figure 5**. Bob adding users
+    <b>Figure 5</b>. Bob adding users
 </p>
 
 ### Contributions
