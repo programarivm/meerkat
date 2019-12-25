@@ -14,20 +14,7 @@ class ReviewCreate extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      restaurants: [],
-      review: {
-        restaurant: {
-          id: ''
-        },
-        comment: '',
-        points: [5]
-      },
-      modal: {
-        open: false
-      },
-      validation: null
-    }
+    this.state = this.getInitialState();
     this.handleChangeComment = this.handleChangeComment.bind(this);
     this.handleChangeRestaurant = this.handleChangeRestaurant.bind(this);
     this.handleClickCancel = this.handleClickCancel.bind(this);
@@ -56,13 +43,13 @@ class ReviewCreate extends React.Component {
       });
 
     ApiReviewStore
-      .on("create.201", (e) => {
+      .on("create.201", () => {
         if (this._isMounted) {
           ApiReviewActions.fetchAll();
-          this.handleClickCancel(e);
+          this.resetState();
         }
       })
-      .on("create.error", () => {
+      .on("create.error", (data) => {
         if (this._isMounted) {
           // TODO: replace with custom validation messages sent by the server
           this.setState({ validation: 'Whoops! The review could not be added, please try again.' });
@@ -72,6 +59,25 @@ class ReviewCreate extends React.Component {
 
   componentWillUnmount() {
     this._isMounted = false;
+  }
+
+  getInitialState = () => ({
+    restaurants: [],
+    review: {
+      restaurant: {
+        id: ''
+      },
+      comment: '',
+      points: [5]
+    },
+    modal: {
+      open: false
+    },
+    validation: null
+  });
+
+  resetState = () => {
+    this.setState(this.getInitialState());
   }
 
   handleChangeComment = e => {
@@ -87,12 +93,7 @@ class ReviewCreate extends React.Component {
   }
 
   handleClickCancel(e) {
-    let newState = Object.assign({}, this.state);
-    newState.review.comment = '';
-    newState.review.points = [5];
-    newState.modal.open = false;
-    newState.validation = null;
-    this.setState(newState);
+    this.resetState();
     e.preventDefault();
   }
 
