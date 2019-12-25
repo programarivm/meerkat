@@ -33,7 +33,6 @@ Finally, don't forget to add the following entry to your `/etc/hosts` file:
 To find out the IP of the `meerkat_nginx` container:
 
     echo $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.Gateway}}{{end}}' meerkat_nginx)
-    172.19.0.1
 
 > Well done! The app can now run on your favourite web browser by typing https://meerkat.local into the address bar.
 
