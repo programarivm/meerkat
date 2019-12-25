@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Review;
+use App\Http\Requests\StoreReview;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -15,9 +16,9 @@ class ReviewController extends Controller
                       ->get();
   }
 
-  public function store(Request $request)
+  public function store(StoreReview $request)
   {
-      $all = $request->all();
+      $all = $request->validated();
 
       $review = Review::create([
           'comment' => $all['comment'],

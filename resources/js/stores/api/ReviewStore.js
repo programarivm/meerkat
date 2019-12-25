@@ -12,6 +12,7 @@ class ReviewStore extends EventEmitter {
 		fetch(process.env.MIX_APP_URL + '/api/reviews', {
 			method: 'POST',
 			headers: {
+				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(data)
@@ -32,6 +33,7 @@ class ReviewStore extends EventEmitter {
 		fetch(process.env.MIX_APP_URL + `/api/reviews/${id}`, {
 			method: 'DELETE',
 			headers: {
+				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			}
 		})
@@ -51,6 +53,7 @@ class ReviewStore extends EventEmitter {
 		fetch(process.env.MIX_APP_URL + '/api/reviews', {
 			method: 'GET',
 			headers: {
+				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			}
 		})

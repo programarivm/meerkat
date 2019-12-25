@@ -3,7 +3,7 @@ import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
 import ApiReviewActions from '../../../actions/api/ReviewActions.js';
 import ApiReviewStore from '../../../stores/api/ReviewStore.js';
 import {
-  Button, ButtonGroup, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter
+  Button, ButtonGroup, Form, FormGroup, Input, Label, Modal, ModalBody
 } from 'reactstrap';
 import { Range } from 'react-range';
 import React from 'react';
@@ -56,14 +56,15 @@ class ReviewCreate extends React.Component {
       });
 
     ApiReviewStore
-      .on("create.201", () => {
+      .on("create.201", (e) => {
         if (this._isMounted) {
           ApiReviewActions.fetchAll();
-          this.setState({ modal: { open: false } });
+          this.handleClickCancel(e);
         }
       })
       .on("create.error", () => {
         if (this._isMounted) {
+          // TODO: replace with custom validation messages sent by the server
           this.setState({ validation: 'Whoops! The review could not be added, please try again.' });
         }
       });
@@ -73,15 +74,15 @@ class ReviewCreate extends React.Component {
     this._isMounted = false;
   }
 
-  handleChangeComment = event => {
+  handleChangeComment = e => {
     let newState = Object.assign({}, this.state);
-    newState.review.comment = event.target.value;
+    newState.review.comment = e.target.value;
     this.setState(newState);
   }
 
-  handleChangeRestaurant = event => {
+  handleChangeRestaurant = e => {
     let newState = Object.assign({}, this.state);
-    newState.review.restaurant.id = event.target.value;
+    newState.review.restaurant.id = e.target.value;
     this.setState(newState);
   }
 
@@ -97,7 +98,7 @@ class ReviewCreate extends React.Component {
 
   handleClickSubmit(e) {
     ApiReviewActions.create(this.state.review);
-    this.handleClickCancel(e);
+    e.preventDefault();
   }
 
   render() {
