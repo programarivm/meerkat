@@ -17,9 +17,7 @@ class Acl
     public function handle($request, Closure $next)
     {
         $user = auth()->user()->getAttributes();
-        $action = $request->route()->getAction();
-
-        $resource = substr($action['controller'], strrpos($action['controller'], '\\') + 1);
+        $resource = substr($request->route()->getActionName(), strrpos($request->route()->getActionName(), '\\') + 1);
 
         $permissions = AclModel::where('role', '=', $user['role'])
                                ->where('resource', '=', $resource);
