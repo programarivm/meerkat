@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Acl;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreReview extends FormRequest
@@ -13,9 +14,9 @@ class StoreReview extends FormRequest
      */
     public function authorize()
     {
-        // TODO
+        $resource = substr($this->route()->getActionName(), strrpos($this->route()->getActionName(), '\\') + 1);
 
-        return true;
+        return in_array(auth()->user()->getAttributes()['role'], Acl::grantedRoles($resource));
     }
 
     /**

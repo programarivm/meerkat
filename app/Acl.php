@@ -44,4 +44,14 @@ class Acl extends Model
             'permissions' => self::CHOICE_PERMISSIONS,
         ];
     }
+
+    public static function grantedRoles(string $resource)
+    {
+        $roles = [];
+        foreach (self::CHOICE_PERMISSIONS as $key => $val) {
+            in_array($resource, $val) ? $roles[] = $key : false;
+        }
+
+        return $roles;
+    }
 }
