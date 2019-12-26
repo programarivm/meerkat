@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Restaurant;
+use App\Http\Requests\StoreRestaurant;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -17,9 +18,11 @@ class RestaurantController extends Controller
         return $restaurant;
     }
 
-    public function store(Request $request)
+    public function store(StoreRestaurant $request)
     {
-        $restaurant = Restaurant::create($request->all());
+        $all = $request->validated();
+
+        $restaurant = Restaurant::create($all);
 
         return response()->json($restaurant, 201);
     }
