@@ -45,18 +45,12 @@ class UserEdit extends React.Component {
       })
       .on("update.422", (data) => {
         if (this._isMounted) {
-          let validation = [];
-          Object.values(data.errors).forEach(value => {
-            value.forEach(message => {
-              validation.push(message);
-            });
-          });
-          this.setState({ validation: validation });
+          this.setState({ validation: data });
         }
       })
       .on("update.error", () => {
         if (this._isMounted) {
-          this.setState({ validation: 'Whoops! The user could not be updated, please try again.' });
+          this.setState({ validation: data });
         }
       });
   }

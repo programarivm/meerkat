@@ -2,6 +2,8 @@ import ApiReviewActionTypes from '../../constants/api/ReviewActionTypes';
 import ApiReviewDispatcher from "../../dispatcher/api/ReviewDispatcher.js";
 import { EventEmitter } from 'events';
 
+const errorMessage = 'Whoops! Sorry there was an error, please try again later.';
+
 class ReviewStore extends EventEmitter {
 	constructor() {
 		super();
@@ -24,11 +26,17 @@ class ReviewStore extends EventEmitter {
 					break;
 				case 422:
 					res.json().then((data) => {
-						this.emit("create.422", data);
+						let validation = [];
+	          Object.values(data.errors).forEach(value => {
+	            value.forEach(message => {
+	              validation.push(message);
+	            });
+	          });
+						this.emit("create.422", validation);
 					});
 					break;
 				default:
-					this.emit("create.error");
+					this.emit("create.error", [errorMessage]);
 					break;
 			}
 		});
@@ -48,7 +56,7 @@ class ReviewStore extends EventEmitter {
 					this.emit("delete.204");
 					break;
 				default:
-					this.emit("delete.error");
+					this.emit("delete.error", [errorMessage]);
 					break;
 			}
 		});
@@ -70,7 +78,7 @@ class ReviewStore extends EventEmitter {
 			this.emit("fetch_all.200", data);
 		})
 		.catch((error) => {
-			this.emit("fetch_all.error");
+			this.emit("fetch_all.error", [errorMessage]);
 		});
 	}
 

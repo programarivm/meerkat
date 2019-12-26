@@ -24,18 +24,12 @@ class UserCreate extends React.Component {
       })
       .on("create.422", (data) => {
         if (this._isMounted) {
-          let validation = [];
-          Object.values(data.errors).forEach(value => {
-            value.forEach(message => {
-              validation.push(message);
-            });
-          });
-          this.setState({ validation: validation });
+          this.setState({ validation: data });
         }
       })
       .on("create.error", (data) => {
         if (this._isMounted) {
-          this.setState({ validation: ['Whoops! The user could not be added, please try again.'] });
+          this.setState({ validation: data });
         }
       });
   }
