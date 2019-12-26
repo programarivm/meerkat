@@ -66,9 +66,9 @@ class UserEdit extends React.Component {
     this._isMounted = false;
   }
 
-  handleChange = event => {
+  handleChange = e => {
     let user = {...this.state.user};
-    user[event.target.id] = event.target.value;
+    user[e.target.id] = e.target.value;
     this.setState({user});
   }
 

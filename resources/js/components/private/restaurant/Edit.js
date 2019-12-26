@@ -65,9 +65,9 @@ class RestaurantEdit extends React.Component {
     this._isMounted = false;
   }
 
-  handleChange = event => {
+  handleChange = e => {
     let restaurant = {...this.state.restaurant};
-    restaurant[event.target.id] = event.target.value;
+    restaurant[e.target.id] = e.target.value;
     this.setState({restaurant});
   }
 

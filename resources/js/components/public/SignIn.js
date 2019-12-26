@@ -29,9 +29,9 @@ class SignIn extends React.Component {
     });
   }
 
-  handleChange = event => {
+  handleChange = e => {
     let credentials = {...this.state.credentials};
-    credentials[event.target.id] = event.target.value;
+    credentials[e.target.id] = e.target.value;
     this.setState({credentials});
   }
 
