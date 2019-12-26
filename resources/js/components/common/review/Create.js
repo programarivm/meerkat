@@ -51,10 +51,10 @@ class ReviewCreate extends React.Component {
       })
       .on("create.422", (data) => {
         if (this._isMounted) {
-          let validation;
-          Object.values(data.errors).map(function(value) {
-            validation = value.map(function(message) {
-              return message;
+          let validation = [];
+          Object.values(data.errors).forEach(value => {
+            value.forEach(message => {
+              validation.push(message);
             });
           });
           this.setState({ validation: validation });
@@ -131,8 +131,7 @@ class ReviewCreate extends React.Component {
                 name="restaurant"
                 id="restaurant"
                 value={this.state.review.restaurant.id}
-                onChange={this.handleChangeRestaurant}
-                required>
+                onChange={this.handleChangeRestaurant}>
                 { this.state.restaurants.map( (item, i) => <option key={i} value={item.id}>{item.name}</option> ) }
               </Input>
             </FormGroup>
@@ -182,8 +181,7 @@ class ReviewCreate extends React.Component {
                 id="comment"
                 placeholder="In my opinion..."
                 value={this.state.review.comment}
-                onChange={this.handleChangeComment}
-                required
+                onChange={this.handleChangeComment}              
               />
             </FormGroup>
             <FormGroup>
