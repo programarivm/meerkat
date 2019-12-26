@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class StoreReview extends AuthorizedFormRequest
+class StoreReview extends AbstractAuthorizedFormRequest
 {
     /**
      * Get the validation rules that apply to the request.

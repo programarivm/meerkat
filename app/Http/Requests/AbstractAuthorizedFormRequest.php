@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Acl;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AuthorizedFormRequest extends FormRequest
+abstract class AbstractAuthorizedFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
