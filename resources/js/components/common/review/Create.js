@@ -49,10 +49,20 @@ class ReviewCreate extends React.Component {
           this.resetState();
         }
       })
+      .on("create.422", (data) => {
+        if (this._isMounted) {
+          let validation;
+          Object.values(data.errors).map(function(value) {
+            validation = value.map(function(message) {
+              return message;
+            });
+          });
+          this.setState({ validation: validation });
+        }
+      })
       .on("create.error", (data) => {
         if (this._isMounted) {
-          // TODO: replace with custom validation messages sent by the server
-          this.setState({ validation: 'Whoops! The review could not be added, please try again.' });
+          this.setState({ validation: ['Whoops! The review could not be added, please try again.'] });
         }
       });
   }
@@ -73,7 +83,7 @@ class ReviewCreate extends React.Component {
     modal: {
       open: false
     },
-    validation: null
+    validation: []
   });
 
   resetState = () => {
@@ -106,7 +116,13 @@ class ReviewCreate extends React.Component {
     return (
       <Modal isOpen={this.state.modal.open}>
         <ModalBody>
-          <p className="text-danger">{this.state.validation}</p>
+          <ul className="text-danger">
+            {
+              this.state.validation.map(function(item, index) {
+                return (<li key={index}>{item}</li>)
+              })
+            }
+          </ul>
           <Form className="form" onSubmit={ (e) => this.handleClickSubmit(e) }>
             <FormGroup>
               <Label for="restaurant">Select a restaurant:</Label>
