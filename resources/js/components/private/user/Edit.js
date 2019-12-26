@@ -1,8 +1,7 @@
 import ApiUserActions from '../../../actions/api/UserActions.js';
 import ApiUserStore from '../../../stores/api/UserStore.js';
-import {
-  Button, Form, FormGroup, Input, Modal, ModalBody, ModalFooter
-} from 'reactstrap';
+import { Button, Form, FormGroup, Input, Modal, ModalBody, ModalFooter } from 'reactstrap';
+import { FormGroups } from './common/FormGroups.js';
 import React from 'react';
 
 class UserEdit extends React.Component {
@@ -106,56 +105,7 @@ class UserEdit extends React.Component {
             }
           </ul>
           <Form className="form">
-            <FormGroup>
-              <Input
-                type="text"
-                name="firstname"
-                id="firstname"
-                placeholder="First name"
-                value={this.state.user.firstname}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Input
-                type="text"
-                name="surname"
-                id="surname"
-                placeholder="Surname"
-                value={this.state.user.surname}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Input
-                type="date"
-                name="date_of_birth"
-                id="date_of_birth"
-                placeholder="Date of birth"
-                value={this.state.user.date_of_birth ? this.state.user.date_of_birth : ''}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Input
-                type="text"
-                name="phone_number"
-                id="phone_number"
-                placeholder="Phone number"
-                value={this.state.user.phone_number ? this.state.user.phone_number : ''}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Input
-                type="text"
-                name="email"
-                id="email"
-                placeholder="Email"
-                value={this.state.user.email}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
+            <FormGroups {...this.state.user} handleChange={this.handleChange} />
           </Form>
         </ModalBody>
         <ModalFooter>
