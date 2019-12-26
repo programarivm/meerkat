@@ -15,8 +15,7 @@ class ReviewCreate extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.getInitialState();
-    this.handleChangeComment = this.handleChangeComment.bind(this);
-    this.handleChangeRestaurant = this.handleChangeRestaurant.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleClickCancel = this.handleClickCancel.bind(this);
     this.handleClickSubmit = this.handleClickSubmit.bind(this);
   }
@@ -90,16 +89,17 @@ class ReviewCreate extends React.Component {
     this.setState(this.getInitialState());
   }
 
-  handleChangeComment = e => {
-    let newState = Object.assign({}, this.state);
-    newState.review.comment = e.target.value;
-    this.setState(newState);
-  }
-
-  handleChangeRestaurant = e => {
-    let newState = Object.assign({}, this.state);
-    newState.review.restaurant.id = e.target.value;
-    this.setState(newState);
+  handleChange = e => {
+    let review = {...this.state.review};
+    switch (e.target.id) {
+      case 'restaurant':
+        review.restaurant.id = e.target.value;
+        break;
+      default:
+        review[e.target.id] = e.target.value;
+        break;
+    }
+    this.setState({review});
   }
 
   handleClickCancel(e) {
@@ -131,7 +131,7 @@ class ReviewCreate extends React.Component {
                 name="restaurant"
                 id="restaurant"
                 value={this.state.review.restaurant.id}
-                onChange={this.handleChangeRestaurant}>
+                onChange={this.handleChange}>
                 { this.state.restaurants.map( (item, i) => <option key={i} value={item.id}>{item.name}</option> ) }
               </Input>
             </FormGroup>
@@ -181,7 +181,7 @@ class ReviewCreate extends React.Component {
                 id="comment"
                 placeholder="In my opinion..."
                 value={this.state.review.comment}
-                onChange={this.handleChangeComment}              
+                onChange={this.handleChange}
               />
             </FormGroup>
             <FormGroup>
