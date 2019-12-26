@@ -71,14 +71,16 @@ class UserStore extends EventEmitter {
 			}
 		})
 		.then((res) => {
-			if (res.status !== 200) throw new Error(res.status);
-			else return res.json();
-		})
-		.then((data) => {
-			this.emit("fetch_all.200", data);
-		})
-		.catch((error) => {
-			this.emit("fetch_all.error", [errorMessage]);
+			switch (res.status) {
+				case 200:
+					res.json().then((data) => {
+						this.emit("fetch_all.200", data);
+					});
+					break;
+				default:
+					this.emit("fetch_all.error", [errorMessage]);
+					break;
+			}
 		});
 	}
 
@@ -91,14 +93,16 @@ class UserStore extends EventEmitter {
 			}
 		})
 		.then((res) => {
-			if (res.status !== 200) throw new Error(res.status);
-			else return res.json();
-		})
-		.then((data) => {
-			this.emit("show.200", data);
-		})
-		.catch((error) => {
-			this.emit("show.error", [errorMessage]);
+			switch (res.status) {
+				case 200:
+					res.json().then((data) => {
+						this.emit("show.200", data);
+					});
+					break;
+				default:
+					this.emit("show.error", [errorMessage]);
+					break;
+			}
 		});
 	}
 
