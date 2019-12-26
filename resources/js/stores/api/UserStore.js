@@ -12,6 +12,7 @@ class UserStore extends EventEmitter {
 		fetch(process.env.MIX_APP_URL + '/api/users', {
 			method: 'POST',
 			headers: {
+				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(data)
@@ -32,6 +33,7 @@ class UserStore extends EventEmitter {
 		fetch(process.env.MIX_APP_URL + `/api/users/${id}`, {
 			method: 'DELETE',
 			headers: {
+				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			}
 		})
@@ -51,6 +53,7 @@ class UserStore extends EventEmitter {
 		fetch(process.env.MIX_APP_URL + '/api/users', {
 			method: 'GET',
 			headers: {
+				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			}
 		})
@@ -70,6 +73,7 @@ class UserStore extends EventEmitter {
 		fetch(process.env.MIX_APP_URL + `/api/users/${id}`, {
 			method: 'GET',
 			headers: {
+				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			}
 		})
@@ -89,6 +93,7 @@ class UserStore extends EventEmitter {
 		fetch(process.env.MIX_APP_URL + `/api/users/${id}`, {
 			method: 'PUT',
 			headers: {
+				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(data)
