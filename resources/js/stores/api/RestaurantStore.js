@@ -108,6 +108,11 @@ class RestaurantStore extends EventEmitter {
 				case 200:
 					this.emit("update.200");
 					break;
+				case 422:
+					res.json().then((data) => {
+						this.emit("update.422", data);
+					});
+					break;
 				default:
 					this.emit("update.error");
 					break;

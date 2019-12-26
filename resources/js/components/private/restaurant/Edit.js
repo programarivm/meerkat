@@ -11,19 +11,7 @@ class RestaurantEdit extends React.Component {
 
   constructor(props) {
     super(props);
-      this.state = {
-        restaurant: {
-          name: '',
-          description: '',
-          address: '',
-          lat: '',
-          lon: ''
-        },
-        modal: {
-          open: false
-        },
-        validation: null
-    }
+    this.state = this.getInitialState();
     this.handleChange = this.handleChange.bind(this)
     this.handleClickCancel = this.handleClickCancel.bind(this);
     this.handleClickUpdate = this.handleClickUpdate.bind(this);
@@ -31,6 +19,7 @@ class RestaurantEdit extends React.Component {
 
   componentDidMount() {
     this._isMounted = true;
+
     ApiRestaurantStore
       .on("show.200", (data) => {
         if (this._isMounted) {
@@ -51,7 +40,18 @@ class RestaurantEdit extends React.Component {
       })
       .on("update.200", () => {
         if (this._isMounted) {
-          this.setState({ modal: { open: false } });
+          this.resetState();
+        }
+      })
+      .on("update.422", (data) => {
+        if (this._isMounted) {
+          let validation = [];
+          Object.values(data.errors).forEach(value => {
+            value.forEach(message => {
+              validation.push(message);
+            });
+          });
+          this.setState({ validation: validation });
         }
       })
       .on("update.error", () => {
@@ -65,6 +65,24 @@ class RestaurantEdit extends React.Component {
     this._isMounted = false;
   }
 
+  getInitialState = () => ({
+    restaurant: {
+      name: '',
+      description: '',
+      address: '',
+      lat: '',
+      lon: ''
+    },
+    modal: {
+      open: false
+    },
+    validation: []
+  });
+
+  resetState = () => {
+    this.setState(this.getInitialState());
+  }
+
   handleChange = e => {
     let restaurant = {...this.state.restaurant};
     restaurant[e.target.id] = e.target.value;
@@ -72,7 +90,7 @@ class RestaurantEdit extends React.Component {
   }
 
   handleClickCancel(e) {
-    this.setState({ modal: { open: false } });
+    this.resetState();
     e.preventDefault();
   }
 
@@ -85,7 +103,13 @@ class RestaurantEdit extends React.Component {
     return (
       <Modal isOpen={this.state.modal.open}>
         <ModalBody>
-          <p className="text-danger">{this.state.validation}</p>
+          <ul className="text-danger">
+            {
+              this.state.validation.map(function(item, index) {
+                return (<li key={index}>{item}</li>)
+              })
+            }
+          </ul>
           <Form className="form">
             <FormGroups {...this.state.restaurant} handleChange={this.handleChange} />
           </Form>

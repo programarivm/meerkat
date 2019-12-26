@@ -20,16 +20,14 @@ class RestaurantController extends Controller
 
     public function store(StoreRestaurant $request)
     {
-        $all = $request->validated();
-
-        $restaurant = Restaurant::create($all);
+        $restaurant = Restaurant::create($request->validated());
 
         return response()->json($restaurant, 201);
     }
 
-    public function update(Request $request, Restaurant $restaurant)
+    public function update(StoreRestaurant $request, Restaurant $restaurant)
     {
-        $restaurant->update($request->all());
+        $restaurant->update($request->validated());
 
         return response()->json($restaurant, 200);
     }
