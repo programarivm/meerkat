@@ -13,7 +13,6 @@ class FormGroups extends React.Component {
             placeholder="Name"
             value={this.props.name}
             onChange={this.props.handleChange}
-            required
           />
         </FormGroup>
         <FormGroup>
@@ -24,7 +23,6 @@ class FormGroups extends React.Component {
             placeholder="Description"
             value={this.props.description}
             onChange={this.props.handleChange}
-            required
           />
         </FormGroup>
         <FormGroup>
@@ -35,7 +33,6 @@ class FormGroups extends React.Component {
             placeholder="Address"
             value={this.props.address}
             onChange={this.props.handleChange}
-            required
           />
         </FormGroup>
         <FormGroup>

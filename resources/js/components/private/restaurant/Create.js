@@ -5,38 +5,84 @@ import { FormGroups } from './common/FormGroups.js';
 import React from 'react';
 
 class RestaurantCreate extends React.Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
-      this.state = {
-        validation: null
-    }
+    this.state = this.getInitialState();
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
   }
 
   componentDidMount() {
-    ApiRestaurantStore.on("create.error", () => {
-      this.setState({ validation: 'Whoops! The restaurant could not be added, please try again.' });
-    });
+    this._isMounted = true;
+
+    ApiRestaurantStore
+      .on("create.201", () => {
+        if (this._isMounted) {
+          this.resetState();
+        }
+      })
+      .on("create.422", (data) => {
+        if (this._isMounted) {
+          let validation = [];
+          Object.values(data.errors).forEach(value => {
+            value.forEach(message => {
+              validation.push(message);
+            });
+          });
+          this.setState({ validation: validation });
+        }
+      })
+      .on("create.error", (data) => {
+        if (this._isMounted) {
+          this.setState({ validation: ['Whoops! The restaurant could not be added, please try again.'] });
+        }
+      });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  getInitialState = () => ({
+    restaurant: {
+      name: '',
+      description: '',
+      address: '',
+      lat: '',
+      lon: ''
+    },
+    validation: []
+  });
+
+  resetState = () => {
+    this.setState(this.getInitialState());
+  }
+
+  handleChange = e => {
+    let restaurant = {...this.state.restaurant};
+    restaurant[e.target.id] = e.target.value;
+    this.setState({restaurant});
   }
 
   handleSubmitForm(e) {
-    ApiRestaurantActions.create({
-      name: e.target.elements.name.value,
-      description: e.target.elements.description.value,
-      address: e.target.elements.address.value,
-      lat: e.target.elements.lat.value,
-      lon: e.target.elements.lon.value
-    });
+    ApiRestaurantActions.create(this.state.restaurant);
     e.preventDefault();
-    e.target.reset();
   }
 
   render() {
     return (
       <Jumbotron className="mt-3">
-        <p className="text-danger">{this.state.validation}</p>
+        <ul className="text-danger">
+          {
+            this.state.validation.map(function(item, index) {
+              return (<li key={index}>{item}</li>)
+            })
+          }
+        </ul>
         <Form className="form" onSubmit={ (e) => this.handleSubmitForm(e) }>
-          <FormGroups />
+          <FormGroups {...this.state.restaurant} handleChange={this.handleChange} />
           <FormGroup>
             <Button color="primary" block>Add restaurant</Button>
           </FormGroup>
