@@ -4,47 +4,92 @@ import { Button, Form, FormGroup, Input, Jumbotron } from 'reactstrap';
 import React from 'react';
 
 class UserCreate extends React.Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
-      this.state = {
-        validation: null
-    }
-    this.handleClickCreate = this.handleClickCreate.bind(this);
+    this.state = this.getInitialState();
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmitForm = this.handleSubmitForm.bind(this);
   }
 
   componentDidMount() {
-    ApiUserStore.on("create.error", () => {
-      this.setState({validation: 'Whoops! The user could not be added, please try again.'});
-    });
+    this._isMounted = true;
+
+    ApiUserStore
+      .on("create.201", () => {
+        if (this._isMounted) {
+          this.resetState();
+        }
+      })
+      .on("create.422", (data) => {
+        if (this._isMounted) {
+          let validation = [];
+          Object.values(data.errors).forEach(value => {
+            value.forEach(message => {
+              validation.push(message);
+            });
+          });
+          this.setState({ validation: validation });
+        }
+      })
+      .on("create.error", (data) => {
+        if (this._isMounted) {
+          this.setState({ validation: ['Whoops! The user could not be added, please try again.'] });
+        }
+      });
   }
 
-  handleClickCreate(e) {
-    ApiUserActions.create({
-      firstname: e.target.elements.firstname.value,
-      surname: e.target.elements.surname.value,
-      date_of_birth: e.target.elements.date_of_birth.value,
-      phone_number: e.target.elements.phone_number.value,
-      email: e.target.elements.email.value,
-      password: e.target.elements.password.value
-    });
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  getInitialState = () => ({
+    user: {
+      firstname: '',
+      surname: '',
+      date_of_birth: '',
+      phone_number: '',
+      email: '',
+      password: ''
+    },
+    validation: []
+  });
+
+  resetState = () => {
+    this.setState(this.getInitialState());
+  }
+
+  handleChange = e => {
+    let user = {...this.state.user};
+    user[e.target.id] = e.target.value;
+    this.setState({user});
+  }
+
+  handleSubmitForm(e) {
+    ApiUserActions.create(this.state.user);
     e.preventDefault();
-    e.target.reset();
   }
 
   render() {
     return (
       <Jumbotron className="mt-3">
-        <p className="text-danger">{this.state.validation}</p>
-        <Form className="form" onSubmit={ (e) => this.handleClickCreate(e) }>
+        <ul className="text-danger">
+          {
+            this.state.validation.map(function(item, index) {
+              return (<li key={index}>{item}</li>)
+            })
+          }
+        </ul>
+        <Form className="form" onSubmit={ (e) => this.handleSubmitForm(e) }>
           <FormGroup>
             <Input
               type="text"
               name="firstname"
               id="firstname"
               placeholder="First name"
-              value={this.props.firstname}
-              onChange={this.props.handleChange}
-              required
+              value={this.state.user.firstname}
+              onChange={this.handleChange}
             />
           </FormGroup>
           <FormGroup>
@@ -53,9 +98,8 @@ class UserCreate extends React.Component {
               name="surname"
               id="surname"
               placeholder="Surname"
-              value={this.props.surname}
-              onChange={this.props.handleChange}
-              required
+              value={this.state.user.surname}
+              onChange={this.handleChange}
             />
           </FormGroup>
           <FormGroup>
@@ -64,8 +108,8 @@ class UserCreate extends React.Component {
               name="date_of_birth"
               id="date_of_birth"
               placeholder="Date of birth"
-              value={this.props.date_of_birth}
-              onChange={this.props.handleChange}
+              value={this.state.user.date_of_birth}
+              onChange={this.handleChange}
             />
           </FormGroup>
           <FormGroup>
@@ -74,19 +118,18 @@ class UserCreate extends React.Component {
               name="phone_number"
               id="phone_number"
               placeholder="Phone number"
-              value={this.props.phone_number}
-              onChange={this.props.handleChange}
+              value={this.state.user.phone_number}
+              onChange={this.handleChange}
             />
           </FormGroup>
           <FormGroup>
             <Input
-              type="email"
+              type="text"
               name="email"
               id="email"
               placeholder="Email"
-              value={this.props.email}
-              onChange={this.props.handleChange}
-              required
+              value={this.state.user.email}
+              onChange={this.handleChange}
             />
           </FormGroup>
           <FormGroup>
@@ -95,9 +138,8 @@ class UserCreate extends React.Component {
               name="password"
               id="password"
               placeholder="Password"
-              value={this.props.password}
-              onChange={this.props.handleChange}
-              required
+              value={this.state.user.password}
+              onChange={this.handleChange}
             />
           </FormGroup>
           <FormGroup>

@@ -10,20 +10,7 @@ class UserEdit extends React.Component {
 
   constructor(props) {
     super(props);
-      this.state = {
-        user: {
-          firstname: '',
-          surname: '',
-          date_of_birth: '',
-          phone_number: '',
-          email: '',
-          password: ''
-        },
-        modal: {
-          open: false
-        },
-        validation: null
-    }
+    this.state = this.getInitialState();
     this.handleChange = this.handleChange.bind(this)
     this.handleClickCancel = this.handleClickCancel.bind(this);
     this.handleClickUpdate = this.handleClickUpdate.bind(this);
@@ -31,6 +18,7 @@ class UserEdit extends React.Component {
 
   componentDidMount() {
     this._isMounted = true;
+
     ApiUserStore
       .on("show.200", (data) => {
         if (this._isMounted) {
@@ -52,7 +40,18 @@ class UserEdit extends React.Component {
       })
       .on("update.200", () => {
         if (this._isMounted) {
-          this.setState({ modal: { open: false } });
+          this.resetState();
+        }
+      })
+      .on("update.422", (data) => {
+        if (this._isMounted) {
+          let validation = [];
+          Object.values(data.errors).forEach(value => {
+            value.forEach(message => {
+              validation.push(message);
+            });
+          });
+          this.setState({ validation: validation });
         }
       })
       .on("update.error", () => {
@@ -66,6 +65,25 @@ class UserEdit extends React.Component {
     this._isMounted = false;
   }
 
+  getInitialState = () => ({
+    user: {
+      firstname: '',
+      surname: '',
+      date_of_birth: '',
+      phone_number: '',
+      email: '',
+      password: ''
+    },
+    modal: {
+      open: false
+    },
+    validation: []
+  });
+
+  resetState = () => {
+    this.setState(this.getInitialState());
+  }
+
   handleChange = e => {
     let user = {...this.state.user};
     user[e.target.id] = e.target.value;
@@ -73,7 +91,7 @@ class UserEdit extends React.Component {
   }
 
   handleClickCancel(e) {
-    this.setState({ modal: { open: false } });
+    this.resetState();
     e.preventDefault();
   }
 
@@ -86,7 +104,13 @@ class UserEdit extends React.Component {
     return (
       <Modal isOpen={this.state.modal.open}>
         <ModalBody>
-          <p className="text-danger">{this.state.validation}</p>
+          <ul className="text-danger">
+            {
+              this.state.validation.map(function(item, index) {
+                return (<li key={index}>{item}</li>)
+              })
+            }
+          </ul>
           <Form className="form">
             <FormGroup>
               <Input
@@ -96,7 +120,6 @@ class UserEdit extends React.Component {
                 placeholder="First name"
                 value={this.state.user.firstname}
                 onChange={this.handleChange}
-                required
               />
             </FormGroup>
             <FormGroup>
@@ -107,7 +130,6 @@ class UserEdit extends React.Component {
                 placeholder="Surname"
                 value={this.state.user.surname}
                 onChange={this.handleChange}
-                required
               />
             </FormGroup>
             <FormGroup>
@@ -132,13 +154,12 @@ class UserEdit extends React.Component {
             </FormGroup>
             <FormGroup>
               <Input
-                type="email"
+                type="text"
                 name="email"
                 id="email"
                 placeholder="Email"
                 value={this.state.user.email}
                 onChange={this.handleChange}
-                required
               />
             </FormGroup>
           </Form>

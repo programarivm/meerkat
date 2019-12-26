@@ -22,6 +22,11 @@ class UserStore extends EventEmitter {
 				case 201:
 					this.emit("create.201");
 					break;
+				case 422:
+					res.json().then((data) => {
+						this.emit("create.422", data);
+					});
+					break;
 				default:
 					this.emit("create.error");
 					break;
@@ -102,6 +107,11 @@ class UserStore extends EventEmitter {
 			switch (res.status) {
 				case 200:
 					this.emit("update.200");
+					break;
+				case 422:
+					res.json().then((data) => {
+						this.emit("update.422", data);
+					});
 					break;
 				default:
 					this.emit("update.error");
