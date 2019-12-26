@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Acl as AclModel;
 use Closure;
 
 class Acl
@@ -19,8 +18,10 @@ class Acl
         $user = auth()->user()->getAttributes();
         $resource = substr($request->route()->getActionName(), strrpos($request->route()->getActionName(), '\\') + 1);
 
-        $permissions = AclModel::where('role', '=', $user['role'])
-                               ->where('resource', '=', $resource);
+        $permissions = \App\Acl::where([
+            ['role', '=', $user['role']],
+            ['resource', '=', $resource]
+        ]);
 
         if (!$permissions->exists()) {
             return response()->json(['message' => 'Forbidden'], 403);
