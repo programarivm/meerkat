@@ -15,17 +15,12 @@ class Acl
      */
     public function handle($request, Closure $next)
     {
-        $user = auth()->user()->getAttributes();
+        $role = auth()->user()->getAttributes()['role'];
         $resource = substr($request->route()->getActionName(), strrpos($request->route()->getActionName(), '\\') + 1);
 
-        $permissions = \App\Acl::where([
-            ['role', '=', $user['role']],
-            ['resource', '=', $resource]
-        ]);
-
-        if (!$permissions->exists()) {
+        if (!in_array($role, \App\Acl::grantedRoles($resource))) {
             return response()->json(['message' => 'Forbidden'], 403);
-        }
+        };
 
         return $next($request);
     }

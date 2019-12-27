@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Acl extends Model
 {
-    protected $fillable = ['resource', 'method', 'role'];
+    protected $fillable = ['resource', 'role'];
 
     const CHOICE_PERMISSIONS = [
         User::CHOICE_ROLE_BASIC => [
