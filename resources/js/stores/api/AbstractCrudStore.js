@@ -120,7 +120,7 @@ export default class AbstractCrudStore extends EventEmitter {
 					break;
 				case 422:
 					res.json().then((data) => {
-						this.emit("create.422", this._prettyValidation(data.errors));
+						this.emit("update.422", this._prettyValidation(data.errors));
 					});
 					break;
 				default:
