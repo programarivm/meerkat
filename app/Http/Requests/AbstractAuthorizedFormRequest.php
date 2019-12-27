@@ -14,8 +14,9 @@ abstract class AbstractAuthorizedFormRequest extends FormRequest
      */
     public function authorize()
     {
+        $role = auth()->user()->getAttributes()['role'];
         $resource = substr($this->route()->getActionName(), strrpos($this->route()->getActionName(), '\\') + 1);
 
-        return in_array(auth()->user()->getAttributes()['role'], Acl::grantedRoles($resource));
+        return in_array($role, Acl::grantedRoles($resource));
     }
 }
