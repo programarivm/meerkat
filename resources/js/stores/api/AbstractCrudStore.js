@@ -4,6 +4,16 @@ const errorMessage = 'Whoops! Sorry there was an error, please try again later.'
 
 export default class AbstractCrudStore extends EventEmitter {
 
+	_prettyValidation(errors) {
+		let messages = [];
+		Object.values(errors).forEach(error => {
+			error.forEach(message => {
+				messages.push(message);
+			});
+		});
+		return messages;
+	}
+
 	create(data) {
 		fetch(process.env.MIX_APP_URL + this.endpoint, {
 			method: 'POST',
@@ -20,13 +30,7 @@ export default class AbstractCrudStore extends EventEmitter {
 					break;
 				case 422:
 					res.json().then((data) => {
-						let validation = [];
-	          Object.values(data.errors).forEach(value => {
-	            value.forEach(message => {
-	              validation.push(message);
-	            });
-	          });
-						this.emit("create.422", validation);
+						this.emit("create.422", this._prettyValidation(data.errors));
 					});
 					break;
 				default:
@@ -116,13 +120,7 @@ export default class AbstractCrudStore extends EventEmitter {
 					break;
 				case 422:
 					res.json().then((data) => {
-						let validation = [];
-	          Object.values(data.errors).forEach(value => {
-	            value.forEach(message => {
-	              validation.push(message);
-	            });
-	          });
-						this.emit("update.422", validation);
+						this.emit("create.422", this._prettyValidation(data.errors));
 					});
 					break;
 				default:
