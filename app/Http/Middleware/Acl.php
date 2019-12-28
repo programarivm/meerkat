@@ -18,9 +18,9 @@ class Acl
         $role = auth()->user()->getAttributes()['role'];
         $resource = substr($request->route()->getActionName(), strrpos($request->route()->getActionName(), '\\') + 1);
 
-        if (!in_array($role, \App\Acl::grantedRoles($resource))) {
+        if (!\App\Acl::isAuthorized($role, $resource)) {
             return response()->json(['message' => 'Forbidden'], 403);
-        };
+        }
 
         return $next($request);
     }

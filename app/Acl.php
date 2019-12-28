@@ -54,4 +54,9 @@ class Acl extends Model
 
         return $roles;
     }
+
+    public static function isAuthorized(string $role, string $resource)
+    {
+        return in_array($role, self::grantedRoles($resource));
+    }
 }
