@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import ApiAuthStore from './stores/api/AuthStore.js';
+import Cookies from 'js-cookie';
 import PrivateApp from './components/private/App.js';
 import PublicApp from './components/public/App.js';
-import ApiAuthStore from './stores/api/AuthStore.js';
+import React, { Component } from 'react';
 import './Meerkat.css';
 
 class Meerkat extends Component {
@@ -11,6 +12,13 @@ class Meerkat extends Component {
   }
 
   componentDidMount() {
+    let session = Cookies.get("session");
+
+    if (session) {
+      ApiAuthStore.setState({ role: JSON.parse(session).role });
+      this.setState(ApiAuthStore.getState());
+    }
+
     ApiAuthStore
     .on("login.204", () => {
       this.setState(ApiAuthStore.getState());
@@ -23,7 +31,7 @@ class Meerkat extends Component {
   render() {
     return (
       <div className="Meerkat">
-        { this.state.role !== null ? <PrivateApp path="/reviews" /> : <PublicApp path="/" /> }
+        { this.state.role !== null ? <PrivateApp /> : <PublicApp /> }
       </div>
     );
   }

@@ -19,6 +19,10 @@ class AuthStore extends EventEmitter {
 		return this.state;
 	}
 
+	setState(state) {
+		this.state = state;
+	}
+
 	login(credentials) {
 		fetch(process.env.MIX_APP_URL + '/api/auth/login', {
 			method: 'POST',
