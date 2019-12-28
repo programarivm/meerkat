@@ -4,7 +4,7 @@ const errorMessage = 'Whoops! Sorry there was an error, please try again later.'
 
 export default class AbstractCrudStore extends EventEmitter {
 
-	_prettyValidation(errors) {
+	_niceValidation(errors) {
 		let messages = [];
 		Object.values(errors).forEach(error => {
 			error.forEach(message => {
@@ -30,7 +30,7 @@ export default class AbstractCrudStore extends EventEmitter {
 					break;
 				case 422:
 					res.json().then((data) => {
-						this.emit("create.422", this._prettyValidation(data.errors));
+						this.emit("create.422", this._niceValidation(data.errors));
 					});
 					break;
 				default:
@@ -120,7 +120,7 @@ export default class AbstractCrudStore extends EventEmitter {
 					break;
 				case 422:
 					res.json().then((data) => {
-						this.emit("update.422", this._prettyValidation(data.errors));
+						this.emit("update.422", this._niceValidation(data.errors));
 					});
 					break;
 				default:
