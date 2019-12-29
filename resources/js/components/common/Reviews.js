@@ -1,10 +1,10 @@
-import ApiAuthStore from '../../stores/api/AuthStore.js';
 import { Button, ButtonGroup, Col, Row } from 'reactstrap';
 import { LoremIpsum } from "./LoremIpsum.js";
 import { ReviewCreate } from "./review/Create.js";
 import { ReviewIndex } from "./review/Index.js";
 import React from 'react';
 import ReviewActions from '../../actions/ReviewActions.js';
+import Session from '../../Session.js';
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class Reviews extends React.Component {
         </Col>
         <Col md={3}>
           {
-            ApiAuthStore.getState().role === 'ROLE_BASIC'
+            Session.get().role === 'ROLE_BASIC'
               ? <div>
                   <ButtonGroup className="mt-3">
                     <Button className="mb-4" color="primary" size="sm" onClick={ (e) => this.handleClickReviewNow(e) }>Review now!</Button>

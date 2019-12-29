@@ -1,9 +1,9 @@
 import ApiUserActions from '../../../actions/api/UserActions.js';
 import ApiUserStore from '../../../stores/api/UserStore.js';
-import ApiAuthStore from '../../../stores/api/AuthStore.js';
 import { Button, ButtonGroup, Container } from 'reactstrap';
 import React from 'react';
-import ReactTable from 'react-table'
+import ReactTable from 'react-table';
+import Session from '../../../Session.js';
 import { UserEdit } from './Edit.js';
 
 class UserIndex extends React.Component {
@@ -102,7 +102,7 @@ class UserIndex extends React.Component {
       <Container className="m-3">
         <ReactTable
           data={data}
-          columns={ApiAuthStore.getState().role === 'ROLE_ADMIN' ? roleAdminColumns : columns}
+          columns={Session.get().role === 'ROLE_ADMIN' ? roleAdminColumns : columns}
           minRows={0}
         />
         <UserEdit />

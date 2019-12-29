@@ -1,4 +1,3 @@
-import ApiAuthStore from '../../stores/api/AuthStore.js';
 import {
   Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar,
   NavbarToggler, NavbarBrand, NavItem, NavLink, UncontrolledDropdown } from 'reactstrap';
@@ -6,6 +5,7 @@ import { Link, NavLink as RouterNavLink, Route } from 'react-router-dom';
 import React from 'react';
 import { Restaurants } from "./Restaurants.js";
 import { Reviews } from "../common/Reviews.js";
+import Session from '../../Session.js';
 import { SignOut } from "./SignOut.js";
 import { Users } from "./Users.js";
 import logo from '../../../images/logo.png';
@@ -52,14 +52,14 @@ class MainNav extends React.Component {
                 <NavLink tag={RouterNavLink} to="/reviews" activeClassName="active">Reviews</NavLink>
               </NavItem>
               {
-                ApiAuthStore.getState().role !== 'ROLE_BASIC'
+                Session.get().role !== 'ROLE_BASIC'
                   ? <NavItem>
                       <NavLink tag={RouterNavLink} to="/users" activeClassName="active">Users</NavLink>
                     </NavItem>
                   : null
               }
               {
-                ApiAuthStore.getState().role !== 'ROLE_BASIC'
+                Session.get().role !== 'ROLE_BASIC'
                   ? <NavItem>
                       <NavLink tag={RouterNavLink} to="/restaurants" activeClassName="active">Restaurants</NavLink>
                     </NavItem>

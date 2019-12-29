@@ -1,28 +1,16 @@
 import ApiAuthActionTypes from '../../constants/api/AuthActionTypes';
 import ApiAuthDispatcher from "../../dispatcher/api/AuthDispatcher.js";
 import { EventEmitter } from 'events';
-import Cookies from 'js-cookie';
 
 class AuthStore extends EventEmitter {
-	/**
-	 * A non-HttpOnly cookie named "session" is sent by the server when the user is logged in.
-	 */
 	constructor() {
 		super();
-		this.state = {
-			role: null
-		};
 		ApiAuthDispatcher.register(this.handleActions.bind(this));
 	}
 
-	getState() {
-		return this.state;
-	}
-
-	setState(state) {
-		this.state = state;
-	}
-
+	/**
+	 * A non-HttpOnly cookie named "session" is sent by the server when the user is successfully logged in.
+	 */
 	login(credentials) {
 		fetch(process.env.MIX_APP_URL + '/api/auth/login', {
 			method: 'POST',
@@ -35,7 +23,6 @@ class AuthStore extends EventEmitter {
 		}).then((res) => {
 			switch (res.status) {
 				case 204:
-					this.state.role = JSON.parse(Cookies.get("session")).role;
 					this.emit("login.204");
 					break;
 				case 401:
@@ -59,7 +46,6 @@ class AuthStore extends EventEmitter {
 		}).then((res) => {
 			switch (res.status) {
 				case 204:
-					this.state.role = null;
 					this.emit("logout.204");
 					break;
 				case 401:

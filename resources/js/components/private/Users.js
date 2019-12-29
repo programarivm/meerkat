@@ -1,9 +1,9 @@
-import ApiAuthStore from '../../stores/api/AuthStore.js';
 import { Col, Row } from 'reactstrap';
 import { LoremIpsum } from "../common/LoremIpsum.js";
 import { UserCreate } from "./user/Create.js";
 import { UserIndex } from "./user/Index.js";
 import React from 'react';
+import Session from '../../Session.js';
 
 class Users extends React.Component {
   render() {
@@ -13,7 +13,7 @@ class Users extends React.Component {
           <UserIndex />
         </Col>
         <Col md={3}>
-          { ApiAuthStore.getState().role === 'ROLE_ADMIN' ? <UserCreate /> : <LoremIpsum /> }
+          { Session.get().role === 'ROLE_ADMIN' ? <UserCreate /> : <LoremIpsum /> }
         </Col>
       </Row>
     );
