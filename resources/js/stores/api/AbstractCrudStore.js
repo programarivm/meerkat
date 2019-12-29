@@ -1,6 +1,13 @@
 import { EventEmitter } from 'events';
 
-const errorMessage = 'Whoops! Sorry there was an error, please try again later.';
+const headers = {
+	'Accept': 'application/json',
+	'Content-Type': 'application/json'
+};
+
+const messages = {
+	error: 'Whoops! Sorry there was an error, please try again later.'
+};
 
 export default class AbstractCrudStore extends EventEmitter {
 
@@ -17,10 +24,7 @@ export default class AbstractCrudStore extends EventEmitter {
 	create(data) {
 		fetch(process.env.MIX_APP_URL + this.endpoint, {
 			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
+			headers: headers,
 			body: JSON.stringify(data)
 		})
 		.then((res) => {
@@ -34,7 +38,7 @@ export default class AbstractCrudStore extends EventEmitter {
 					});
 					break;
 				default:
-					this.emit("create.error", [errorMessage]);
+					this.emit("create.error", [messages.error]);
 					break;
 			}
 		});
@@ -43,10 +47,7 @@ export default class AbstractCrudStore extends EventEmitter {
 	delete(id) {
 		fetch(process.env.MIX_APP_URL + this.endpoint + `/${id}`, {
 			method: 'DELETE',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			}
+			headers: headers
 		})
 		.then((res) => {
 			switch (res.status) {
@@ -54,7 +55,7 @@ export default class AbstractCrudStore extends EventEmitter {
 					this.emit("delete.204");
 					break;
 				default:
-					this.emit("delete.error", [errorMessage]);
+					this.emit("delete.error", [messages.error]);
 					break;
 			}
 		});
@@ -63,10 +64,7 @@ export default class AbstractCrudStore extends EventEmitter {
 	fetchAll() {
 		fetch(process.env.MIX_APP_URL + this.endpoint, {
 			method: 'GET',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			}
+			headers: headers
 		})
 		.then((res) => {
 			switch (res.status) {
@@ -76,7 +74,7 @@ export default class AbstractCrudStore extends EventEmitter {
 					});
 					break;
 				default:
-					this.emit("fetch_all.error", [errorMessage]);
+					this.emit("fetch_all.error", [messages.error]);
 					break;
 			}
 		});
@@ -85,10 +83,7 @@ export default class AbstractCrudStore extends EventEmitter {
 	show(id) {
 		fetch(process.env.MIX_APP_URL + this.endpoint + `/${id}`, {
 			method: 'GET',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			}
+			headers: headers
 		})
 		.then((res) => {
 			switch (res.status) {
@@ -98,7 +93,7 @@ export default class AbstractCrudStore extends EventEmitter {
 					});
 					break;
 				default:
-					this.emit("show.error", [errorMessage]);
+					this.emit("show.error", [messages.error]);
 					break;
 			}
 		});
@@ -107,10 +102,7 @@ export default class AbstractCrudStore extends EventEmitter {
 	update(id, data) {
 		fetch(process.env.MIX_APP_URL + this.endpoint + `/${id}`, {
 			method: 'PUT',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
+			headers: headers,
 			body: JSON.stringify(data)
 		})
 		.then((res) => {
@@ -124,7 +116,7 @@ export default class AbstractCrudStore extends EventEmitter {
 					});
 					break;
 				default:
-					this.emit("update.error", [errorMessage]);
+					this.emit("update.error", [messages.error]);
 					break;
 			}
 		});
