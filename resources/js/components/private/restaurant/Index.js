@@ -1,6 +1,7 @@
 import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
 import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
 import { Button, ButtonGroup, Container } from 'reactstrap';
+import Loading from '../../Loading.js';
 import React from 'react';
 import ReactTable from 'react-table'
 import { RestaurantEdit } from './Edit.js';
@@ -93,11 +94,15 @@ class RestaurantIndex extends React.Component {
 
     return (
       <Container className="m-3">
-        <ReactTable
-          data={data}
-          columns={columns}
-          minRows={0}
-        />
+        {
+          this.state.restaurants.length === 0
+            ? <Loading />
+            : <ReactTable
+                data={data}
+                columns={columns}
+                minRows={0}
+              />
+        }
         <RestaurantEdit />
       </Container>
     );

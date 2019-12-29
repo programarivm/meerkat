@@ -1,6 +1,7 @@
 import ApiReviewActions from '../../../actions/api/ReviewActions.js';
 import ApiReviewStore from '../../../stores/api/ReviewStore.js';
 import { Button, ButtonGroup, Container } from 'reactstrap';
+import Loading from '../../Loading.js';
 import { LoremIpsum } from "../LoremIpsum.js";
 import React from 'react';
 import ReactTable from 'react-table';
@@ -94,11 +95,15 @@ class ReviewIndex extends React.Component {
 
     return (
       <Container className="m-3">
-        <ReactTable
-          data={data}
-          columns={Session.get().role || Session.get().role === 'ROLE_EDITOR' ? roleEditorColumns : columns}
-          minRows={0}
-        />
+        {
+          this.state.reviews.length === 0
+            ? <Loading />
+            : <ReactTable
+                data={data}
+                columns={Session.get().role || Session.get().role === 'ROLE_EDITOR' ? roleEditorColumns : columns}
+                minRows={0}
+              />
+        }
       </Container>
     );
   }

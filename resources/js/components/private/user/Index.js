@@ -1,6 +1,7 @@
 import ApiUserActions from '../../../actions/api/UserActions.js';
 import ApiUserStore from '../../../stores/api/UserStore.js';
 import { Button, ButtonGroup, Container } from 'reactstrap';
+import Loading from '../../Loading.js';
 import React from 'react';
 import ReactTable from 'react-table';
 import Session from '../../../Session.js';
@@ -100,11 +101,15 @@ class UserIndex extends React.Component {
 
     return (
       <Container className="m-3">
-        <ReactTable
-          data={data}
-          columns={Session.get().role === 'ROLE_ADMIN' ? roleAdminColumns : columns}
-          minRows={0}
-        />
+        {
+          this.state.users.length === 0
+            ? <Loading />
+            : <ReactTable
+                data={data}
+                columns={Session.get().role === 'ROLE_ADMIN' ? roleAdminColumns : columns}
+                minRows={0}
+              />
+        }
         <UserEdit />
       </Container>
     );
