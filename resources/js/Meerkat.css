@@ -1,11 +1,3 @@
-.pace-running > *:not(.pace) {
-  opacity:0;
-}
-
-.pace-done > *:not(.pace) {
-  opacity:1;
-}
-
 .Meerkat .jumbotron {
   padding: 1.5rem;
 }
