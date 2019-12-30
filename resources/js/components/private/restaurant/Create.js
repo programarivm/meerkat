@@ -2,6 +2,7 @@ import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
 import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
 import { Button, Form, FormGroup, Jumbotron } from 'reactstrap';
 import { FormGroups } from './common/FormGroups.js';
+import Loading from '../../Loading.js';
 import React from 'react';
 
 class RestaurantCreate extends React.Component {
@@ -25,12 +26,12 @@ class RestaurantCreate extends React.Component {
       })
       .on("create.422", (data) => {
         if (this._isMounted) {
-          this.setState({ validation: data });
+          this.setState({ validation: data, loading: false });
         }
       })
       .on("create.error", (data) => {
         if (this._isMounted) {
-          this.setState({ validation: data });
+          this.setState({ validation: data, loading: false });
         }
       });
   }
@@ -47,7 +48,8 @@ class RestaurantCreate extends React.Component {
       lat: '',
       lon: ''
     },
-    validation: []
+    validation: [],
+    loading: false
   });
 
   resetState = () => {
@@ -61,6 +63,7 @@ class RestaurantCreate extends React.Component {
   }
 
   handleSubmitForm(e) {
+    this.setState({ loading: true });
     ApiRestaurantActions.create(this.state.restaurant);
     e.preventDefault();
   }
@@ -68,19 +71,23 @@ class RestaurantCreate extends React.Component {
   render() {
     return (
       <Jumbotron className="mt-3">
-        <ul className="text-danger">
-          {
-            this.state.validation.map(function(item, index) {
-              return (<li key={index}>{item}</li>)
-            })
-          }
-        </ul>
         <Form className="form" onSubmit={ (e) => this.handleSubmitForm(e) }>
           <FormGroups {...this.state.restaurant} handleChange={this.handleChange} />
           <FormGroup>
             <Button color="primary" block>Add restaurant</Button>
           </FormGroup>
         </Form>
+        {
+          this.state.loading
+            ? <Loading />
+            : <ul className="text-danger">
+                {
+                  this.state.validation.map(function(item, index) {
+                    return (<li key={index}>{item}</li>)
+                  })
+                }
+              </ul>
+        }
       </Jumbotron>
     );
   }
