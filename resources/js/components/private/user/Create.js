@@ -2,6 +2,7 @@ import ApiUserActions from '../../../actions/api/UserActions.js';
 import ApiUserStore from '../../../stores/api/UserStore.js';
 import { Button, Form, FormGroup, Input, Jumbotron } from 'reactstrap';
 import { FormGroups } from './common/FormGroups.js';
+import Loading from '../../Loading.js';
 import React from 'react';
 
 class UserCreate extends React.Component {
@@ -25,12 +26,12 @@ class UserCreate extends React.Component {
       })
       .on("create.422", (data) => {
         if (this._isMounted) {
-          this.setState({ validation: data });
+          this.setState({ validation: data, loading: false });
         }
       })
       .on("create.error", (data) => {
         if (this._isMounted) {
-          this.setState({ validation: data });
+          this.setState({ validation: data, loading: false });
         }
       });
   }
@@ -48,7 +49,8 @@ class UserCreate extends React.Component {
       email: '',
       password: ''
     },
-    validation: []
+    validation: [],
+    loading: false
   });
 
   resetState = () => {
@@ -62,6 +64,7 @@ class UserCreate extends React.Component {
   }
 
   handleSubmitForm(e) {
+    this.setState({ loading: true });
     ApiUserActions.create(this.state.user);
     e.preventDefault();
   }
@@ -69,13 +72,6 @@ class UserCreate extends React.Component {
   render() {
     return (
       <Jumbotron className="mt-3">
-        <ul className="text-danger">
-          {
-            this.state.validation.map(function(item, index) {
-              return (<li key={index}>{item}</li>)
-            })
-          }
-        </ul>
         <Form className="form" onSubmit={ (e) => this.handleSubmitForm(e) }>
           <FormGroups {...this.state.user} handleChange={this.handleChange} />
           <FormGroup>
@@ -92,6 +88,17 @@ class UserCreate extends React.Component {
             <Button color="primary" block>Add user</Button>
           </FormGroup>
         </Form>
+        {
+          this.state.loading
+            ? <Loading />
+            : <ul className="text-danger">
+                {
+                  this.state.validation.map(function(item, index) {
+                    return (<li key={index}>{item}</li>)
+                  })
+                }
+              </ul>
+        }
       </Jumbotron>
     );
   }
