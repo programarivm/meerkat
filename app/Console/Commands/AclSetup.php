@@ -38,7 +38,9 @@ class AclSetup extends Command
      */
     public function handle()
     {
-        return file_put_contents(storage_path().'/ability-rules.json', $this->abilities());
+        $this->storeInDatabase();
+
+        file_put_contents(storage_path().'/ability-rules.json', $this->caslAbilityRules());
     }
 
     private function storeInDatabase()
@@ -51,16 +53,14 @@ class AclSetup extends Command
                 ]);
             }
         }
-
-        return $this;
     }
 
     /**
-     * Defines CASL abilities.
+     * CASL abilities.
      *
      * @link https://stalniy.github.io/casl/abilities/2017/07/20/define-abilities.html
      */
-    private function abilities()
+    private function caslAbilityRules()
     {
         $json = [];
         foreach (Acl::CHOICE_PERMISSIONS as $role => $resources) {
