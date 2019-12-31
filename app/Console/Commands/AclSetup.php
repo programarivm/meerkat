@@ -62,15 +62,15 @@ class AclSetup extends Command
      */
     private function caslAbilityRules()
     {
-        $json = [];
+        $rules = [];
         foreach (Acl::CHOICE_PERMISSIONS as $role => $resources) {
             foreach ($resources as $resource) {
                 $item = str_replace('Controller', '', $resource);
                 $exploded = explode('@', $item);
-                $json[$role][] = [$exploded[0] => $exploded[1]];
+                $rules[$role][] = [$exploded[0] => $exploded[1]];
             }
         }
 
-        return json_encode($json, JSON_PRETTY_PRINT);
+        return json_encode($rules, JSON_PRETTY_PRINT);
     }
 }
