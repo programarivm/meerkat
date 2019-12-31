@@ -1,0 +1,68 @@
+{
+    "ROLE_BASIC": [
+        {
+            "Restaurant": "index"
+        },
+        {
+            "Review": "store"
+        }
+    ],
+    "ROLE_EDITOR": [
+        {
+            "Restaurant": "index"
+        },
+        {
+            "Restaurant": "show"
+        },
+        {
+            "Restaurant": "update"
+        },
+        {
+            "Restaurant": "delete"
+        },
+        {
+            "Review": "delete"
+        },
+        {
+            "User": "index"
+        }
+    ],
+    "ROLE_ADMIN": [
+        {
+            "Restaurant": "index"
+        },
+        {
+            "Restaurant": "show"
+        },
+        {
+            "Restaurant": "store"
+        },
+        {
+            "Restaurant": "update"
+        },
+        {
+            "Restaurant": "delete"
+        },
+        {
+            "Review": "delete"
+        },
+        {
+            "User": "index"
+        },
+        {
+            "User": "show"
+        },
+        {
+            "User": "store"
+        },
+        {
+            "User": "update"
+        },
+        {
+            "User": "delete"
+        },
+        {
+            "User": "delete"
+        }
+    ]
+}

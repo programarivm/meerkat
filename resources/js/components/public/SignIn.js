@@ -1,9 +1,12 @@
+import ability from '../ability';
+import abilityRules from '../../../../storage/ability-rules.json';
 import ApiAuthActions from '../../actions/api/AuthActions.js';
 import ApiAuthStore from '../../stores/api/AuthStore.js';
 import {
   Button, Card, CardBody, CardFooter, CardHeader, Col, Container, Form, FormGroup, Input, Row
 } from 'reactstrap';
 import React from 'react';
+import Session from '../../Session.js';
 import './SignIn.css';
 
 class SignIn extends React.Component {
@@ -21,6 +24,9 @@ class SignIn extends React.Component {
 
   componentDidMount() {
     ApiAuthStore
+    .on("login.204", () => {
+      ability.update(abilityRules[Session.get().role]);
+    })
     .on("login.401", () => {
       this.setState({validation: 'The username and password that you entered did not match our records. Please try again.'});
     })

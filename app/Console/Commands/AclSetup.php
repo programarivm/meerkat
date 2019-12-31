@@ -38,6 +38,11 @@ class AclSetup extends Command
      */
     public function handle()
     {
+        return file_put_contents(storage_path().'/ability-rules.json', $this->abilities());
+    }
+
+    private function storeInDatabase()
+    {
         foreach (Acl::CHOICE_PERMISSIONS as $role => $resources) {
             foreach ($resources as $resource) {
                 $restaurant = Acl::create([
@@ -46,5 +51,26 @@ class AclSetup extends Command
                 ]);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * Defines CASL abilities.
+     *
+     * @link https://stalniy.github.io/casl/abilities/2017/07/20/define-abilities.html
+     */
+    private function abilities()
+    {
+        $json = [];
+        foreach (Acl::CHOICE_PERMISSIONS as $role => $resources) {
+            foreach ($resources as $resource) {
+                $item = str_replace('Controller', '', $resource);
+                $exploded = explode('@', $item);
+                $json[$role][] = [$exploded[0] => $exploded[1]];
+            }
+        }
+
+        return json_encode($json, JSON_PRETTY_PRINT);
     }
 }
