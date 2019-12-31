@@ -67,7 +67,7 @@ class AclSetup extends Command
             foreach ($resources as $resource) {
                 $item = str_replace('Controller', '', $resource);
                 $exploded = explode('@', $item);
-                $rules[$role][] = [$exploded[0] => $exploded[1]];
+                $rules[$role][] = [$exploded[1] => $exploded[0]];
             }
         }
 

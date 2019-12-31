@@ -1,68 +1,68 @@
 {
     "ROLE_BASIC": [
         {
-            "Restaurant": "index"
+            "index": "Restaurant"
         },
         {
-            "Review": "store"
+            "store": "Review"
         }
     ],
     "ROLE_EDITOR": [
         {
-            "Restaurant": "index"
+            "index": "Restaurant"
         },
         {
-            "Restaurant": "show"
+            "show": "Restaurant"
         },
         {
-            "Restaurant": "update"
+            "update": "Restaurant"
         },
         {
-            "Restaurant": "delete"
+            "delete": "Restaurant"
         },
         {
-            "Review": "delete"
+            "delete": "Review"
         },
         {
-            "User": "index"
+            "index": "User"
         }
     ],
     "ROLE_ADMIN": [
         {
-            "Restaurant": "index"
+            "index": "Restaurant"
         },
         {
-            "Restaurant": "show"
+            "show": "Restaurant"
         },
         {
-            "Restaurant": "store"
+            "store": "Restaurant"
         },
         {
-            "Restaurant": "update"
+            "update": "Restaurant"
         },
         {
-            "Restaurant": "delete"
+            "delete": "Restaurant"
         },
         {
-            "Review": "delete"
+            "delete": "Review"
         },
         {
-            "User": "index"
+            "index": "User"
         },
         {
-            "User": "show"
+            "show": "User"
         },
         {
-            "User": "store"
+            "store": "User"
         },
         {
-            "User": "update"
+            "update": "User"
         },
         {
-            "User": "delete"
+            "delete": "User"
         },
         {
-            "User": "delete"
+            "delete": "User"
         }
     ]
 }

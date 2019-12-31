@@ -1,4 +1,5 @@
 import { Button, ButtonGroup, Col, Row } from 'reactstrap';
+import Can from '../Can.js';
 import { LoremIpsum } from "./LoremIpsum.js";
 import { ReviewCreate } from "./review/Create.js";
 import { ReviewIndex } from "./review/Index.js";
@@ -24,16 +25,15 @@ class Reviews extends React.Component {
           <ReviewIndex />
         </Col>
         <Col md={3}>
-          {
-            Session.get().role === 'ROLE_BASIC'
-              ? <div>
-                  <ButtonGroup className="mt-3">
-                    <Button className="mb-4" color="primary" size="sm" onClick={ (e) => this.handleClickReviewNow(e) }>Review now!</Button>
-                  </ButtonGroup>
-                  <ReviewCreate />
-                </div>
-              : <LoremIpsum />
-          }
+          <Can I="store" a="Review">
+            <ButtonGroup className="mt-3">
+              <Button className="mb-4" color="primary" size="sm" onClick={ (e) => this.handleClickReviewNow(e) }>Review now!</Button>
+            </ButtonGroup>
+            <ReviewCreate />
+          </Can>
+          <Can not I="store" a="Review">
+            <LoremIpsum />
+          </Can>
         </Col>
       </Row>
     );
