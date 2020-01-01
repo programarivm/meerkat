@@ -7,6 +7,7 @@ import {
 } from 'reactstrap';
 import React from 'react';
 import Session from '../../Session.js';
+import Validation from '../Validation.js';
 import './SignIn.css';
 
 class SignIn extends React.Component {
@@ -17,7 +18,7 @@ class SignIn extends React.Component {
           email: '',
           password: ''
         },
-        validation: null
+        validation: []
     }
     this.handleLogin = this.handleLogin.bind(this);
   }
@@ -28,10 +29,10 @@ class SignIn extends React.Component {
       ability.update(abilityRules[Session.get().role]);
     })
     .on("login.401", () => {
-      this.setState({validation: 'The username and password that you entered did not match our records. Please try again.'});
+      this.setState({ validation: ['The username and password that you entered did not match our records. Please try again.'] });
     })
     .on("login.error", () => {
-      this.setState({validation: 'Whoops! Something went wrong, please try again.'});
+      this.setState({ validation: ['Whoops! Something went wrong, please try again.'] });
     });
   }
 
@@ -58,7 +59,7 @@ class SignIn extends React.Component {
               </CardHeader>
               <CardBody className="d-flex justify-content-center">
                 <Form className="form" onSubmit={ (e) => this.handleLogin(e) }>
-                  { this.state.validation !== null ? <p className="text-danger">{this.state.validation}</p> : null }
+                  <Validation messages={this.state.validation} />
                   <FormGroup>
                     <Input
                       type="email"

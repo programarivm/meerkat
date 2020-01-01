@@ -4,6 +4,7 @@ import { Button, Form, FormGroup, Jumbotron } from 'reactstrap';
 import { FormGroups } from './common/FormGroups.js';
 import Loading from '../../Loading.js';
 import React from 'react';
+import Validation from '../../Validation.js';
 
 class RestaurantCreate extends React.Component {
   _isMounted = false;
@@ -77,17 +78,7 @@ class RestaurantCreate extends React.Component {
             <Button color="primary" block>Add restaurant</Button>
           </FormGroup>
         </Form>
-        {
-          this.state.loading
-            ? <Loading />
-            : <ul className="text-danger">
-                {
-                  this.state.validation.map(function(item, index) {
-                    return (<li key={index}>{item}</li>)
-                  })
-                }
-              </ul>
-        }
+        { this.state.loading ? <Loading /> : <Validation messages={this.state.validation} /> }
       </Jumbotron>
     );
   }

@@ -8,6 +8,7 @@ import {
 import { Range } from 'react-range';
 import React from 'react';
 import ReviewStore from '../../../stores/ReviewStore.js';
+import Validation from '../../Validation.js';
 
 class ReviewCreate extends React.Component {
   _isMounted = false;
@@ -110,13 +111,7 @@ class ReviewCreate extends React.Component {
     return (
       <Modal isOpen={this.state.modal.open}>
         <ModalBody>
-          <ul className="text-danger">
-            {
-              this.state.validation.map(function(item, index) {
-                return (<li key={index}>{item}</li>)
-              })
-            }
-          </ul>
+          <Validation messages={this.state.validation} /> 
           <Form className="form" onSubmit={ (e) => this.handleClickSubmit(e) }>
             <FormGroup>
               <Label for="restaurant">Select a restaurant:</Label>
