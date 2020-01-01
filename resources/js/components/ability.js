@@ -1,3 +1,8 @@
 import { Ability } from '@casl/ability';
+import abilityRules from '../../../storage/ability-rules.json';
 
-export default new Ability([]);
+let ability = new Ability();
+
+ability.update(abilityRules['ROLE_BASIC']);
+
+export default ability;

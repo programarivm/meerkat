@@ -1,12 +1,12 @@
 import ApiReviewActions from '../../../actions/api/ReviewActions.js';
 import ApiReviewStore from '../../../stores/api/ReviewStore.js';
 import { Button, ButtonGroup, Container } from 'reactstrap';
+import Can from '../../Can.js';
 import Loading from '../../Loading.js';
 import { LoremIpsum } from "../LoremIpsum.js";
 import React from 'react';
 import ReactTable from 'react-table';
 import { ReviewCreate } from './Create.js';
-import Session from '../../../Session.js';
 
 class ReviewIndex extends React.Component {
   _isMounted = false;
@@ -98,11 +98,22 @@ class ReviewIndex extends React.Component {
         {
           this.state.reviews.length === 0
             ? <Loading />
-            : <ReactTable
-                data={data}
-                columns={Session.get().role || Session.get().role === 'ROLE_EDITOR' ? roleEditorColumns : columns}
-                minRows={0}
-              />
+            : <div>
+                <Can I="store" a="Review">
+                  <ReactTable
+                    data={data}
+                    columns={columns}
+                    minRows={0}
+                  />
+                </Can>
+                <Can I="delete" a="Review">
+                  <ReactTable
+                    data={data}
+                    columns={roleEditorColumns}
+                    minRows={0}
+                  />
+                </Can>
+              </div>
         }
       </Container>
     );
