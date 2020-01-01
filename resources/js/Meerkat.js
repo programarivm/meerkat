@@ -1,4 +1,4 @@
-import ability from './components/ability';
+import ability from './ability';
 import abilityRules from '../../storage/ability-rules.json';
 import ApiAuthStore from './stores/api/AuthStore.js';
 import PrivateApp from './components/private/App.js';
@@ -21,7 +21,7 @@ class Meerkat extends Component {
     .on("logout.204", () => {
       this.setState(Session.get());
     });
-    
+
     if (Session.get()) {
       ability.update(abilityRules[Session.get().role]);
     }

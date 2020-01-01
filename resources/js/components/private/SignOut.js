@@ -1,4 +1,4 @@
-import ability from '../ability';
+import ability from '../../ability';
 import ApiAuthActions from '../../actions/api/AuthActions.js';
 import ApiAuthStore from '../../stores/api/AuthStore.js';
 import { Container } from 'reactstrap';
