@@ -1,7 +1,7 @@
 import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
 import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
 import { Button, Form, FormGroup, Jumbotron } from 'reactstrap';
-import { FormGroups } from './common/FormGroups.js';
+import { FormGroups } from './FormGroups.js';
 import Loading from '../../Loading.js';
 import React from 'react';
 import Validation from '../../Validation.js';

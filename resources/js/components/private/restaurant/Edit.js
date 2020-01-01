@@ -3,7 +3,7 @@ import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
 import {
   Button, Form, FormGroup, Modal, ModalBody, ModalHeader, ModalFooter
 } from 'reactstrap';
-import { FormGroups } from './common/FormGroups.js';
+import { FormGroups } from './FormGroups.js';
 import React from 'react';
 import Validation from '../../Validation.js';
 

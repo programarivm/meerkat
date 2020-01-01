@@ -1,7 +1,7 @@
 import ApiUserActions from '../../../actions/api/UserActions.js';
 import ApiUserStore from '../../../stores/api/UserStore.js';
 import { Button, Form, FormGroup, Input, Modal, ModalBody, ModalFooter } from 'reactstrap';
-import { FormGroups } from './common/FormGroups.js';
+import { FormGroups } from './FormGroups.js';
 import React from 'react';
 import Validation from '../../Validation.js';
 
