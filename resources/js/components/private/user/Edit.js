@@ -2,6 +2,7 @@ import ApiUserActions from '../../../actions/api/UserActions.js';
 import ApiUserStore from '../../../stores/api/UserStore.js';
 import { Button, Form, FormGroup, Input, Modal, ModalBody, ModalFooter } from 'reactstrap';
 import { FormGroups } from './FormGroups.js';
+import Loading from '../../Loading.js';
 import React from 'react';
 import Validation from '../../Validation.js';
 
@@ -45,12 +46,12 @@ class UserEdit extends React.Component {
       })
       .on("update.422", (data) => {
         if (this._isMounted) {
-          this.setState({ validation: data });
+          this.setState({ validation: data, loading: false });
         }
       })
       .on("update.error", () => {
         if (this._isMounted) {
-          this.setState({ validation: data });
+          this.setState({ validation: data, loading: false });
         }
       });
   }
@@ -71,7 +72,8 @@ class UserEdit extends React.Component {
     modal: {
       open: false
     },
-    validation: []
+    validation: [],
+    loading: false
   });
 
   resetState = () => {
@@ -90,6 +92,7 @@ class UserEdit extends React.Component {
   }
 
   handleClickUpdate(e) {
+    this.setState({ loading: true });
     ApiUserActions.update(this.state.id, this.state.user);
     e.preventDefault();
   }
@@ -98,10 +101,12 @@ class UserEdit extends React.Component {
     return (
       <Modal isOpen={this.state.modal.open}>
         <ModalBody>
-          <Validation messages={this.state.validation} />
           <Form className="form">
             <FormGroups {...this.state.user} handleChange={this.handleChange} />
           </Form>
+          <Loading loading={this.state.loading}>
+            <Validation messages={this.state.validation} />
+          </Loading>
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={ (e) => this.handleClickUpdate(e) }>Update</Button>
