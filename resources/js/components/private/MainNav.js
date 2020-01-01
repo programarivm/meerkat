@@ -51,7 +51,7 @@ class MainNav extends React.Component {
               <NavItem>
                 <NavLink tag={RouterNavLink} to="/reviews" activeClassName="active">Reviews</NavLink>
               </NavItem>
-              <Can I="update" a="User">
+              <Can I="index" a="User">
                 <NavItem>
                   <NavLink tag={RouterNavLink} to="/users" activeClassName="active">Users</NavLink>
                 </NavItem>
