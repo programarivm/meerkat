@@ -1,11 +1,10 @@
 import { Button, ButtonGroup, Col, Row } from 'reactstrap';
 import Can from '../Can.js';
 import { LoremIpsum } from "./LoremIpsum.js";
-import { ReviewCreate } from "./review/Create.js";
-import { ReviewIndex } from "./review/Index.js";
 import React from 'react';
 import ReviewActions from '../../actions/ReviewActions.js';
-import Session from '../../Session.js';
+import { ReviewCreate } from "./review/Create.js";
+import { ReviewIndex } from "./review/Index.js";
 
 class Reviews extends React.Component {
   constructor(props) {

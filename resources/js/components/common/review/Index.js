@@ -99,17 +99,17 @@ class ReviewIndex extends React.Component {
           this.state.reviews.length === 0
             ? <Loading />
             : <div>
-                <Can I="store" a="Review">
-                  <ReactTable
-                    data={data}
-                    columns={columns}
-                    minRows={0}
-                  />
-                </Can>
                 <Can I="delete" a="Review">
                   <ReactTable
                     data={data}
                     columns={roleEditorColumns}
+                    minRows={0}
+                  />
+                </Can>
+                <Can not I="delete" a="Review">
+                  <ReactTable
+                    data={data}
+                    columns={columns}
                     minRows={0}
                   />
                 </Can>
