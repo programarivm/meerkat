@@ -1,68 +1,88 @@
 {
     "ROLE_BASIC": [
         {
-            "index": "Restaurant"
+            "action": "index",
+            "subject": "Restaurant"
         },
         {
-            "store": "Review"
+            "action": "store",
+            "subject": "Review"
         }
     ],
     "ROLE_EDITOR": [
         {
-            "index": "Restaurant"
+            "action": "index",
+            "subject": "Restaurant"
         },
         {
-            "show": "Restaurant"
+            "action": "show",
+            "subject": "Restaurant"
         },
         {
-            "update": "Restaurant"
+            "action": "update",
+            "subject": "Restaurant"
         },
         {
-            "delete": "Restaurant"
+            "action": "delete",
+            "subject": "Restaurant"
         },
         {
-            "delete": "Review"
+            "action": "delete",
+            "subject": "Review"
         },
         {
-            "index": "User"
+            "action": "index",
+            "subject": "User"
         }
     ],
     "ROLE_ADMIN": [
         {
-            "index": "Restaurant"
+            "action": "index",
+            "subject": "Restaurant"
         },
         {
-            "show": "Restaurant"
+            "action": "show",
+            "subject": "Restaurant"
         },
         {
-            "store": "Restaurant"
+            "action": "store",
+            "subject": "Restaurant"
         },
         {
-            "update": "Restaurant"
+            "action": "update",
+            "subject": "Restaurant"
         },
         {
-            "delete": "Restaurant"
+            "action": "delete",
+            "subject": "Restaurant"
         },
         {
-            "delete": "Review"
+            "action": "delete",
+            "subject": "Review"
         },
         {
-            "index": "User"
+            "action": "index",
+            "subject": "User"
         },
         {
-            "show": "User"
+            "action": "show",
+            "subject": "User"
         },
         {
-            "store": "User"
+            "action": "store",
+            "subject": "User"
         },
         {
-            "update": "User"
+            "action": "update",
+            "subject": "User"
         },
         {
-            "delete": "User"
+            "action": "delete",
+            "subject": "User"
         },
         {
-            "delete": "User"
+            "action": "delete",
+            "subject": "User"
         }
     ]
 }
