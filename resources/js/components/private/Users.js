@@ -1,9 +1,9 @@
+import Can from '../Can.js';
 import { Col, Row } from 'reactstrap';
 import { LoremIpsum } from "../common/LoremIpsum.js";
 import { UserCreate } from "./user/Create.js";
 import { UserIndex } from "./user/Index.js";
 import React from 'react';
-import Session from '../../Session.js';
 
 class Users extends React.Component {
   render() {
@@ -13,7 +13,12 @@ class Users extends React.Component {
           <UserIndex />
         </Col>
         <Col md={3}>
-          { Session.get().role === 'ROLE_ADMIN' ? <UserCreate /> : <LoremIpsum /> }
+          <Can I="store" a="User">
+            <UserCreate />
+          </Can>
+          <Can not I="store" a="User">
+            <LoremIpsum />
+          </Can>
         </Col>
       </Row>
     );
