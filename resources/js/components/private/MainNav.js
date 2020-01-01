@@ -1,3 +1,4 @@
+import Can from '../Can.js';
 import {
   Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar,
   NavbarToggler, NavbarBrand, NavItem, NavLink, UncontrolledDropdown } from 'reactstrap';
@@ -5,7 +6,6 @@ import { Link, NavLink as RouterNavLink, Route } from 'react-router-dom';
 import React from 'react';
 import { Restaurants } from "./Restaurants.js";
 import { Reviews } from "../common/Reviews.js";
-import Session from '../../Session.js';
 import { SignOut } from "./SignOut.js";
 import { Users } from "./Users.js";
 import logo from '../../../images/logo.png';
@@ -51,20 +51,16 @@ class MainNav extends React.Component {
               <NavItem>
                 <NavLink tag={RouterNavLink} to="/reviews" activeClassName="active">Reviews</NavLink>
               </NavItem>
-              {
-                Session.get().role !== 'ROLE_BASIC'
-                  ? <NavItem>
-                      <NavLink tag={RouterNavLink} to="/users" activeClassName="active">Users</NavLink>
-                    </NavItem>
-                  : null
-              }
-              {
-                Session.get().role !== 'ROLE_BASIC'
-                  ? <NavItem>
-                      <NavLink tag={RouterNavLink} to="/restaurants" activeClassName="active">Restaurants</NavLink>
-                    </NavItem>
-                  : null
-              }
+              <Can I="update" a="User">
+                <NavItem>
+                  <NavLink tag={RouterNavLink} to="/users" activeClassName="active">Users</NavLink>
+                </NavItem>
+              </Can>
+              <Can I="update" a="Restaurant">
+                <NavItem>
+                  <NavLink tag={RouterNavLink} to="/restaurants" activeClassName="active">Restaurants</NavLink>
+                </NavItem>
+              </Can>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   My account
