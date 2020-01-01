@@ -89,7 +89,9 @@ class UserCreate extends React.Component {
             <Button color="primary" block>Add user</Button>
           </FormGroup>
         </Form>
-        { this.state.loading ? <Loading /> : <Validation messages={this.state.validation} /> }
+        <Loading loading={this.state.loading}>
+          <Validation messages={this.state.validation} />
+        </Loading>
       </Jumbotron>
     );
   }

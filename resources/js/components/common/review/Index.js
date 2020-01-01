@@ -14,7 +14,8 @@ class ReviewIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: []
+      reviews: [],
+      loading: true
     };
     this.handleClickDelete = this.handleClickDelete.bind(this);
   }
@@ -25,7 +26,7 @@ class ReviewIndex extends React.Component {
     ApiReviewStore
       .on("fetch_all.200", (data) => {
         if (this._isMounted) {
-          this.setState({reviews: data});
+          this.setState({ reviews: data, loading: false });
         }
       })
       .on("delete.204", () => {
@@ -95,26 +96,22 @@ class ReviewIndex extends React.Component {
 
     return (
       <Container className="m-3">
-        {
-          this.state.reviews.length === 0
-            ? <Loading />
-            : <div>
-                <Can I="delete" a="Review">
-                  <ReactTable
-                    data={data}
-                    columns={roleEditorColumns}
-                    minRows={0}
-                  />
-                </Can>
-                <Can not I="delete" a="Review">
-                  <ReactTable
-                    data={data}
-                    columns={columns}
-                    minRows={0}
-                  />
-                </Can>
-              </div>
-        }
+        <Loading loading={this.state.loading}>
+          <Can I="delete" a="Review">
+            <ReactTable
+              data={data}
+              columns={roleEditorColumns}
+              minRows={0}
+            />
+          </Can>
+          <Can not I="delete" a="Review">
+            <ReactTable
+              data={data}
+              columns={columns}
+              minRows={0}
+            />
+          </Can>
+        </Loading>
       </Container>
     );
   }

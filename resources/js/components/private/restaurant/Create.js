@@ -78,7 +78,9 @@ class RestaurantCreate extends React.Component {
             <Button color="primary" block>Add restaurant</Button>
           </FormGroup>
         </Form>
-        { this.state.loading ? <Loading /> : <Validation messages={this.state.validation} /> }
+        <Loading loading={this.state.loading}>
+          <Validation messages={this.state.validation} />
+        </Loading>
       </Jumbotron>
     );
   }

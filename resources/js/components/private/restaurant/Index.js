@@ -12,7 +12,8 @@ class RestaurantIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurants: []
+      restaurants: [],
+      loading: true
     };
     this.handleClickDelete = this.handleClickDelete.bind(this);
     this.handleClickEdit = this.handleClickEdit.bind(this);
@@ -24,7 +25,7 @@ class RestaurantIndex extends React.Component {
     ApiRestaurantStore
       .on("fetch_all.200", (data) => {
         if (this._isMounted) {
-          this.setState({ restaurants: data });
+          this.setState({ restaurants: data, loading: false });
         }
       })
       .on("create.201", () => {
@@ -94,15 +95,13 @@ class RestaurantIndex extends React.Component {
 
     return (
       <Container className="m-3">
-        {
-          this.state.restaurants.length === 0
-            ? <Loading />
-            : <ReactTable
-                data={data}
-                columns={columns}
-                minRows={0}
-              />
-        }
+        <Loading loading={this.state.loading}>
+          <ReactTable
+            data={data}
+            columns={columns}
+            minRows={0}
+          />
+        </Loading>
         <RestaurantEdit />
       </Container>
     );

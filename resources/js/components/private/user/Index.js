@@ -13,7 +13,8 @@ class UserIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: []
+      users: [],
+      loading: true
     };
     this.handleClickDelete = this.handleClickDelete.bind(this);
     this.handleClickEdit = this.handleClickEdit.bind(this);
@@ -25,7 +26,7 @@ class UserIndex extends React.Component {
     ApiUserStore
       .on("fetch_all.200", (data) => {
         if (this._isMounted) {
-          this.setState({ users: data });
+          this.setState({ users: data, loading: false });
         }
       })
       .on("create.201", () => {
@@ -101,26 +102,24 @@ class UserIndex extends React.Component {
 
     return (
       <Container className="m-3">
-        {
-          this.state.users.length === 0
-            ? <Loading />
-            : <div>
-                <Can I="store" a="User">
-                  <ReactTable
-                    data={data}
-                    columns={roleAdminColumns}
-                    minRows={0}
-                  />
-                </Can>
-                <Can not I="store" a="User">
-                  <ReactTable
-                    data={data}
-                    columns={columns}
-                    minRows={0}
-                  />
-                </Can>
-              </div>
-        }
+        <Loading loading={this.state.loading}>
+          <div>
+            <Can I="store" a="User">
+              <ReactTable
+                data={data}
+                columns={roleAdminColumns}
+                minRows={0}
+              />
+            </Can>
+            <Can not I="store" a="User">
+              <ReactTable
+                data={data}
+                columns={columns}
+                minRows={0}
+              />
+            </Can>
+          </div>
+        </Loading>
         <UserEdit />
       </Container>
     );
