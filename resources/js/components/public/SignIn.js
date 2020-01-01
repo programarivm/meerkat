@@ -5,6 +5,7 @@ import ApiAuthStore from '../../stores/api/AuthStore.js';
 import {
   Button, Card, CardBody, CardFooter, CardHeader, Col, Container, Form, FormGroup, Input, Row
 } from 'reactstrap';
+import Loading from '../Loading.js';
 import React from 'react';
 import Session from '../../Session.js';
 import Validation from '../Validation.js';
@@ -18,7 +19,8 @@ class SignIn extends React.Component {
           email: '',
           password: ''
         },
-        validation: []
+        validation: [],
+        loading: false
     }
     this.handleLogin = this.handleLogin.bind(this);
   }
@@ -29,10 +31,16 @@ class SignIn extends React.Component {
       ability.update(abilityRules[Session.get().role]);
     })
     .on("login.401", () => {
-      this.setState({ validation: ['The username and password that you entered did not match our records. Please try again.'] });
+      this.setState({
+        validation: ['The username and password that you entered did not match our records. Please try again.'],
+        loading: false
+      });
     })
     .on("login.error", () => {
-      this.setState({ validation: ['Whoops! Something went wrong, please try again.'] });
+      this.setState({
+        validation: ['Whoops! Something went wrong, please try again.'],
+        loading: false
+      });
     });
   }
 
@@ -43,6 +51,7 @@ class SignIn extends React.Component {
   }
 
   handleLogin(e) {
+    this.setState({ loading: true });
     ApiAuthActions.login(this.state.credentials);
     e.preventDefault();
   }
@@ -59,7 +68,9 @@ class SignIn extends React.Component {
               </CardHeader>
               <CardBody className="d-flex justify-content-center">
                 <Form className="form" onSubmit={ (e) => this.handleLogin(e) }>
-                  <Validation messages={this.state.validation} />
+                  <Loading loading={this.state.loading}>
+                    <Validation messages={this.state.validation} />
+                  </Loading>
                   <FormGroup>
                     <Input
                       type="email"
