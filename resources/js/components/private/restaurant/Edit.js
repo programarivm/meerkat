@@ -4,6 +4,7 @@ import {
   Button, Form, FormGroup, Modal, ModalBody, ModalHeader, ModalFooter
 } from 'reactstrap';
 import { FormGroups } from './FormGroups.js';
+import Loading from '../../Loading.js';
 import React from 'react';
 import Validation from '../../Validation.js';
 
@@ -46,12 +47,12 @@ class RestaurantEdit extends React.Component {
       })
       .on("update.422", (data) => {
         if (this._isMounted) {
-          this.setState({ validation: data });
+          this.setState({ validation: data, loading: false });
         }
       })
       .on("update.error", () => {
         if (this._isMounted) {
-          this.setState({ validation: data });
+          this.setState({ validation: data, loading: false });
         }
       });
   }
@@ -71,7 +72,8 @@ class RestaurantEdit extends React.Component {
     modal: {
       open: false
     },
-    validation: []
+    validation: [],
+    loading: false
   });
 
   resetState = () => {
@@ -90,6 +92,7 @@ class RestaurantEdit extends React.Component {
   }
 
   handleClickUpdate(e) {
+    this.setState({ loading: true });
     ApiRestaurantActions.update(this.state.id, this.state.restaurant);
     e.preventDefault();
   }
@@ -98,10 +101,12 @@ class RestaurantEdit extends React.Component {
     return (
       <Modal isOpen={this.state.modal.open}>
         <ModalBody>
-          <Validation messages={this.state.validation} />
           <Form className="form">
             <FormGroups {...this.state.restaurant} handleChange={this.handleChange} />
           </Form>
+          <Loading loading={this.state.loading}>
+            <Validation messages={this.state.validation} />
+          </Loading>
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={ (e) => this.handleClickUpdate(e) }>Update</Button>

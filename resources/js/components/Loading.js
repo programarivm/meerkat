@@ -14,7 +14,7 @@ class Loading extends Component {
         </div>
       );
     } else {
-      return this.props.children
+      return this.props.children;
     }
   }
 }
