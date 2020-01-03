@@ -6,10 +6,9 @@ export default class Session {
 	static get() {
 		if (Cookies.get(name)) {
 	    return JSON.parse(Cookies.get(name));
-	  } else {
-			return {
-				role: null
-			}
-		}
+	  }
+		return {
+			role: null
+		};
 	}
 }
