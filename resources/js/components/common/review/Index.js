@@ -6,7 +6,6 @@ import Loading from '../../Loading.js';
 import { LoremIpsum } from "../LoremIpsum.js";
 import React from 'react';
 import ReactTable from 'react-table';
-import { ReviewCreate } from './Create.js';
 
 class ReviewIndex extends React.Component {
   _isMounted = false;
