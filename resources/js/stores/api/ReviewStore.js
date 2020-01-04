@@ -1,4 +1,4 @@
-import ApiReviewActionTypes from '../../constants/api/ReviewActionTypes';
+import ApiCrudActionTypes from '../../constants/api/CrudActionTypes';
 import ApiReviewDispatcher from "../../dispatcher/api/ReviewDispatcher.js";
 import AbstractCrudStore from "./AbstractCrudStore.js";
 
@@ -11,13 +11,13 @@ class ReviewStore extends AbstractCrudStore {
 
 	handleActions(action) {
 		switch (action.type) {
-			case ApiReviewActionTypes.CREATE:
+			case ApiCrudActionTypes.CREATE:
 				this.create(action.review);
 				break;
-			case ApiReviewActionTypes.DELETE:
+			case ApiCrudActionTypes.DELETE:
 				this.delete(action.id);
 				break;
-			case ApiReviewActionTypes.FETCH_ALL:
+			case ApiCrudActionTypes.FETCH_ALL:
 				this.fetchAll();
 				break;
 			default:

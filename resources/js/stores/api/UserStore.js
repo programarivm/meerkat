@@ -1,4 +1,4 @@
-import ApiUserActionTypes from '../../constants/api/UserActionTypes';
+import ApiCrudActionTypes from '../../constants/api/CrudActionTypes';
 import ApiUserDispatcher from "../../dispatcher/api/UserDispatcher.js";
 import AbstractCrudStore from "./AbstractCrudStore.js";
 
@@ -11,19 +11,19 @@ class UserStore extends AbstractCrudStore {
 
 	handleActions(action) {
 		switch (action.type) {
-			case ApiUserActionTypes.CREATE:
+			case ApiCrudActionTypes.CREATE:
 				this.create(action.user);
 				break;
-			case ApiUserActionTypes.DELETE:
+			case ApiCrudActionTypes.DELETE:
 				this.delete(action.id);
 				break;
-			case ApiUserActionTypes.FETCH_ALL:
+			case ApiCrudActionTypes.FETCH_ALL:
 				this.fetchAll();
 				break;
-			case ApiUserActionTypes.SHOW:
+			case ApiCrudActionTypes.SHOW:
 				this.show(action.id);
 				break;
-			case ApiUserActionTypes.UPDATE:
+			case ApiCrudActionTypes.UPDATE:
 				this.update(action.id, action.user);
 				break;
 			default:

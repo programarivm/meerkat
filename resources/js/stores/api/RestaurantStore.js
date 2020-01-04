@@ -1,4 +1,4 @@
-import ApiRestaurantActionTypes from '../../constants/api/RestaurantActionTypes';
+import ApiCrudActionTypes from '../../constants/api/CrudActionTypes';
 import ApiRestaurantDispatcher from "../../dispatcher/api/RestaurantDispatcher.js";
 import AbstractCrudStore from "./AbstractCrudStore.js";
 
@@ -11,19 +11,19 @@ class RestaurantStore extends AbstractCrudStore {
 
 	handleActions(action) {
 		switch (action.type) {
-			case ApiRestaurantActionTypes.CREATE:
+			case ApiCrudActionTypes.CREATE:
 				this.create(action.restaurant);
 				break;
-			case ApiRestaurantActionTypes.DELETE:
+			case ApiCrudActionTypes.DELETE:
 				this.delete(action.id);
 				break;
-			case ApiRestaurantActionTypes.FETCH_ALL:
+			case ApiCrudActionTypes.FETCH_ALL:
 				this.fetchAll();
 				break;
-			case ApiRestaurantActionTypes.SHOW:
+			case ApiCrudActionTypes.SHOW:
 				this.show(action.id);
 				break;
-			case ApiRestaurantActionTypes.UPDATE:
+			case ApiCrudActionTypes.UPDATE:
 				this.update(action.id, action.restaurant);
 				break;
 			default:

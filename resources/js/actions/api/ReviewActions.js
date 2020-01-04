@@ -1,24 +1,24 @@
-import ApiReviewActionTypes from '../../constants/api/ReviewActionTypes';
+import ApiCrudActionTypes from '../../constants/api/CrudActionTypes';
 import ApiReviewDispatcher from "../../dispatcher/api/ReviewDispatcher.js";
 
 class ReviewActions {
 	create(data) {
 		ApiReviewDispatcher.dispatch({
-			type: ApiReviewActionTypes.CREATE,
+			type: ApiCrudActionTypes.CREATE,
 			review: data
 		});
 	}
 
 	delete(id) {
 		ApiReviewDispatcher.dispatch({
-			type: ApiReviewActionTypes.DELETE,
+			type: ApiCrudActionTypes.DELETE,
 			id: id
 		});
 	}
 
 	fetchAll() {
 		ApiReviewDispatcher.dispatch({
-			type: ApiReviewActionTypes.FETCH_ALL
+			type: ApiCrudActionTypes.FETCH_ALL
 		});
 	}
 }
