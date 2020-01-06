@@ -1,10 +1,10 @@
 import ability from './ability';
 import abilityRules from '../../storage/ability-rules.json';
-import ApiAuthStore from './stores/api/AuthStore.js';
-import PrivateApp from './components/private/App.js';
-import PublicApp from './components/public/App.js';
+import ApiAuthStore from './stores/api/AuthStore';
+import PrivateApp from './components/private/App';
+import PublicApp from './components/public/App';
 import React, { Component } from 'react';
-import Session from './Session.js';
+import Session from './Session';
 import './Meerkat.css';
 
 class Meerkat extends Component {

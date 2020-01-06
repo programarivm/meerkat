@@ -1,5 +1,5 @@
 import ApiAuthActionTypes from '../../constants/api/AuthActionTypes';
-import ApiAuthDispatcher from "../../dispatcher/api/AuthDispatcher.js";
+import ApiAuthDispatcher from '../../dispatcher/api/AuthDispatcher';
 
 class AuthActions {
 	login(data) {

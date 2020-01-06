@@ -1,6 +1,6 @@
 import ability from '../../ability';
-import ApiAuthActions from '../../actions/api/AuthActions.js';
-import ApiAuthStore from '../../stores/api/AuthStore.js';
+import ApiAuthActions from '../../actions/api/AuthActions';
+import ApiAuthStore from '../../stores/api/AuthStore';
 import { Container } from 'reactstrap';
 import React from 'react';
 

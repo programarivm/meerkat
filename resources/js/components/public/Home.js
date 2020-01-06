@@ -1,6 +1,6 @@
 import { Col, Container, Row } from 'reactstrap';
-import { Footer } from "./Footer.js";
-import { Link } from "react-router-dom";
+import { Footer } from './Footer';
+import { Link } from 'react-router-dom';
 import React from 'react';
 import api from '../../../images/api.png';
 import './Home.css';

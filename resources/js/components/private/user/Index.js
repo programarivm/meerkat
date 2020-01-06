@@ -1,11 +1,11 @@
-import ApiUserActions from '../../../actions/api/UserActions.js';
-import ApiUserStore from '../../../stores/api/UserStore.js';
+import ApiUserActions from '../../../actions/api/UserActions';
+import ApiUserStore from '../../../stores/api/UserStore';
 import { Button, ButtonGroup, Container } from 'reactstrap';
-import Can from '../../Can.js';
-import Loading from '../../Loading.js';
+import Can from '../../Can';
+import Loading from '../../Loading';
 import React from 'react';
 import ReactTable from 'react-table';
-import { UserEdit } from './Edit.js';
+import { UserEdit } from './Edit';
 
 class UserIndex extends React.Component {
   _isMounted = false;

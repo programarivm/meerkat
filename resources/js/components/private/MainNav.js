@@ -1,13 +1,13 @@
-import Can from '../Can.js';
+import Can from '../Can';
 import {
   Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar,
   NavbarToggler, NavbarBrand, NavItem, NavLink, UncontrolledDropdown } from 'reactstrap';
 import { Link, NavLink as RouterNavLink, Route } from 'react-router-dom';
 import React from 'react';
-import { Restaurants } from "./Restaurants.js";
-import { Reviews } from "../common/Reviews.js";
-import { SignOut } from "./SignOut.js";
-import { Users } from "./Users.js";
+import { Restaurants } from './Restaurants';
+import { Reviews } from '../common/Reviews';
+import { SignOut } from './SignOut';
+import { Users } from './Users';
 import logo from '../../../images/logo.png';
 import '../common/MainNav.css';
 

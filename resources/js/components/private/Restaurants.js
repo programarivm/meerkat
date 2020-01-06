@@ -1,8 +1,8 @@
-import Can from '../Can.js';
+import Can from '../Can';
 import { Col, Row } from 'reactstrap';
-import { LoremIpsum } from "../common/LoremIpsum.js";
-import { RestaurantCreate } from "./restaurant/Create.js";
-import { RestaurantIndex } from "./restaurant/Index.js";
+import { LoremIpsum } from '../common/LoremIpsum';
+import { RestaurantCreate } from './restaurant/Create';
+import { RestaurantIndex } from './restaurant/Index';
 import React from 'react';
 
 class Restaurants extends React.Component {

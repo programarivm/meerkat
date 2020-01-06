@@ -1,10 +1,10 @@
-import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
-import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
+import ApiRestaurantActions from '../../../actions/api/RestaurantActions';
+import ApiRestaurantStore from '../../../stores/api/RestaurantStore';
 import { Button, Form, FormGroup, Jumbotron } from 'reactstrap';
-import { FormGroups } from './FormGroups.js';
-import Loading from '../../Loading.js';
+import { FormGroups } from './FormGroups';
+import Loading from '../../Loading';
 import React from 'react';
-import Validation from '../../Validation.js';
+import Validation from '../../Validation';
 
 class RestaurantCreate extends React.Component {
   _isMounted = false;

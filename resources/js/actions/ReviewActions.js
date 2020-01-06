@@ -1,5 +1,5 @@
 import ReviewActionTypes from '../constants/ReviewActionTypes';
-import ReviewDispatcher from "../dispatcher/ReviewDispatcher.js";
+import ReviewDispatcher from '../dispatcher/ReviewDispatcher';
 
 class ReviewActions {
 	clickReviewNow() {

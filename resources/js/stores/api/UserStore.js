@@ -1,6 +1,6 @@
 import ApiCrudActionTypes from '../../constants/api/CrudActionTypes';
-import ApiUserDispatcher from "../../dispatcher/api/UserDispatcher.js";
-import AbstractCrudStore from "./AbstractCrudStore.js";
+import ApiUserDispatcher from '../../dispatcher/api/UserDispatcher';
+import AbstractCrudStore from './AbstractCrudStore';
 
 class UserStore extends AbstractCrudStore {
 	constructor() {

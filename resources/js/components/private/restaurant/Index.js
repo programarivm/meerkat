@@ -1,10 +1,10 @@
-import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
-import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
+import ApiRestaurantActions from '../../../actions/api/RestaurantActions';
+import ApiRestaurantStore from '../../../stores/api/RestaurantStore';
 import { Button, ButtonGroup, Container } from 'reactstrap';
-import Loading from '../../Loading.js';
+import Loading from '../../Loading';
 import React from 'react';
 import ReactTable from 'react-table'
-import { RestaurantEdit } from './Edit.js';
+import { RestaurantEdit } from './Edit';
 
 class RestaurantIndex extends React.Component {
   _isMounted = false;

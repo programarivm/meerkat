@@ -1,9 +1,9 @@
-import ApiReviewActions from '../../../actions/api/ReviewActions.js';
-import ApiReviewStore from '../../../stores/api/ReviewStore.js';
+import ApiReviewActions from '../../../actions/api/ReviewActions';
+import ApiReviewStore from '../../../stores/api/ReviewStore';
 import { Button, ButtonGroup, Container } from 'reactstrap';
-import Can from '../../Can.js';
-import Loading from '../../Loading.js';
-import { LoremIpsum } from "../LoremIpsum.js";
+import Can from '../../Can';
+import Loading from '../../Loading';
+import { LoremIpsum } from '../LoremIpsum';
 import React from 'react';
 import ReactTable from 'react-table';
 

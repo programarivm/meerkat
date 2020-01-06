@@ -1,8 +1,8 @@
-import Can from '../Can.js';
+import Can from '../Can';
 import { Col, Row } from 'reactstrap';
-import { LoremIpsum } from "../common/LoremIpsum.js";
-import { UserCreate } from "./user/Create.js";
-import { UserIndex } from "./user/Index.js";
+import { LoremIpsum } from '../common/LoremIpsum';
+import { UserCreate } from './user/Create';
+import { UserIndex } from './user/Index';
 import React from 'react';
 
 class Users extends React.Component {

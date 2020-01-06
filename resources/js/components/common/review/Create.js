@@ -1,14 +1,14 @@
-import ApiRestaurantActions from '../../../actions/api/RestaurantActions.js';
-import ApiRestaurantStore from '../../../stores/api/RestaurantStore.js';
-import ApiReviewActions from '../../../actions/api/ReviewActions.js';
-import ApiReviewStore from '../../../stores/api/ReviewStore.js';
+import ApiRestaurantActions from '../../../actions/api/RestaurantActions';
+import ApiRestaurantStore from '../../../stores/api/RestaurantStore';
+import ApiReviewActions from '../../../actions/api/ReviewActions';
+import ApiReviewStore from '../../../stores/api/ReviewStore';
 import {
   Button, ButtonGroup, Form, FormGroup, Input, Label, Modal, ModalBody
 } from 'reactstrap';
 import { Range } from 'react-range';
 import React from 'react';
-import ReviewStore from '../../../stores/ReviewStore.js';
-import Validation from '../../Validation.js';
+import ReviewStore from '../../../stores/ReviewStore';
+import Validation from '../../Validation';
 
 class ReviewCreate extends React.Component {
   _isMounted = false;
@@ -111,7 +111,7 @@ class ReviewCreate extends React.Component {
     return (
       <Modal isOpen={this.state.modal.open}>
         <ModalBody>
-          <Validation messages={this.state.validation} /> 
+          <Validation messages={this.state.validation} />
           <Form className="form" onSubmit={ (e) => this.handleClickSubmit(e) }>
             <FormGroup>
               <Label for="restaurant">Select a restaurant:</Label>

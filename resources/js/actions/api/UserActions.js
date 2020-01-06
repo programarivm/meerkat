@@ -1,5 +1,5 @@
 import ApiCrudActionTypes from '../../constants/api/CrudActionTypes';
-import ApiUserDispatcher from "../../dispatcher/api/UserDispatcher.js";
+import ApiUserDispatcher from '../../dispatcher/api/UserDispatcher';
 
 class UserActions {
 	create(data) {

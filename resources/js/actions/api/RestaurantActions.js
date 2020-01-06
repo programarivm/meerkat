@@ -1,5 +1,5 @@
 import ApiCrudActionTypes from '../../constants/api/CrudActionTypes';
-import ApiRestaurantDispatcher from "../../dispatcher/api/RestaurantDispatcher.js";
+import ApiRestaurantDispatcher from '../../dispatcher/api/RestaurantDispatcher';
 
 class RestaurantActions {
 	create(data) {

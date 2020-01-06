@@ -1,5 +1,5 @@
-import CookieConsent from "react-cookie-consent";
-import { MainNav } from "./MainNav.js";
+import CookieConsent from 'react-cookie-consent';
+import { MainNav } from './MainNav';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 

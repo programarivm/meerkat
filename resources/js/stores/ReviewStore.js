@@ -1,5 +1,5 @@
 import ReviewActionTypes from '../constants/ReviewActionTypes';
-import ReviewDispatcher from "../dispatcher/ReviewDispatcher.js";
+import ReviewDispatcher from '../dispatcher/ReviewDispatcher';
 import { EventEmitter } from 'events';
 
 class ReviewStore extends EventEmitter {

@@ -1,5 +1,5 @@
 import ApiCrudActionTypes from '../../constants/api/CrudActionTypes';
-import ApiReviewDispatcher from "../../dispatcher/api/ReviewDispatcher.js";
+import ApiReviewDispatcher from '../../dispatcher/api/ReviewDispatcher';
 
 class ReviewActions {
 	create(data) {

@@ -1,11 +1,11 @@
 import {
   Collapse, Nav, Navbar, NavbarToggler,
   NavbarBrand, NavItem } from 'reactstrap';
-import { Home } from "./Home.js";
+import { Home } from "./Home";
 import { Link, NavLink, Route, Redirect } from 'react-router-dom';
 import React from 'react';
-import { Reviews } from "../common/Reviews.js";
-import { SignIn } from "./SignIn.js";
+import { Reviews } from '../common/Reviews';
+import { SignIn } from './SignIn';
 import logo from '../../../images/logo.png';
 import '../common/MainNav.css';
 

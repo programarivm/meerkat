@@ -1,14 +1,14 @@
 import ability from '../../ability';
 import abilityRules from '../../../../storage/ability-rules.json';
-import ApiAuthActions from '../../actions/api/AuthActions.js';
-import ApiAuthStore from '../../stores/api/AuthStore.js';
+import ApiAuthActions from '../../actions/api/AuthActions';
+import ApiAuthStore from '../../stores/api/AuthStore';
 import {
   Button, Card, CardBody, CardFooter, CardHeader, Col, Container, Form, FormGroup, Input, Row
 } from 'reactstrap';
-import Loading from '../Loading.js';
+import Loading from '../Loading';
 import React from 'react';
-import Session from '../../Session.js';
-import Validation from '../Validation.js';
+import Session from '../../Session';
+import Validation from '../Validation';
 import './SignIn.css';
 
 class SignIn extends React.Component {

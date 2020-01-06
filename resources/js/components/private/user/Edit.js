@@ -1,10 +1,10 @@
-import ApiUserActions from '../../../actions/api/UserActions.js';
-import ApiUserStore from '../../../stores/api/UserStore.js';
-import { Button, Form, FormGroup, Input, Modal, ModalBody, ModalFooter } from 'reactstrap';
-import { FormGroups } from './FormGroups.js';
-import Loading from '../../Loading.js';
+import ApiUserActions from '../../../actions/api/UserActions';
+import ApiUserStore from '../../../stores/api/UserStore';
+import { Button, Form, Modal, ModalBody, ModalFooter } from 'reactstrap';
+import { FormGroups } from './FormGroups';
+import Loading from '../../Loading';
 import React from 'react';
-import Validation from '../../Validation.js';
+import Validation from '../../Validation';
 
 class UserEdit extends React.Component {
   _isMounted = false;
