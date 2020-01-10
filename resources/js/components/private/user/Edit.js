@@ -46,12 +46,12 @@ class UserEdit extends React.Component {
       })
       .on("update.422", (data) => {
         if (this._isMounted) {
-          this.setState({ validation: data, loading: false });
+          this.setState({ response: data, loading: false });
         }
       })
       .on("update.error", () => {
         if (this._isMounted) {
-          this.setState({ validation: data, loading: false });
+          this.setState({ response: data, loading: false });
         }
       });
   }
@@ -72,7 +72,7 @@ class UserEdit extends React.Component {
     modal: {
       open: false
     },
-    validation: [],
+    response: [],
     loading: false
   });
 
@@ -105,7 +105,7 @@ class UserEdit extends React.Component {
             <FormGroups {...this.state.user} handleChange={this.handleChange} />
           </Form>
           <Loading loading={this.state.loading}>
-            <Validation messages={this.state.validation} />
+            <Validation messages={this.state.response} />
           </Loading>
         </ModalBody>
         <ModalFooter>

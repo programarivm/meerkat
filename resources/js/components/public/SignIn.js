@@ -19,7 +19,7 @@ class SignIn extends React.Component {
           email: '',
           password: ''
         },
-        validation: [],
+        response: [],
         loading: false
     }
     this.handleLogin = this.handleLogin.bind(this);
@@ -32,13 +32,13 @@ class SignIn extends React.Component {
     })
     .on("login.401", () => {
       this.setState({
-        validation: ['The username and password that you entered did not match our records. Please try again.'],
+        response: ['The username and password that you entered did not match our records. Please try again.'],
         loading: false
       });
     })
     .on("login.error", () => {
       this.setState({
-        validation: ['Whoops! Something went wrong, please try again.'],
+        response: ['Whoops! Something went wrong, please try again.'],
         loading: false
       });
     });
@@ -69,7 +69,7 @@ class SignIn extends React.Component {
               <CardBody className="d-flex justify-content-center">
                 <Form className="form" onSubmit={ (e) => this.handleLogin(e) }>
                   <Loading loading={this.state.loading}>
-                    <Validation messages={this.state.validation} />
+                    <Validation messages={this.state.response} />
                   </Loading>
                   <FormGroup>
                     <Input

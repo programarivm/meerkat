@@ -27,12 +27,12 @@ class RestaurantCreate extends React.Component {
       })
       .on("create.422", (data) => {
         if (this._isMounted) {
-          this.setState({ validation: data, loading: false });
+          this.setState({ response: data, loading: false });
         }
       })
       .on("create.error", (data) => {
         if (this._isMounted) {
-          this.setState({ validation: data, loading: false });
+          this.setState({ response: data, loading: false });
         }
       });
   }
@@ -49,7 +49,7 @@ class RestaurantCreate extends React.Component {
       lat: '',
       lon: ''
     },
-    validation: [],
+    response: [],
     loading: false
   });
 
@@ -79,7 +79,7 @@ class RestaurantCreate extends React.Component {
           </FormGroup>
         </Form>
         <Loading loading={this.state.loading}>
-          <Validation messages={this.state.validation} />
+          <Validation messages={this.state.response} />
         </Loading>
       </Jumbotron>
     );

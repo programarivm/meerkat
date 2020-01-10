@@ -51,12 +51,12 @@ class ReviewCreate extends React.Component {
       })
       .on("create.422", (data) => {
         if (this._isMounted) {
-          this.setState({ validation: data });
+          this.setState({ response: data });
         }
       })
       .on("create.error", (data) => {
         if (this._isMounted) {
-          this.setState({ validation: data });
+          this.setState({ response: data });
         }
       });
   }
@@ -77,7 +77,7 @@ class ReviewCreate extends React.Component {
     modal: {
       open: false
     },
-    validation: []
+    response: []
   });
 
   resetState = () => {
@@ -111,7 +111,7 @@ class ReviewCreate extends React.Component {
     return (
       <Modal isOpen={this.state.modal.open}>
         <ModalBody>
-          <Validation messages={this.state.validation} />
+          <Validation messages={this.state.response} />
           <Form className="form" onSubmit={ (e) => this.handleClickSubmit(e) }>
             <FormGroup>
               <Label for="restaurant">Select a restaurant:</Label>
