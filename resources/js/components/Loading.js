@@ -13,9 +13,8 @@ class Loading extends Component {
           <img src={loading} alt="loading" />
         </div>
       );
-    } else {
-      return this.props.children;
     }
+    return this.props.children;
   }
 }
 
