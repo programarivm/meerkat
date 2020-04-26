@@ -5,7 +5,6 @@ import PrivateApp from './components/private/App';
 import PublicApp from './components/public/App';
 import React, { Component } from 'react';
 import Session from './Session';
-import './Meerkat.css';
 
 class Meerkat extends Component {
   constructor(props) {
