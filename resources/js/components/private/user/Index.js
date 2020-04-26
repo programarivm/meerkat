@@ -1,11 +1,32 @@
 import ApiUserActions from '../../../actions/api/UserActions';
 import ApiUserStore from '../../../stores/api/UserStore';
-import { Button, ButtonGroup, Container } from 'reactstrap';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import { IconButton } from '@material-ui/core';
 import Can from '../../Can';
 import Loading from '../../Loading';
 import React from 'react';
-import ReactTable from 'react-table';
 import { UserEdit } from './Edit';
+
+// MaterialTable
+import MaterialTable from "material-table";
+import { forwardRef } from 'react';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import Clear from '@material-ui/icons/Clear';
+import FirstPage from '@material-ui/icons/FirstPage';
+import LastPage from '@material-ui/icons/LastPage';
+import Search from '@material-ui/icons/Search';
+
+const tableIcons = {
+    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
+    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />)
+  };
 
 class UserIndex extends React.Component {
   _isMounted = false;
@@ -57,71 +78,80 @@ class UserIndex extends React.Component {
   }
 
   render() {
-    const data = this.state.users;
-
-    const columns = [
-      {
-        Header: 'Created at',
-        accessor: 'created_at'
-      },
-      {
-        Header: 'First name',
-        accessor: 'firstname'
-      },
-      {
-        Header: 'Surname',
-        accessor: 'surname'
-      },
-      {
-        Header: 'Date of birth',
-        accessor: 'date_of_birth'
-      },
-      {
-        Header: 'Phone number',
-        accessor: 'phone_number'
-      },
-      {
-        Header: 'Email',
-        accessor: 'email'
-      }
-    ];
-
-    const roleAdminColumns = [
-      ...columns,
-      {
-        Header: 'Actions',
-        accessor: 'actions',
-        Cell: ({ row }) => (
-          <ButtonGroup>
-            <Button outline color="primary" size="sm" onClick={ (e) => this.handleClickEdit(e,row._original.id) }>Edit</Button>
-            <Button outline color="primary" size="sm" onClick={ (e) => this.handleClickDelete(e,row._original.id) }>Delete</Button>
-          </ButtonGroup>
-        )
-      }
-    ];
-
     return (
-      <Container className="m-3">
+      <div style={{ maxWidth: "100%" }}>
         <Loading loading={this.state.loading}>
-          <div>
-            <Can I="store" a="User">
-              <ReactTable
-                data={data}
-                columns={roleAdminColumns}
-                minRows={0}
-              />
-            </Can>
-            <Can not I="store" a="User">
-              <ReactTable
-                data={data}
-                columns={columns}
-                minRows={0}
-              />
-            </Can>
-          </div>
+          <Can I="store" a="User">
+            <MaterialTable
+              icons={tableIcons}
+              columns={[
+                { field: "created_at" },
+                { field: "firstname" },
+                { field: "surname" },
+                {
+                  render: row =>  {
+                    let d = new Date(row.date_of_birth);
+                    return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
+                  }
+                },
+                { field: "phone_number" },
+                { field: "email" },
+                {
+                  render: row =>  <div>
+                    <IconButton
+                      aria-label="edit"
+                      color="secondary"
+                      onClick={ (e) => this.handleClickEdit(e, row.id) }
+                    >
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton
+                      aria-label="delete"
+                      color="secondary"
+                      onClick={ (e) => this.handleClickDelete(e, row.id) }
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </div>
+                }
+              ]}
+              data={this.state.users}
+              title={null}
+              options={{
+                headerStyle: { display: 'none' },
+                pageSize: 20,
+                pageSizeOptions: []
+              }}
+            />
+            <UserEdit />
+          </Can>
+          <Can not I="store" a="User">
+            <MaterialTable
+              icons={tableIcons}
+              columns={[
+                { field: "created_at" },
+                { field: "firstname" },
+                { field: "surname" },
+                {
+                  render: row =>  {
+                    let d = new Date(row.date_of_birth);
+                    return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
+                  }
+                },
+                { field: "phone_number" },
+                { field: "email" }
+              ]}
+              data={this.state.users}
+              title={null}
+              options={{
+                headerStyle: { display: 'none' },
+                pageSize: 20,
+                pageSizeOptions: []
+              }}
+            />
+          </Can>
         </Loading>
-        <UserEdit />
-      </Container>
+      </div>
     );
   }
 }
