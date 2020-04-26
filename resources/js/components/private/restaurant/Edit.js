@@ -1,10 +1,25 @@
 import ApiRestaurantActions from '../../../actions/api/RestaurantActions';
 import ApiRestaurantStore from '../../../stores/api/RestaurantStore';
-import { Button, Form, Modal, ModalBody, ModalFooter } from 'reactstrap';
+import { Backdrop, Button, ButtonGroup, Fade, Modal } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import { FormInputs } from './FormInputs';
 import Loading from '../../Loading';
 import React from 'react';
 import Validation from '../../Validation';
+
+const styles = theme => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+});
 
 class RestaurantEdit extends React.Component {
   _isMounted = false;
@@ -96,23 +111,38 @@ class RestaurantEdit extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
-      <Modal isOpen={this.state.modal.open}>
-        <ModalBody>
-          <Form className="form">
-            <FormInputs {...this.state.restaurant} handleChange={this.handleChange} />
-          </Form>
-          <Loading loading={this.state.loading}>
-            <Validation messages={this.state.response} />
-          </Loading>
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={ (e) => this.handleClickUpdate(e) }>Update</Button>
-          <Button color="secondary" onClick={ (e) => this.handleClickCancel(e) }>Cancel</Button>
-        </ModalFooter>
-      </Modal>
+      <div>
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          className={classes.modal}
+          open={this.state.modal.open}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={this.state.modal.open}>
+            <div className={classes.paper}>
+              <form onSubmit={ (e) => this.handleClickUpdate(e) }>
+                <FormInputs {...this.state.restaurant} handleChange={this.handleChange} />
+                <ButtonGroup>
+                  <Button type="submit" color="primary">Update</Button>
+                  <Button color="secondary" onClick={ (e) => this.handleClickCancel(e) }>Cancel</Button>
+                </ButtonGroup>
+              </form>
+              <Loading loading={this.state.loading}>
+                <Validation messages={this.state.response} />
+              </Loading>
+            </div>
+          </Fade>
+        </Modal>
+      </div>
     );
   }
 }
 
-export { RestaurantEdit };
+export default withStyles(styles)(RestaurantEdit);

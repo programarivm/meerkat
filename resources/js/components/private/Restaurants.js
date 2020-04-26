@@ -1,28 +1,39 @@
 import Can from '../Can';
-import { Col, Row } from 'reactstrap';
+import { Grid } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import { LoremIpsum } from '../common/LoremIpsum';
-import { RestaurantCreate } from './restaurant/Create';
-import { RestaurantIndex } from './restaurant/Index';
+import RestaurantCreate from './restaurant/Create';
+import RestaurantIndex from './restaurant/Index';
 import React from 'react';
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  control: {
+    padding: theme.spacing(2),
+  },
+});
 
 class Restaurants extends React.Component {
   render() {
+    const { classes } = this.props;
     return (
-      <Row className="m-3">
-        <Col md={9}>
+      <Grid container className={classes.root}>
+        <Grid item xs={9} className={classes.control}>
           <RestaurantIndex />
-        </Col>
-        <Col md={3}>
+        </Grid>
+        <Grid item xs={3} className={classes.control}>
           <Can I="store" a="Restaurant">
             <RestaurantCreate />
           </Can>
           <Can not I="store" a="Restaurant">
             <LoremIpsum />
           </Can>
-        </Col>
-      </Row>
+        </Grid>
+      </Grid>
     );
   }
 }
 
-export { Restaurants };
+export default withStyles(styles)(Restaurants);

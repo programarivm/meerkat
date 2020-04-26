@@ -1,6 +1,6 @@
 import ApiRestaurantActions from '../../../actions/api/RestaurantActions';
 import ApiRestaurantStore from '../../../stores/api/RestaurantStore';
-import { Button, Form, FormGroup, Jumbotron } from 'reactstrap';
+import { Button, ButtonGroup, Paper } from '@material-ui/core';
 import { FormInputs } from './FormInputs';
 import Loading from '../../Loading';
 import React from 'react';
@@ -13,6 +13,7 @@ class RestaurantCreate extends React.Component {
     super(props);
     this.state = this.getInitialState();
     this.handleChange = this.handleChange.bind(this);
+    this.handleClickCancel = this.handleClickCancel.bind(this);
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
   }
 
@@ -63,6 +64,11 @@ class RestaurantCreate extends React.Component {
     this.setState({restaurant});
   }
 
+  handleClickCancel(e) {
+    this.resetState()
+    e.preventDefault();
+  }
+
   handleSubmitForm(e) {
     this.setState({ loading: true });
     ApiRestaurantActions.create(this.state.restaurant);
@@ -71,19 +77,24 @@ class RestaurantCreate extends React.Component {
 
   render() {
     return (
-      <Jumbotron className="mt-3">
-        <Form className="form" onSubmit={ (e) => this.handleSubmitForm(e) }>
+      <Paper style={{ padding: 15 }}>
+        <form onSubmit={ (e) => this.handleSubmitForm(e) }>
           <FormInputs {...this.state.restaurant} handleChange={this.handleChange} />
-          <FormGroup>
-            <Button color="primary" block>Add restaurant</Button>
-          </FormGroup>
-        </Form>
-        <Loading loading={this.state.loading}>
+          <ButtonGroup
+            style={{ marginTop: 10, marginBottom: 10 }}
+            size="small"
+            fullWidth
+          >
+            <Button color="primary" type="submit">Add</Button>
+            <Button color="secondary" onClick={ (e) => this.handleClickCancel(e) }>Cancel</Button>
+          </ButtonGroup>
+        </form>
+        <Loading loading={this.props.loading}>
           <Validation messages={this.state.response} />
         </Loading>
-      </Jumbotron>
+      </Paper>
     );
   }
 }
 
-export { RestaurantCreate };
+export default RestaurantCreate;
