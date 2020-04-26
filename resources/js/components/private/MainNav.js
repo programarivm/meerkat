@@ -5,7 +5,7 @@ import { Link, NavLink, Route } from 'react-router-dom';
 import MyAccountMenu from './MyAccountMenu';
 import React from 'react';
 import Restaurants from './Restaurants';
-import { Reviews } from '../common/Reviews';
+import Reviews from '../common/Reviews';
 import { SignOut } from './SignOut';
 import Users from './Users';
 import logo from '../../../images/logo.png';

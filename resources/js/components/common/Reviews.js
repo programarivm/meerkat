@@ -1,4 +1,5 @@
-import { Button, ButtonGroup, Col, Row } from 'reactstrap';
+import { Button, ButtonGroup, Grid } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import Can from '../Can';
 import { LoremIpsum } from "./LoremIpsum";
 import React from 'react';
@@ -6,37 +7,47 @@ import ReviewActions from '../../actions/ReviewActions';
 import { ReviewCreate } from "./review/Create";
 import { ReviewIndex } from "./review/Index";
 
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  control: {
+    padding: theme.spacing(2),
+  },
+});
+
 class Reviews extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClickReviewNow = this.handleClickReviewNow.bind(this);
+    this.handleClickReview = this.handleClickReview.bind(this);
   }
 
-  handleClickReviewNow(e) {
+  handleClickReview(e) {
     ReviewActions.clickReviewNow();
     e.preventDefault();
   }
 
   render() {
+    const { classes } = this.props;
     return (
-      <Row className="m-3">
-        <Col md={9}>
+      <Grid container className={classes.root}>
+        <Grid item xs={9} className={classes.control}>
           <ReviewIndex />
-        </Col>
-        <Col md={3}>
+        </Grid>
+        <Grid item xs={3} className={classes.control}>
           <Can I="store" a="Review">
-            <ButtonGroup className="mt-3">
-              <Button className="mb-4" color="primary" size="sm" onClick={ (e) => this.handleClickReviewNow(e) }>Review now!</Button>
+            <ButtonGroup color="primary" size="small" aria-label="outlined primary button group">
+              <Button onClick={ (e) => this.handleClickReview(e) }>Review now!</Button>
             </ButtonGroup>
             <ReviewCreate />
           </Can>
           <Can not I="store" a="Review">
             <LoremIpsum />
           </Can>
-        </Col>
-      </Row>
+        </Grid>
+      </Grid>
     );
   }
 }
 
-export { Reviews };
+export default withStyles(styles)(Reviews);

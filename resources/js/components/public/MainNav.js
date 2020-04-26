@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Home } from './Home';
 import { Link, NavLink, Route, Redirect } from 'react-router-dom';
 import React from 'react';
-import { Reviews } from '../common/Reviews';
+import Reviews from '../common/Reviews';
 import SignIn from './SignIn';
 import logo from '../../../images/logo.png';
 
