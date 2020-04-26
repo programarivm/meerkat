@@ -2,13 +2,27 @@ import ApiRestaurantActions from '../../../actions/api/RestaurantActions';
 import ApiRestaurantStore from '../../../stores/api/RestaurantStore';
 import ApiReviewActions from '../../../actions/api/ReviewActions';
 import ApiReviewStore from '../../../stores/api/ReviewStore';
-import {
-  Button, ButtonGroup, Form, FormGroup, Input, Label, Modal, ModalBody
-} from 'reactstrap';
+import { Backdrop, Button, ButtonGroup, Fade, InputLabel, MenuItem, Modal, TextField } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import Loading from '../../Loading';
 import { Range } from 'react-range';
 import React from 'react';
 import ReviewStore from '../../../stores/ReviewStore';
 import Validation from '../../Validation';
+
+const styles = theme => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+});
 
 class ReviewCreate extends React.Component {
   _isMounted = false;
@@ -72,7 +86,7 @@ class ReviewCreate extends React.Component {
         id: ''
       },
       comment: '',
-      points: [5]
+      points: [3]
     },
     modal: {
       open: false
@@ -86,7 +100,7 @@ class ReviewCreate extends React.Component {
 
   handleChange = e => {
     let review = {...this.state.review};
-    switch (e.target.id) {
+    switch (e.target.name) {
       case 'restaurant':
         review.restaurant.id = e.target.value;
         break;
@@ -108,82 +122,101 @@ class ReviewCreate extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
-      <Modal isOpen={this.state.modal.open}>
-        <ModalBody>
-          <Validation messages={this.state.response} />
-          <Form className="form" onSubmit={ (e) => this.handleClickSubmit(e) }>
-            <FormGroup>
-              <Label for="restaurant">Select a restaurant:</Label>
-              <Input
-                type="select"
-                name="restaurant"
-                id="restaurant"
-                value={this.state.review.restaurant.id}
-                onChange={this.handleChange}>
-                { this.state.restaurants.map( (item, i) => <option key={i} value={item.id}>{item.name}</option> ) }
-              </Input>
-            </FormGroup>
-            <FormGroup>
-              <Label>Slide the square sincerely:</Label>
-              <Range
-                step={1}
-                min={0}
-                max={10}
-                values={this.state.review.points}
-                onChange={values => {
-                  let newState = Object.assign({}, this.state);
-                  newState.review.points = values;
-                  this.setState(newState);
-                }}
-                renderTrack={({ props, children }) => (
-                  <div
-                    {...props}
-                    style={{
-                      ...props.style,
-                      height: '6px',
-                      width: '100%',
-                      backgroundColor: '#ccc'
-                    }}
-                  >
-                    {children}
-                  </div>
-                )}
-                renderThumb={({ props }) => (
-                  <div
-                    {...props}
-                    style={{
-                      ...props.style,
-                      height: '25px',
-                      width: '25px',
-                      backgroundColor: '#999'
-                    }}
-                  />
-                )}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Tell us about your opinion:</Label>
-              <Input
-                type="textarea"
-                name="comment"
-                id="comment"
-                placeholder="In my opinion..."
-                value={this.state.review.comment}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <ButtonGroup>
-                <Button color="primary">Submit</Button>
-                <Button color="secondary" onClick={ (e) => this.handleClickCancel(e) }>Cancel</Button>
-              </ButtonGroup>
-            </FormGroup>
-          </Form>
-        </ModalBody>
-      </Modal>
+      <div>
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          className={classes.modal}
+          open={this.state.modal.open}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={this.state.modal.open}>
+            <div className={classes.paper}>
+              <form onSubmit={ (e) => this.handleClickSubmit(e) }>
+                <TextField
+                  select
+                  required
+                  fullWidth
+                  id="restaurant"
+                  label="Select a restaurant"
+                  name="restaurant"
+                  margin="normal"
+                  value={this.state.review.restaurant.id}
+                  onChange={this.handleChange}
+                >
+                  {this.state.restaurants.map((item, i) => (
+                    <MenuItem key={i} value={item.id}>
+                      {item.name}
+                    </MenuItem>
+                  ))}
+                </TextField>
+                <InputLabel>Slide the square sincerely:</InputLabel>
+                <Range
+                  step={1}
+                  min={1}
+                  max={5}
+                  values={this.state.review.points}
+                  onChange={values => {
+                    let newState = Object.assign({}, this.state);
+                    newState.review.points = values;
+                    this.setState(newState);
+                  }}
+                  renderTrack={({ props, children }) => (
+                    <div
+                      {...props}
+                      style={{
+                        ...props.style,
+                        height: '6px',
+                        width: '100%',
+                        backgroundColor: '#ccc'
+                      }}
+                    >
+                      {children}
+                    </div>
+                  )}
+                  renderThumb={({ props }) => (
+                    <div
+                      {...props}
+                      style={{
+                        ...props.style,
+                        height: '25px',
+                        width: '25px',
+                        backgroundColor: '#999'
+                      }}
+                    />
+                  )}
+                />
+                <TextField
+                  multiline
+                  fullWidth
+                  id="comment"
+                  label="Tell us about your opinion"
+                  name="comment"
+                  margin="normal"
+                  rows={4}
+                  value={this.state.review.comment}
+                  onChange={this.handleChange}
+                />
+                <ButtonGroup>
+                  <Button type="submit" color="primary">Accept</Button>
+                  <Button color="secondary" onClick={ (e) => this.handleClickCancel(e) }>Cancel</Button>
+                </ButtonGroup>
+              </form>
+              <Loading loading={this.state.loading}>
+                <Validation messages={this.state.response} />
+              </Loading>
+            </div>
+          </Fade>
+        </Modal>
+      </div>
     );
   }
 }
 
-export { ReviewCreate };
+export default withStyles(styles)(ReviewCreate);

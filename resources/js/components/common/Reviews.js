@@ -4,8 +4,8 @@ import Can from '../Can';
 import { LoremIpsum } from "./LoremIpsum";
 import React from 'react';
 import ReviewActions from '../../actions/ReviewActions';
-import { ReviewCreate } from "./review/Create";
-import { ReviewIndex } from "./review/Index";
+import ReviewCreate from "./review/Create";
+import ReviewIndex from "./review/Index";
 
 const styles = theme => ({
   root: {
@@ -19,10 +19,10 @@ const styles = theme => ({
 class Reviews extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClickReview = this.handleClickReview.bind(this);
+    this.handleClickReviewNow = this.handleClickReviewNow.bind(this);
   }
 
-  handleClickReview(e) {
+  handleClickReviewNow(e) {
     ReviewActions.clickReviewNow();
     e.preventDefault();
   }
@@ -37,7 +37,7 @@ class Reviews extends React.Component {
         <Grid item xs={3} className={classes.control}>
           <Can I="store" a="Review">
             <ButtonGroup color="primary" size="small" aria-label="outlined primary button group">
-              <Button onClick={ (e) => this.handleClickReview(e) }>Review now!</Button>
+              <Button onClick={ (e) => this.handleClickReviewNow(e) }>Review now!</Button>
             </ButtonGroup>
             <ReviewCreate />
           </Can>
