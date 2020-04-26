@@ -34,8 +34,6 @@ To find out the IP of the `meerkat_nginx` container:
 
     echo $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.Gateway}}{{end}}' meerkat_nginx)
 
-> Well done! The app can now run on your favourite web browser by typing https://meerkat.local into the address bar.
-
 ### Run the Tests
 
     docker exec -it --user 1000:1000 meerkat_php_fpm ./vendor/bin/phpunit
@@ -43,43 +41,35 @@ To find out the IP of the `meerkat_nginx` container:
 ### Screenshots
 
 <p align="center">
-    <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure%201%20-%20Login.png" />
+    <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure-01.png" />
 </p>
 
 <p align="center">
-    <b>Figure 1</b>. Login page
+    <b>Figure 1</b>. Homepage
 </p>
 
 <p align="center">
-    <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure%202%20-%20John%20reviewing%20a%20restaurant.png" />
+    <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure-02.png" />
 </p>
 
 <p align="center">
-    <b>Figure 2</b>. John reviewing a restaurant
+    <b>Figure 2</b>. Login page
 </p>
 
 <p align="center">
-    <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure%203%20-%20Alice%20deleting%20reviews.png" />
+    <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure-03.png" />
 </p>
 
 <p align="center">
-    <b>Figure 3</b>. Alice deleting reviews
+    <b>Figure 3</b>. Reviews page
 </p>
 
 <p align="center">
-    <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure%204%20-%20Alice%20editing%20restaurants.png" />
+    <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure-04.png" />
 </p>
 
 <p align="center">
-    <b>Figure 4</b>. Alice editing restaurants
-</p>
-
-<p align="center">
-    <img src="https://github.com/programarivm/meerkat/blob/master/resources/images/Figure%205%20-%20Bob%20adding%20users.png" />
-</p>
-
-<p align="center">
-    <b>Figure 5</b>. Bob adding users
+    <b>Figure 4</b>. Bob adding a restaurant
 </p>
 
 ### Contributions
