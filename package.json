@@ -33,8 +33,6 @@
         "material-table": "^1.57.2",
         "react-cookie-consent": "^2.5.0",
         "react-range": "^1.4.6",
-        "react-router-dom": "^5.1.2",
-        "react-table": "^6.11.5",
-        "reactstrap": "^8.2.0"
+        "react-router-dom": "^5.1.2"
     }
 }
