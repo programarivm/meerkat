@@ -50,7 +50,7 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <Grid container style={{ margin: 20, padding: 20 }}>
+      <Grid container style={{ marginTop: 50 }}>
         <Grid item xs={4}></Grid>
         <Grid item xs={4}>
           <Paper style={{ padding: 15 }}>
