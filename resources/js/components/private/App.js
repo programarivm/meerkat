@@ -1,4 +1,4 @@
-import { MainNav } from './MainNav';
+import MainNav from './MainNav';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 

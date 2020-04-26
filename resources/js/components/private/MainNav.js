@@ -92,4 +92,4 @@ class MainNav extends React.Component {
   }
 }
 
-export { MainNav };
+export default withStyles(styles)(MainNav);

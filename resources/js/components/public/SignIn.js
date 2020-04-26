@@ -11,13 +11,9 @@ import Validation from '../Validation';
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
-      this.state = {
-        credentials: {
-          email: '',
-          password: ''
-        },
-        response: [],
-        loading: false
+    this.state = {
+      response: [],
+      loading: false
     }
     this.handleLogin = this.handleLogin.bind(this);
   }
@@ -42,14 +38,13 @@ class SignIn extends React.Component {
   }
 
   handleLogin(e) {
-    let newState = Object.assign({}, this.state);
-    newState.loading = true;
-    newState.credentials = {
+    this.setState({
+      loading: true
+    });
+    ApiAuthActions.login({
       email: e.target.email.value,
       password: e.target.password.value
-    };
-    this.setState(newState);
-    ApiAuthActions.login(this.state.credentials);
+    });
     e.preventDefault();
   }
 
