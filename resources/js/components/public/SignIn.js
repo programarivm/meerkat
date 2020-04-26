@@ -2,14 +2,11 @@ import ability from '../../ability';
 import abilityRules from '../../../../storage/ability-rules.json';
 import ApiAuthActions from '../../actions/api/AuthActions';
 import ApiAuthStore from '../../stores/api/AuthStore';
-import {
-  Button, Card, CardBody, CardFooter, CardHeader, Col, Container, Form, FormGroup, Input, Row
-} from 'reactstrap';
+import { Button, Divider, Grid, TextField, Typography } from '@material-ui/core';
 import Loading from '../Loading';
 import React from 'react';
 import Session from '../../Session';
 import Validation from '../Validation';
-import './SignIn.css';
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -58,58 +55,61 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <Container className="SignIn mt-5">
-        <Row>
-          <Col lg="3"></Col>
-          <Col lg="6">
-            <Card>
-              <CardHeader className="bg-white">
-                <h5 className="text-center">Log in to your account</h5>
-              </CardHeader>
-              <CardBody className="d-flex justify-content-center">
-                <Form className="form" onSubmit={ (e) => this.handleLogin(e) }>
-                  <Loading loading={this.state.loading}>
-                    <Validation messages={this.state.response} />
-                  </Loading>
-                  <FormGroup>
-                    <Input
-                      type="email"
-                      name="email"
-                      id="email"
-                      placeholder="Email address"
-                      onChange={this.handleChange}
-                      required
-                    />
-                  </FormGroup>
-                  <FormGroup>
-                    <Input
-                      type="password"
-                      name="password"
-                      id="password"
-                      placeholder="Password"
-                      onChange={this.handleChange}
-                      required
-                    />
-                  </FormGroup>
-                  <Button color="primary" block>Log in</Button>
-                </Form>
-              </CardBody>
-              <CardFooter className="text-muted">
-                <p>How to use the demo:</p>
-                <ul>
-                  <li>john@gmail.com as a basic user</li>
-                  <li>alice@gmail.com as an editor user</li>
-                  <li>bob@gmail.com as an admin user</li>
-                </ul>
-                <p>The password for all roles is password</p>
-              </CardFooter>
-            </Card>
-          </Col>
-          <Col lg="3"></Col>
-        </Row>
-      </Container>
+      <Grid container style={{ margin: 20, padding: 20 }}>
+        <Grid item xs={4}></Grid>
+        <Grid item xs={4}>
+          <Typography component="h1" variant="h5">
+            Log in to your account
+          </Typography>
+          <Loading loading={this.state.loading}>
+            <Validation show={true} messages={this.state.response} />
+          </Loading>
+          <form onSubmit={ (e) => this.handleLogin(e) }>
+            <TextField
+              required
+              fullWidth
+              autoFocus
+              variant="outlined"
+              margin="normal"
+              id="email"
+              label="Email address"
+              name="email"
+              autoComplete="email"
+            />
+            <TextField
+              required
+              fullWidth
+              variant="outlined"
+              margin="normal"
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              style={{ marginTop: 10 }}
+            >
+              Log in
+            </Button>
+          </form>
+          <Divider style={{ margin: 20 }} />
+          <p>How to use the demo:</p>
+          <ul>
+            <li>john@gmail.com as a basic user</li>
+            <li>alice@gmail.com as an editor user</li>
+            <li>bob@gmail.com as an admin user</li>
+          </ul>
+          <p>The password for all roles is <code>password</code></p>
+        </Grid>
+        <Grid item xs={4}></Grid>
+      </Grid>
     );
   }
 }
 
-export { SignIn };
+export default SignIn;
