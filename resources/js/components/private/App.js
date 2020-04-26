@@ -1,3 +1,4 @@
+import CssBaseline from "@material-ui/core/CssBaseline";
 import MainNav from './MainNav';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
@@ -17,7 +18,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <MainNav />
+      <div>
+        <CssBaseline />
+        <MainNav />
+      </div>
     );
   }
 }

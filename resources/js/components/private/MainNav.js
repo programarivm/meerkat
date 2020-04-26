@@ -15,6 +15,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   menuOption: {
+    textDecoration: 'none',
     marginRight: theme.spacing(5),
     color: '#fff',
     '&:hover': {
