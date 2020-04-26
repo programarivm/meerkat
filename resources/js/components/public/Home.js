@@ -1,42 +1,39 @@
-import { Col, Container, Row } from 'reactstrap';
+import Button from '@material-ui/core/Button';
+import { Grid } from '@material-ui/core'
 import { Footer } from './Footer';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import api from '../../../images/api.png';
-import './Home.css';
+import Typography from '@material-ui/core/Typography'
+import stickyNotes from '../../../images/sticky-notes.jpg';
 
-class Home extends React.Component {
-  render() {
-    return (
-      <div>
-        <Container className="Home mt-5 mb-5">
-          <Row>
-            <Col lg="8">
-              <h1 className="mt-5">Welcome to Meerkat</h1>
-              <h5>This is a real-world example SPA: a React GUI interacting with a Laravel API.</h5>
-              <hr/>
-              <p>Features:</p>
-              <ul>
-                <li>ACL (access control list)</li>
-                <li>JWT authentication</li>
-                <li>CRUD implementation</li>
-                <li>REST API</li>
-                <li>Flux: actions, dispatchers and stores</li>
-                <li>Data-driven tests</li>
-              </ul>
-              <Link className="mt-2 btn btn-primary text-white" to="/login">Interact now!</Link>
-            </Col>
-            <Col lg="4">
-              <figure className="swing">
-                <img src={api} className="img-fluid" alt="soup" />
-              </figure>
-            </Col>
-          </Row>
-        </Container>
-        <Footer />
-      </div>
-    );
-  }
+function Home() {
+  return (
+    <Grid container style={{ marginTop: 40 }}>
+      <Grid item xs={1}></Grid>
+      <Grid item xs={6} style={{ marginTop: 50, marginBottom: 20 }}>
+        <Typography variant="h3" paragraph={true}>
+          What's being said about the restaurants in your area?
+        </Typography>
+        <Typography variant="h6" color="secondary" paragraph={true}>
+          This is a real-world example SPA, a React GUI interacting with a Laravel API with the following features: ACL (access control list),
+          JWT authentication, CRUD implementation, REST API, Redux, Data-driven tests.
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          component={Link}
+          to={'/login'}
+        >
+          Find out now!
+        </Button>
+      </Grid>
+      <Grid item xs={4}>
+        <img src={stickyNotes} alt="Warthog logo" style={{ marginTop: 15, maxWidth: 400 }}/>
+      </Grid>
+      <Grid item xs={1}></Grid>
+      <Footer />
+    </Grid>
+  );
 }
 
 export { Home };
