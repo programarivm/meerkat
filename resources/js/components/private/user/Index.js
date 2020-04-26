@@ -156,4 +156,4 @@ class UserIndex extends React.Component {
   }
 }
 
-export { UserIndex };
+export default UserIndex;

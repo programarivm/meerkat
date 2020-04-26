@@ -1,28 +1,39 @@
 import Can from '../Can';
-import { Col, Row } from 'reactstrap';
+import { Grid } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import { LoremIpsum } from '../common/LoremIpsum';
-import { UserCreate } from './user/Create';
-import { UserIndex } from './user/Index';
+import UserCreate from './user/Create';
+import UserIndex  from './user/Index';
 import React from 'react';
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  control: {
+    padding: theme.spacing(2),
+  },
+});
 
 class Users extends React.Component {
   render() {
+    const { classes } = this.props;
     return (
-      <Row className="m-3">
-        <Col md={9}>
+      <Grid container className={classes.root}>
+        <Grid item xs={9} className={classes.control}>
           <UserIndex />
-        </Col>
-        <Col md={3}>
+        </Grid>
+        <Grid item xs={3} className={classes.control}>
           <Can I="store" a="User">
             <UserCreate />
           </Can>
           <Can not I="store" a="User">
             <LoremIpsum />
           </Can>
-        </Col>
-      </Row>
+        </Grid>
+      </Grid>
     );
   }
 }
 
-export { Users };
+export default withStyles(styles)(Users);
