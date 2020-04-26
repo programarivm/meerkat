@@ -41,14 +41,14 @@ class SignIn extends React.Component {
     });
   }
 
-  handleChange = e => {
-    let credentials = {...this.state.credentials};
-    credentials[e.target.id] = e.target.value;
-    this.setState({credentials});
-  }
-
   handleLogin(e) {
-    this.setState({ loading: true });
+    let newState = Object.assign({}, this.state);
+    newState.loading = true;
+    newState.credentials = {
+      email: e.target.email.value,
+      password: e.target.password.value
+    };
+    this.setState(newState);
     ApiAuthActions.login(this.state.credentials);
     e.preventDefault();
   }
