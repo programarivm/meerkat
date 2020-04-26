@@ -16,7 +16,7 @@ function Home() {
         </Typography>
         <Typography variant="h6" color="secondary" paragraph={true}>
           This is a real-world example SPA, a React GUI interacting with a Laravel API with the following features: ACL (access control list),
-          JWT authentication, CRUD implementation, REST API, Redux, Data-driven tests.
+          JWT authentication, CRUD implementation, REST API, Flux, Data-driven tests.
         </Typography>
         <Button
           variant="contained"
