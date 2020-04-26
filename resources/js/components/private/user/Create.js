@@ -1,7 +1,7 @@
 import ApiUserActions from '../../../actions/api/UserActions';
 import ApiUserStore from '../../../stores/api/UserStore';
 import { Button, Form, FormGroup, Input, Jumbotron } from 'reactstrap';
-import { FormGroups } from './FormGroups';
+import { FormInputs } from './FormInputs';
 import Loading from '../../Loading';
 import React from 'react';
 import Validation from '../../Validation';
@@ -74,7 +74,7 @@ class UserCreate extends React.Component {
     return (
       <Jumbotron className="mt-3">
         <Form className="form" onSubmit={ (e) => this.handleSubmitForm(e) }>
-          <FormGroups {...this.state.user} handleChange={this.handleChange} />
+          <FormInputs {...this.state.user} handleChange={this.handleChange} />
           <FormGroup>
             <Input
               type="password"

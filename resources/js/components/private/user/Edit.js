@@ -1,7 +1,7 @@
 import ApiUserActions from '../../../actions/api/UserActions';
 import ApiUserStore from '../../../stores/api/UserStore';
 import { Button, Form, Modal, ModalBody, ModalFooter } from 'reactstrap';
-import { FormGroups } from './FormGroups';
+import { FormInputs } from './FormInputs';
 import Loading from '../../Loading';
 import React from 'react';
 import Validation from '../../Validation';
@@ -102,7 +102,7 @@ class UserEdit extends React.Component {
       <Modal isOpen={this.state.modal.open}>
         <ModalBody>
           <Form className="form">
-            <FormGroups {...this.state.user} handleChange={this.handleChange} />
+            <FormInputs {...this.state.user} handleChange={this.handleChange} />
           </Form>
           <Loading loading={this.state.loading}>
             <Validation messages={this.state.response} />
