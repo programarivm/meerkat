@@ -16,8 +16,8 @@ class RestaurantsTableSeeder extends Seeder
 
         for ($i = 0; $i < 25; $i++) {
             Restaurant::create([
-                'name' => $faker->company,
-                'description' => $faker->sentence,
+                'name' => ucfirst($faker->words(3, true)),
+                'description' => implode(' ', $faker->sentences(2)),
                 'address' => $faker->address,
                 'lat' => $faker->latitude,
                 'lon' => $faker->longitude,
