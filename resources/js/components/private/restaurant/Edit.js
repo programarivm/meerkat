@@ -1,7 +1,7 @@
 import ApiRestaurantActions from '../../../actions/api/RestaurantActions';
 import ApiRestaurantStore from '../../../stores/api/RestaurantStore';
 import { Button, Form, Modal, ModalBody, ModalFooter } from 'reactstrap';
-import { FormGroups } from './FormGroups';
+import { FormInputs } from './FormInputs';
 import Loading from '../../Loading';
 import React from 'react';
 import Validation from '../../Validation';
@@ -100,7 +100,7 @@ class RestaurantEdit extends React.Component {
       <Modal isOpen={this.state.modal.open}>
         <ModalBody>
           <Form className="form">
-            <FormGroups {...this.state.restaurant} handleChange={this.handleChange} />
+            <FormInputs {...this.state.restaurant} handleChange={this.handleChange} />
           </Form>
           <Loading loading={this.state.loading}>
             <Validation messages={this.state.response} />

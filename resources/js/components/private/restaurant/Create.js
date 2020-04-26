@@ -1,7 +1,7 @@
 import ApiRestaurantActions from '../../../actions/api/RestaurantActions';
 import ApiRestaurantStore from '../../../stores/api/RestaurantStore';
 import { Button, Form, FormGroup, Jumbotron } from 'reactstrap';
-import { FormGroups } from './FormGroups';
+import { FormInputs } from './FormInputs';
 import Loading from '../../Loading';
 import React from 'react';
 import Validation from '../../Validation';
@@ -73,7 +73,7 @@ class RestaurantCreate extends React.Component {
     return (
       <Jumbotron className="mt-3">
         <Form className="form" onSubmit={ (e) => this.handleSubmitForm(e) }>
-          <FormGroups {...this.state.restaurant} handleChange={this.handleChange} />
+          <FormInputs {...this.state.restaurant} handleChange={this.handleChange} />
           <FormGroup>
             <Button color="primary" block>Add restaurant</Button>
           </FormGroup>
