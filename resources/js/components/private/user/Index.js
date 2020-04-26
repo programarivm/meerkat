@@ -6,7 +6,7 @@ import { IconButton } from '@material-ui/core';
 import Can from '../../Can';
 import Loading from '../../Loading';
 import React from 'react';
-import { UserEdit } from './Edit';
+import UserEdit from './Edit';
 
 // MaterialTable
 import MaterialTable from "material-table";
