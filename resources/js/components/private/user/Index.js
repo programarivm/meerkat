@@ -1,12 +1,12 @@
-import ApiUserActions from '../../../actions/api/UserActions';
-import ApiUserStore from '../../../stores/api/UserStore';
+import ApiUserActions from '@/actions/api/UserActions';
+import ApiUserStore from '@/stores/api/UserStore';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { IconButton } from '@material-ui/core';
-import Can from '../../Can';
-import Loading from '../../Loading';
+import Can from '@/components/Can';
+import Loading from '@/components/Loading';
 import React from 'react';
-import UserEdit from './Edit';
+import UserEdit from '@/components/private/user/Edit';
 
 // MaterialTable
 import MaterialTable from "material-table";

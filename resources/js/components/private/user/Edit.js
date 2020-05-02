@@ -1,11 +1,11 @@
-import ApiUserActions from '../../../actions/api/UserActions';
-import ApiUserStore from '../../../stores/api/UserStore';
+import ApiUserActions from '@/actions/api/UserActions';
+import ApiUserStore from '@/stores/api/UserStore';
 import { Backdrop, Button, ButtonGroup, Fade, Modal } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { FormInputs } from './FormInputs';
-import Loading from '../../Loading';
+import { FormInputs } from '@/components/private/user/FormInputs';
+import Loading from '@/components/Loading';
 import React from 'react';
-import Validation from '../../Validation';
+import Validation from '@/components/Validation';
 
 const styles = theme => ({
   modal: {

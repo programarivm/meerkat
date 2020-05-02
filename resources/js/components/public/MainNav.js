@@ -1,11 +1,11 @@
 import { AppBar, Button, ButtonGroup, Toolbar } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { Home } from './Home';
+import { Home } from '@/components/public/Home';
 import { Link, NavLink, Route, Redirect } from 'react-router-dom';
 import React from 'react';
-import Reviews from '../common/Reviews';
-import SignIn from './SignIn';
-import logo from '../../../images/logo.png';
+import Reviews from '@/components/common/Reviews';
+import SignIn from '@/components/public/SignIn';
+import logo from '@/../images/logo.png';
 
 const styles = theme => ({
   root: {

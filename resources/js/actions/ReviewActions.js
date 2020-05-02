@@ -1,5 +1,5 @@
-import ReviewActionTypes from '../constants/ReviewActionTypes';
-import ReviewDispatcher from '../dispatcher/ReviewDispatcher';
+import ReviewActionTypes from '@/constants/ReviewActionTypes';
+import ReviewDispatcher from '@/dispatcher/ReviewDispatcher';
 
 class ReviewActions {
 	clickReviewNow() {

@@ -1,6 +1,6 @@
-import ApiCrudActionTypes from '../../constants/api/CrudActionTypes';
-import ApiReviewDispatcher from '../../dispatcher/api/ReviewDispatcher';
-import AbstractCrudStore from './AbstractCrudStore';
+import ApiCrudActionTypes from '@/constants/api/CrudActionTypes';
+import ApiReviewDispatcher from '@/dispatcher/api/ReviewDispatcher';
+import AbstractCrudStore from '@/stores/api/AbstractCrudStore';
 
 class ReviewStore extends AbstractCrudStore {
 	constructor() {

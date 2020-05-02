@@ -1,12 +1,12 @@
-import ability from '../../ability';
-import abilityRules from '../../../../storage/ability-rules.json';
-import ApiAuthActions from '../../actions/api/AuthActions';
-import ApiAuthStore from '../../stores/api/AuthStore';
+import ability from '@/ability';
+import abilityRules from '@/../../storage/ability-rules.json';
+import ApiAuthActions from '@/actions/api/AuthActions';
+import ApiAuthStore from '@/stores/api/AuthStore';
 import { Button, Divider, Grid, Paper, TextField, Typography } from '@material-ui/core';
-import Loading from '../Loading';
+import Loading from '@/components/Loading';
 import React from 'react';
-import Session from '../../Session';
-import Validation from '../Validation';
+import Session from '@/Session';
+import Validation from '@/components/Validation';
 
 class SignIn extends React.Component {
   constructor(props) {

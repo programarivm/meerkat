@@ -1,11 +1,11 @@
 import { Button, ButtonGroup, Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import Can from '../Can';
-import { LoremIpsum } from "./LoremIpsum";
+import Can from '@/components/Can';
+import { LoremIpsum } from "@/components/common/LoremIpsum";
 import React from 'react';
-import ReviewActions from '../../actions/ReviewActions';
-import ReviewCreate from "./review/Create";
-import ReviewIndex from "./review/Index";
+import ReviewActions from '@/actions/ReviewActions';
+import ReviewCreate from "@/components/common/review/Create";
+import ReviewIndex from "@/components/common/review/Index";
 
 const styles = theme => ({
   root: {

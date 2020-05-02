@@ -1,5 +1,5 @@
-import ApiAuthActionTypes from '../../constants/api/AuthActionTypes';
-import ApiAuthDispatcher from '../../dispatcher/api/AuthDispatcher';
+import ApiAuthActionTypes from '@/constants/api/AuthActionTypes';
+import ApiAuthDispatcher from '@/dispatcher/api/AuthDispatcher';
 import { EventEmitter } from 'events';
 
 class AuthStore extends EventEmitter {

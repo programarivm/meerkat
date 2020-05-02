@@ -1,12 +1,12 @@
-import ApiRestaurantActions from '../../../actions/api/RestaurantActions';
-import ApiRestaurantStore from '../../../stores/api/RestaurantStore';
+import ApiRestaurantActions from '@/actions/api/RestaurantActions';
+import ApiRestaurantStore from '@/stores/api/RestaurantStore';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { IconButton } from '@material-ui/core';
-import Can from '../../Can';
-import Loading from '../../Loading';
+import Can from '@/components/Can';
+import Loading from '@/components/Loading';
 import React from 'react';
-import RestaurantEdit from './Edit';
+import RestaurantEdit from '@/components/private/restaurant/Edit';
 
 // MaterialTable
 import MaterialTable from "material-table";

@@ -1,14 +1,14 @@
 import { AppBar, Button, ButtonGroup, Toolbar } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import Can from '../Can';
+import Can from '@/components/Can';
 import { Link, NavLink, Route } from 'react-router-dom';
-import MyAccountMenu from './MyAccountMenu';
+import MyAccountMenu from '@/components/private/MyAccountMenu';
 import React from 'react';
-import Restaurants from './Restaurants';
-import Reviews from '../common/Reviews';
-import SignOut from './SignOut';
-import Users from './Users';
-import logo from '../../../images/logo.png';
+import Restaurants from '@/components/private/Restaurants';
+import Reviews from '@/components/common/Reviews';
+import SignOut from '@/components/private/SignOut';
+import Users from '@/components/private/Users';
+import logo from '@/../images/logo.png';
 
 const styles = theme => ({
   root: {

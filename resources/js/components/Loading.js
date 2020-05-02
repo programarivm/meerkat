@@ -1,4 +1,4 @@
-import loading from '../../images/loading.gif';
+import loading from '@/../images/loading.gif';
 import React, { Component } from 'react';
 
 class Loading extends Component {

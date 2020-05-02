@@ -1,10 +1,10 @@
-import ability from './ability';
-import abilityRules from '../../storage/ability-rules.json';
-import ApiAuthStore from './stores/api/AuthStore';
-import PrivateApp from './components/private/App';
-import PublicApp from './components/public/App';
+import ability from '@/ability';
+import abilityRules from '@/../../storage/ability-rules.json';
+import ApiAuthStore from '@/stores/api/AuthStore';
+import PrivateApp from '@/components/private/App';
+import PublicApp from '@/components/public/App';
 import React, { Component } from 'react';
-import Session from './Session';
+import Session from '@/Session';
 
 class Meerkat extends Component {
   constructor(props) {

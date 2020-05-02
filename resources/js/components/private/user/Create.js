@@ -1,10 +1,10 @@
-import ApiUserActions from '../../../actions/api/UserActions';
-import ApiUserStore from '../../../stores/api/UserStore';
+import ApiUserActions from '@/actions/api/UserActions';
+import ApiUserStore from '@/stores/api/UserStore';
 import { Button, ButtonGroup, Paper, TextField } from '@material-ui/core';
-import { FormInputs } from './FormInputs';
-import Loading from '../../Loading';
+import { FormInputs } from '@/components/private/user/FormInputs';
+import Loading from '@/components/Loading';
 import React from 'react';
-import Validation from '../../Validation';
+import Validation from '@/components/Validation';
 
 class UserCreate extends React.Component {
   _isMounted = false;

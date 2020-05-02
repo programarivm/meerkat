@@ -1,10 +1,10 @@
-import ApiRestaurantActions from '../../../actions/api/RestaurantActions';
-import ApiRestaurantStore from '../../../stores/api/RestaurantStore';
+import ApiRestaurantActions from '@/actions/api/RestaurantActions';
+import ApiRestaurantStore from '@/stores/api/RestaurantStore';
 import { Button, ButtonGroup, Paper } from '@material-ui/core';
-import { FormInputs } from './FormInputs';
-import Loading from '../../Loading';
+import { FormInputs } from '@/components/private/restaurant/FormInputs';
+import Loading from '@/components/Loading';
 import React from 'react';
-import Validation from '../../Validation';
+import Validation from '@/components/Validation';
 
 class RestaurantCreate extends React.Component {
   _isMounted = false;

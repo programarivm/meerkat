@@ -1,6 +1,6 @@
-import ability from '../../ability';
-import ApiAuthActions from '../../actions/api/AuthActions';
-import ApiAuthStore from '../../stores/api/AuthStore';
+import ability from '@/ability';
+import ApiAuthActions from '@/actions/api/AuthActions';
+import ApiAuthStore from '@/stores/api/AuthStore';
 import { Grid } from '@material-ui/core';
 import React from 'react';
 

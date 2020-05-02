@@ -1,9 +1,9 @@
-import Can from '../Can';
+import Can from '@/components/Can';
 import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { LoremIpsum } from '../common/LoremIpsum';
-import UserCreate from './user/Create';
-import UserIndex  from './user/Index';
+import { LoremIpsum } from '@/components/common/LoremIpsum';
+import UserCreate from '@/components/private/user/Create';
+import UserIndex  from '@/components/private/user/Index';
 import React from 'react';
 
 const styles = theme => ({

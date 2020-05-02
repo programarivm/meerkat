@@ -1,14 +1,14 @@
-import ApiRestaurantActions from '../../../actions/api/RestaurantActions';
-import ApiRestaurantStore from '../../../stores/api/RestaurantStore';
-import ApiReviewActions from '../../../actions/api/ReviewActions';
-import ApiReviewStore from '../../../stores/api/ReviewStore';
+import ApiRestaurantActions from '@/actions/api/RestaurantActions';
+import ApiRestaurantStore from '@/stores/api/RestaurantStore';
+import ApiReviewActions from '@/actions/api/ReviewActions';
+import ApiReviewStore from '@/stores/api/ReviewStore';
 import { Backdrop, Button, ButtonGroup, Fade, InputLabel, MenuItem, Modal, TextField } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import Loading from '../../Loading';
+import Loading from '@/components/Loading';
 import { Range } from 'react-range';
 import React from 'react';
-import ReviewStore from '../../../stores/ReviewStore';
-import Validation from '../../Validation';
+import ReviewStore from '@/stores/ReviewStore';
+import Validation from '@/components/Validation';
 
 const styles = theme => ({
   modal: {

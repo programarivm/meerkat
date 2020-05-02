@@ -1,6 +1,6 @@
 import CookieConsent from 'react-cookie-consent';
 import CssBaseline from "@material-ui/core/CssBaseline";
-import MainNav from './MainNav';
+import MainNav from '@/components/public/MainNav';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
